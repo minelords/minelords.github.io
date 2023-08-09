@@ -1,9 +1,7 @@
 ---
-
-catalog: true
-tags:
-    web
-    http
+layout: post
+title: HTTP协议
+categories: [web,http]
 ---
 # HTTP/HTTPS协议
 

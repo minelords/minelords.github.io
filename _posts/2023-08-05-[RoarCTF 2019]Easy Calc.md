@@ -1,9 +1,7 @@
 ---
-
-catalog: true
-tags:
-    web
-    php
+layout: post
+title: [RoarCTF 2019]Easy Calc
+categories: [web,php]
 ---
 ## 额在PHP里有许许多多的绕过检测的方法，还有数不胜数的执行函数，所以任重道远啊
 
