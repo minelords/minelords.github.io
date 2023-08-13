@@ -19,6 +19,7 @@ create_function() 会创造一个匿名函数 (lambda样式)
     }
 ```
 而此时由于参数的传入，这里就存在漏洞  
+***
 ### 第一种是对于code的注入  
 >payload: ?args=1;}phpinfo();/*  
 此时代码变为  
