@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.10. SSL/TLS &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.11. IPsec" href="ipsec.html" />
+    <link rel="prev" title="2.9. 邮件协议族" href="mail.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. 计算机网络与协议</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">2.1. 网络基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp.html">2.2. UDP协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tcp.html">2.3. TCP协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dhcp.html">2.4. DHCP协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="route.html">2.5. 路由算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain/index.html">2.6. 域名系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http/index.html">2.7. HTTP协议簇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh/index.html">2.8. SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mail.html">2.9. 邮件协议族</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.10. SSL/TLS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.10.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.10.2. 协议</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">2.10.2.1. 记录协议</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.10.2.2. 警报协议</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">2.10.2.3. 握手协议</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">2.10.2.4. 变更密码规范协议</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.10.3. 交互过程</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#client-hello">2.10.3.1. Client Hello</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-hello">2.10.3.2. Server Hello</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#certificate">2.10.3.3. Certificate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-key-exchange">2.10.3.4. Server Key Exchange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-hello-done">2.10.3.5. Server Hello Done</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#client-key-exchange">2.10.3.6. Client Key Exchange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change-cipher-spec">2.10.3.7. Change Cipher Spec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encrypted-handshake-message">2.10.3.8. Encrypted Handshake Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-session-ticket">2.10.3.9. New Session Ticket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-data">2.10.3.10. Application Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encrypted-alert">2.10.3.11. Encrypted Alert</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">2.10.4. 版本更新内容</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tls-1-3">2.10.4.1. TLS 1.3</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.10.5. 子协议</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">2.10.6. 参考链接</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rfc">2.10.6.1. RFC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#document">2.10.6.2. Document</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ipsec.html">2.11. IPsec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html">2.12. Wi-Fi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>计算机网络与协议</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.10. </span>SSL/TLS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/network/ssl.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ssl-tls">
+<h1><span class="section-number">2.10. </span>SSL/TLS<a class="headerlink" href="#ssl-tls" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><span class="section-number">2.10.1. </span>简介<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>SSL全称是Secure Sockets Layer，安全套接字层，它是由网景公司(Netscape)在1994年时设计，主要用于Web的安全传输协议，目的是为网络通信提供机密性、认证性及数据完整性保障。如今，SSL已经成为互联网保密通信的工业标准。</p>
+<p>SSL最初的几个版本(SSL 1.0、SSL2.0、SSL 3.0)由网景公司设计和维护，从3.1版本开始，SSL协议由因特网工程任务小组(IETF)正式接管，并更名为TLS(Transport Layer Security)，发展至今已有TLS 1.0、TLS1.1、TLS1.2、TLS1.3这几个版本。</p>
+<p>如TLS名字所说，SSL/TLS协议仅保障传输层安全。同时，由于协议自身特性(数字证书机制)，SSL/TLS不能被用于保护多跳(multi-hop)端到端通信，而只能保护点到点通信。</p>
+<p>SSL/TLS协议能够提供的安全目标主要包括如下几个：</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>认证性</dt><dd><ul>
+<li><p>借助数字证书认证服务端端和客户端身份，防止身份伪造</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>机密性</dt><dd><ul>
+<li><p>借助加密防止第三方窃听</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>完整性</dt><dd><ul>
+<li><p>借助消息认证码(MAC)保障数据完整性，防止消息篡改</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>重放保护</dt><dd><ul>
+<li><p>通过使用隐式序列号防止重放攻击</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>为了实现这些安全目标，SSL/TLS协议被设计为一个两阶段协议，分为握手阶段和应用阶段：</p>
+<p>握手阶段也称协商阶段，在这一阶段，客户端和服务端端会认证对方身份(依赖于PKI体系，利用数字证书进行身份认证)，并协商通信中使用的安全参数、密码套件以及MasterSecret。后续通信使用的所有密钥都是通过MasterSecret生成。
+在握手阶段完成后，进入应用阶段。在应用阶段通信双方使用握手阶段协商好的密钥进行安全通信。</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">2.10.2. </span>协议<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>TLS 包含几个子协议，比较常用的有记录协议、警报协议、握手协议、变更密码规范协议等。</p>
+<section id="id3">
+<h3><span class="section-number">2.10.2.1. </span>记录协议<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>记录协议(Record Protocol)规定了 TLS 收发数据的基本单位记录(record)。</p>
+</section>
+<section id="id4">
+<h3><span class="section-number">2.10.2.2. </span>警报协议<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>警报协议(Alert Protocol)用于提示协议交互过程出现错误。</p>
+</section>
+<section id="id5">
+<h3><span class="section-number">2.10.2.3. </span>握手协议<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>握手协议(Handshake Protocol)是 TLS 里最复杂的子协议，在握手过程中协商 TLS 版本号、随机数、密码套件等信息，然后交换证书和密钥参数，最终双方协商得到会话密钥，用于后续的混合加密系统。</p>
+</section>
+<section id="id6">
+<h3><span class="section-number">2.10.2.4. </span>变更密码规范协议<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>变更密码规范协议(Change Cipher Spec Protocol)是一个“通知”，告诉对方，后续的数据都将使用加密保护。</p>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">2.10.3. </span>交互过程<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<section id="client-hello">
+<h3><span class="section-number">2.10.3.1. </span>Client Hello<a class="headerlink" href="#client-hello" title="Permalink to this heading">¶</a></h3>
+<p>Client Hello 由客户端发送，内容包括客户端的一个Unix时间戳(GMT Unix Time)、一些随机的字节(Random Bytes)，还包括了客户端接受的算法类型(Cipher Suites)。</p>
+</section>
+<section id="server-hello">
+<h3><span class="section-number">2.10.3.2. </span>Server Hello<a class="headerlink" href="#server-hello" title="Permalink to this heading">¶</a></h3>
+<p>Server Hello 由服务端发送，内容包括服务端支持的算法类型、GMT Unix Time以及Random Bytes。</p>
+</section>
+<section id="certificate">
+<h3><span class="section-number">2.10.3.3. </span>Certificate<a class="headerlink" href="#certificate" title="Permalink to this heading">¶</a></h3>
+<p>由服务端或者客户端发送，发送方会会将自己的数字证书发送给接收方，由接收方进行证书验证，如果不通过的话，接收方会中断握手的过程。一般跟在Client / Server Hello报文之后。</p>
+</section>
+<section id="server-key-exchange">
+<h3><span class="section-number">2.10.3.4. </span>Server Key Exchange<a class="headerlink" href="#server-key-exchange" title="Permalink to this heading">¶</a></h3>
+<p>由服务端发送，将自己的公钥参数传输给了客户端，一般也和Server Hello与Certificate在一个TCP报文中。</p>
+</section>
+<section id="server-hello-done">
+<h3><span class="section-number">2.10.3.5. </span>Server Hello Done<a class="headerlink" href="#server-hello-done" title="Permalink to this heading">¶</a></h3>
+<p>服务端发送，一般也和Server Hello、Certificate和Server Key Exchange在一个TCP报文中。</p>
+</section>
+<section id="client-key-exchange">
+<h3><span class="section-number">2.10.3.6. </span>Client Key Exchange<a class="headerlink" href="#client-key-exchange" title="Permalink to this heading">¶</a></h3>
+<p>客户端发送，向服务端发送自己的公钥参数，与服务端协商密钥。</p>
+</section>
+<section id="change-cipher-spec">
+<h3><span class="section-number">2.10.3.7. </span>Change Cipher Spec<a class="headerlink" href="#change-cipher-spec" title="Permalink to this heading">¶</a></h3>
+<p>客户端或者服务端发送，紧跟着Key Exchange发送，代表自己生成了新的密钥，通知对方以后将更换密钥，使用新的密钥进行通信。</p>
+</section>
+<section id="encrypted-handshake-message">
+<h3><span class="section-number">2.10.3.8. </span>Encrypted Handshake Message<a class="headerlink" href="#encrypted-handshake-message" title="Permalink to this heading">¶</a></h3>
+<p>客户端或者服务端发送，紧跟着Key Exchange发送。进行测试，一方用自己的刚刚生成的密钥加密一段固定的消息发送给对方，如果密钥协商正确无误的话，对方可以正确解密。</p>
+</section>
+<section id="new-session-ticket">
+<h3><span class="section-number">2.10.3.9. </span>New Session Ticket<a class="headerlink" href="#new-session-ticket" title="Permalink to this heading">¶</a></h3>
+<p>服务端发送，表示发起会话，在一段时间之内(超时时间到来之前)，双方都以刚刚交换的密钥进行通信。从这以后，加密通信正式开始。</p>
+</section>
+<section id="application-data">
+<h3><span class="section-number">2.10.3.10. </span>Application Data<a class="headerlink" href="#application-data" title="Permalink to this heading">¶</a></h3>
+<p>使用密钥交换协议协商出来的密钥加密的应用层的数据。</p>
+</section>
+<section id="encrypted-alert">
+<h3><span class="section-number">2.10.3.11. </span>Encrypted Alert<a class="headerlink" href="#encrypted-alert" title="Permalink to this heading">¶</a></h3>
+<p>客户端或服务端发送，意味着加密通信因为某些原因需要中断，警告对方不要再发送敏感的数据。</p>
+</section>
+</section>
+<section id="id8">
+<h2><span class="section-number">2.10.4. </span>版本更新内容<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<section id="tls-1-3">
+<h3><span class="section-number">2.10.4.1. </span>TLS 1.3<a class="headerlink" href="#tls-1-3" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>引入了PSK作为新的密钥协商机制</p></li>
+<li><p>支持 0-RTT 模式，以安全性降低为代价，在建立连接时节省了往返时间</p></li>
+<li><p>ServerHello 之后的所有握手消息采取了加密操作，可见明文减少</p></li>
+<li><p>不再允许对加密报文进行压缩、不再允许双方发起重协商</p></li>
+<li><p>DSA 证书不再允许在 TLS 1.3 中使用</p></li>
+<li><dl class="simple">
+<dt>删除不安全的密码算法</dt><dd><ul>
+<li><p>RSA 密钥传输 - 不支持前向安全性</p></li>
+<li><p>CBC 模式密码 - 易受 BEAST 和 Lucky 13 攻击</p></li>
+<li><p>RC4 流密码 - 在 HTTPS 中使用并不安全</p></li>
+<li><p>SHA-1 哈希函数 - 建议以 SHA-2 取而代之</p></li>
+<li><p>任意 Diffie-Hellman 组- CVE-2016-0701 漏洞</p></li>
+<li><p>输出密码 - 易受 FREAK 和 LogJam 攻击</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id9">
+<h2><span class="section-number">2.10.5. </span>子协议<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<p>SSL/TLS协议有一个高度模块化的架构，分为很多子协议，主要是：</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Handshake 协议</dt><dd><ul>
+<li><p>包括协商安全参数和密码套件、服务端身份认证(客户端身份认证可选)、密钥交换</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ChangeCipherSpec 协议</dt><dd><ul>
+<li><p>一条消息表明握手协议已经完成</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Alert 协议</dt><dd><ul>
+<li><p>对握手协议中一些异常的错误提醒，分为fatal和warning两个级别，fatal类型的错误会直接中断SSL链接，而warning级别的错误SSL链接仍可继续，只是会给出错误警告</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Record 协议</dt><dd><ul>
+<li><p>包括对消息的分段、压缩、消息认证和完整性保护、加密等</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id10">
+<h2><span class="section-number">2.10.6. </span>参考链接<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<section id="rfc">
+<h3><span class="section-number">2.10.6.1. </span>RFC<a class="headerlink" href="#rfc" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc2246">RFC 2246 The TLS Protocol Version 1.0</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc4346">RFC 4346 The Transport Layer Security (TLS) Protocol Version 1.1</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc5246">RFC 5246 The Transport Layer Security (TLS) Protocol Version 1.2</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc6101">RFC 6101 The Secure Sockets Layer (SSL) Protocol Version 3.0</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc6176">RFC 6176 Prohibiting Secure Sockets Layer (SSL) Version 2.0</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7568">RFC 7568 Deprecating Secure Sockets Layer Version 3.0</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc8446">RFC 8446 The Transport Layer Security (TLS) Protocol Version 1.3</a></p></li>
+</ul>
+</section>
+<section id="document">
+<h3><span class="section-number">2.10.6.2. </span>Document<a class="headerlink" href="#document" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Transport_Layer_Security">Wikipedia Transport Layer Security</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mail.html" class="btn btn-neutral float-left" title="2.9. 邮件协议族" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ipsec.html" class="btn btn-neutral float-right" title="2.11. IPsec" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

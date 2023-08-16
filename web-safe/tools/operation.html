@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.15. 运维 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.16. 取证" href="forensics.html" />
+    <link rel="prev" title="10.14. 安全开发" href="sdl.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. 工具与资源</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="resource.html">10.1. 推荐资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="papers.html">10.2. 相关论文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html">10.3. 信息收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="socialengineering.html">10.4. 社会工程学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fuzz.html">10.5. 模糊测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exploit.html">10.6. 漏洞利用/检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">10.7. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webpersistence.html">10.8. Web持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intranet.html">10.9. 横向移动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud.html">10.10. 云安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ospersistence.html">10.11. 操作系统持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audit.html">10.12. 审计工具</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defense.html">10.13. 防御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">10.14. 安全开发</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.15. 运维</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.15.1. 流量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">10.15.2. 堡垒机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">10.15.3. 蜜罐</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vpn-install">10.15.4. VPN Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">10.15.5. 隧道 / 代理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">10.15.6. 代理链</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">10.15.7. 资产管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">10.15.8. 合规</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">10.15.9. 风控</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siem">10.15.10. SIEM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">10.15.11. 安全运维</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">10.15.12. 系统监控</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windows">10.15.13. Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">10.15.14. 网络测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">10.15.15. 网络模拟</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="forensics.html">10.16. 取证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">10.17. 其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">10. </span>工具与资源</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10.15. </span>运维</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tools/operation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">10.15. </span>运维<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">10.15.1. </span>流量<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.bro.org/">Bro</a></p></li>
+<li><p><a class="reference external" href="https://github.com/aol/moloch">Moloch</a>  Large scale, open source, indexed packet capture and search</p></li>
+<li><p><a class="reference external" href="https://github.com/simsong/tcpflow">TCPFlow</a></p></li>
+<li><p><a class="reference external" href="http://www.tcpdump.org/">TCPDump</a></p></li>
+<li><p><a class="reference external" href="https://www.wireshark.org">WireShark</a></p></li>
+<li><p><a class="reference external" href="https://github.com/salesforce/Argus">Argus</a></p></li>
+<li><p><a class="reference external" href="https://github.com/seladb/PcapPlusPlus">PcapPlusPlus</a></p></li>
+<li><p><a class="reference external" href="https://github.com/jpr5/ngrep">ngrep</a></p></li>
+<li><p><a class="reference external" href="https://github.com/cisco/joy">cisco joy</a>  A package for capturing and analyzing network flow data and intraflow data, for network research, forensics, and security monitoring.</p></li>
+<li><p><a class="reference external" href="https://github.com/nfstream/nfstream">NFStream</a> a Flexible Network Data Analysis Framework</p></li>
+<li><p><a class="reference external" href="https://github.com/odedshimon/BruteShark">BruteShark</a> Network Analysis Tool</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">10.15.2. </span>堡垒机<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jumpserver/jumpserver">jumpserver</a></p></li>
+<li><p><a class="reference external" href="https://github.com/triaquae/CrazyEye">CrazyEye</a></p></li>
+<li><p><a class="reference external" href="https://github.com/liftoff/GateOne">GateOne</a></p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">10.15.3. </span>蜜罐<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/DinoTools/dionaea">Dionaea</a></p></li>
+<li><p><a class="reference external" href="https://github.com/threatstream/mhn">Modern Honey Network</a></p></li>
+<li><p><a class="reference external" href="https://github.com/micheloosterhof/cowrie">Cowrie</a> SSH/Telnet蜜罐</p></li>
+<li><p><a class="reference external" href="https://github.com/omererdem/honeything">honeything</a> IoT蜜罐</p></li>
+<li><p><a class="reference external" href="http://conpot.org/">ConPot</a> 工控设施蜜罐</p></li>
+<li><p><a class="reference external" href="https://github.com/Plazmaz/MongoDB-HoneyProxy">MongoDB HoneyProxy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/jordan-wright/elastichoney">ElasticHoney</a></p></li>
+<li><p><a class="reference external" href="https://github.com/secureworks/dcept">DCEPT</a></p></li>
+<li><p><a class="reference external" href="https://github.com/thinkst/canarytokens">Canarytokens</a></p></li>
+<li><p><a class="reference external" href="http://bruteforcelab.com/honeydrive">Honeydrive</a></p></li>
+<li><p><a class="reference external" href="https://github.com/dtag-dev-sec/tpotce/">T-Pot</a> The All In One Honeypot Platform</p></li>
+<li><p><a class="reference external" href="https://github.com/p1r06u3/opencanary_web">opencanary</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hacklcx/HFish">HFish</a></p></li>
+<li><p><a class="reference external" href="https://github.com/desaster/kippo">kippo</a> SSH Honeypot</p></li>
+<li><p><a class="reference external" href="https://github.com/seccome/Ehoney">Ehoney</a> 欺骗防御系统</p></li>
+</ul>
+</section>
+<section id="vpn-install">
+<h2><span class="section-number">10.15.4. </span>VPN Install<a class="headerlink" href="#vpn-install" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/viljoviitanen/setup-simple-pptp-vpn">pptp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hwdsl2/setup-ipsec-vpn">ipsec</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Nyr/openvpn-install">openvpn</a></p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">10.15.5. </span>隧道 / 代理<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/inconshreveable/ngrok">ngrok</a></p></li>
+<li><p><a class="reference external" href="https://github.com/knownsec/rtcp">rtcp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/SECFORCE/Tunna">Tunna</a></p></li>
+<li><p><a class="reference external" href="https://github.com/sensepost/reDuh">reDuh</a> Create a TCP circuit through validly formed HTTP requests</p></li>
+<li><p><a class="reference external" href="https://github.com/sensepost/reGeorg">reGeorg</a> pwn a bastion webserver and create SOCKS proxies through the DMZ. Pivot and pwn</p></li>
+<li><p><a class="reference external" href="https://github.com/L-codes/Neo-reGeorg">Neo-reGeorg</a> Neo-reGeorg is a project that seeks to aggressively refactor reGeorg</p></li>
+<li><p><a class="reference external" href="https://github.com/nccgroup/ABPTTS">ABPTTS</a> TCP tunneling over HTTP/HTTPS for web application servers</p></li>
+<li><p><a class="reference external" href="https://github.com/fatedier/frp">frp</a> A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet</p></li>
+<li><p><a class="reference external" href="https://github.com/ffay/lanproxy">lanproxy</a> 内网穿透工具</p></li>
+<li><p><a class="reference external" href="https://github.com/sysdream/ligolo">ligolo</a> Reverse Tunneling made easy for pentesters</p></li>
+<li><p><a class="reference external" href="https://github.com/idlefire/ew">EarthWorm</a> 是一款用于开启 SOCKS v5 代理服务的工具，基于标准 C 开发，可提供多平台间的转接通讯，用于复杂网络环境下的数据转发。</p></li>
+<li><p><a class="reference external" href="https://github.com/SECFORCE/Tunna">Tunna</a>  is a set of tools which will wrap and tunnel any TCP communication over HTTP</p></li>
+<li><p><a class="reference external" href="https://github.com/blackarrowsec/mssqlproxy">mssqlproxy</a> is a toolkit aimed to perform lateral movement in restricted environments through a compromised Microsoft SQL Server via socket reuse</p></li>
+<li><p><a class="reference external" href="https://github.com/ehang-io/nps">nps</a> a lightweight, high-performance, powerful intranet penetration proxy server, with a powerful web management terminal</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2><span class="section-number">10.15.6. </span>代理链<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/NetchX/Netch">Netch</a> Support Socks5, Shadowsocks, ShadowsocksR, V2Ray, Trojan proxies. UDP NAT FullCone</p></li>
+<li><p><a class="reference external" href="https://github.com/haad/proxychains">proxychains</a> a tool that forces any TCP connection made by any given application to follow through proxy like TOR or any other SOCKS4, SOCKS5 or HTTP(S) proxy</p></li>
+<li><p><a class="reference external" href="https://github.com/ginuerzh/gost">gost</a> GO Simple Tunnel</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2><span class="section-number">10.15.7. </span>资产管理<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Tencent/bk-cmdb">BlueKing CMDB</a> 面向资产及应用的企业级配置管理平台</p></li>
+<li><p><a class="reference external" href="https://github.com/TophantTechnology/ARL">ARL</a> 资产侦察灯塔系统</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><span class="section-number">10.15.8. </span>合规<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/momosecurity/bombus">bombus</a> 合规审计平台</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2><span class="section-number">10.15.9. </span>风控<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/threathunterX/nebula">nebula</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ysrc/Liudao">Liudao</a> “六道”实时业务风控系统</p></li>
+<li><p><a class="reference external" href="https://github.com/momosecurity/aswan">aswan</a> 陌陌风控系统静态规则引擎</p></li>
+</ul>
+</section>
+<section id="siem">
+<h2><span class="section-number">10.15.10. </span>SIEM<a class="headerlink" href="#siem" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/apache/metron">metron</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mozilla/MozDef">MozDef</a></p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><span class="section-number">10.15.11. </span>安全运维<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/HandsomeOne/Scout">Scout</a> URL 监控系统</p></li>
+<li><p><a class="reference external" href="https://github.com/qunarcorp/open_dnsdb">OpenDnsdb</a> 基于Python的DNS管理系统</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2><span class="section-number">10.15.12. </span>系统监控<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/netdata/netdata">netdata</a> Real-time performance monitoring</p></li>
+<li><p><a class="reference external" href="https://github.com/iovisor/bcc">bcc</a> Tools for BPF-based Linux IO analysis, networking, monitoring, and more</p></li>
+</ul>
+</section>
+<section id="windows">
+<h2><span class="section-number">10.15.13. </span>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.microsoft.com/zh-cn/sysinternals">Windows Sysinternals</a></p></li>
+</ul>
+</section>
+<section id="id13">
+<h2><span class="section-number">10.15.14. </span>网络测试<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Shopify/toxiproxy">Toxiproxy</a> A TCP proxy to simulate network and system conditions for chaos and resiliency testing</p></li>
+</ul>
+</section>
+<section id="id14">
+<h2><span class="section-number">10.15.15. </span>网络模拟<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/seed-labs/seed-emulator">Internet Emulator</a> A Python framework for creating emulation of the Internet</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sdl.html" class="btn btn-neutral float-left" title="10.14. 安全开发" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="forensics.html" class="btn btn-neutral float-right" title="10.16. 取证" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

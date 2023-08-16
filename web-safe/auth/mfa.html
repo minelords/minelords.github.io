@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9.1. 多因子认证 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.2. SSO" href="sso.html" />
+    <link rel="prev" title="9. 认证机制" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">9. 认证机制</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9.1. 多因子认证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sso.html">9.2. SSO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jwt.html">9.3. JWT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html">9.4. OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml.html">9.5. SAML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scram.html">9.6. SCRAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">9.7. Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kerberos.html">9.8. Kerberos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntlm.html">9.9. NTLM 身份验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">9.10. 权限系统设计模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">9. </span>认证机制</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9.1. </span>多因子认证</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/auth/mfa.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">9.1. </span>多因子认证<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<p>多因子认证是在单因子认证不足以保证安全性时使用的方法，通常会引入多种方式对用户身份进行验证。身份验证方法可以基于知识的认证，即密码；也可以基于物品的认证，例如硬件密钥；也可以是基于特征的认证，例如包含指纹在内的生物特征等。</p>
+<p>具体来说，目前常用的生物特征有：指纹、人脸、虹膜、静脉、声纹、体态等。常用的评价指标主要是速度（注册、识别使用的时间），精确度（假阳性、假阴性）等。</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="9. 认证机制" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sso.html" class="btn btn-neutral float-right" title="9.2. SSO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

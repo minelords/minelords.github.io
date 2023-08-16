@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.7. 域渗透 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="6.1.7.1. 用户" href="user.html" />
+    <link rel="prev" title="6.1.6. MSPRC" href="../msrpc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">6. 内网渗透</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">6.1. Windows内网渗透</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../info.html">6.1.1. 信息收集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../persistence.html">6.1.2. 持久化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../privilege.html">6.1.3. 权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../trace.html">6.1.4. 痕迹清理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lateral.html">6.1.5. 横向移动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../msrpc.html">6.1.6. MSPRC</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">6.1.7. 域渗透</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user.html">6.1.7.1. 用户</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proto.html">6.1.7.2. 内网常用协议</a></li>
+<li class="toctree-l4"><a class="reference internal" href="domain.html">6.1.7.3. 域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ad.html">6.1.7.4. Active Directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adcs.html">6.1.7.5. ADCS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gp.html">6.1.7.6. 组策略</a></li>
+<li class="toctree-l4"><a class="reference internal" href="winkerberos.html">6.1.7.7. Kerberos的Windows实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atkmap.html">6.1.7.8. 域内攻击思路</a></li>
+<li class="toctree-l4"><a class="reference internal" href="attack.html">6.1.7.9. 攻击类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="defense.html">6.1.7.10. 防护</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux/index.html">6.2. Linux内网渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../trojan.html">6.3. 后门技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../misc.html">6.4. 综合技巧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ref.html">6.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">6. </span>内网渗透</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">6.1. </span>Windows内网渗透</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.7. </span>域渗透</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/intranet/windows/domain/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">6.1.7. </span>域渗透<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user.html">6.1.7.1. 用户</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id2">6.1.7.1.1. 用户组与工作组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id6">6.1.7.1.2. 域中用户</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id9">6.1.7.1.3. 组策略</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="proto.html">6.1.7.2. 内网常用协议</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="proto.html#netbios">6.1.7.2.1. NetBIOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proto.html#llmnr">6.1.7.2.2. LLMNR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proto.html#mdns">6.1.7.2.3. mDNS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proto.html#wpad">6.1.7.2.4. WPAD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="domain.html">6.1.7.3. 域</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#id2">6.1.7.3.1. 域结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#id5">6.1.7.3.2. 域控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#id6">6.1.7.3.3. 信任</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#ou">6.1.7.3.4. OU</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ad.html">6.1.7.4. Active Directory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ad.html#adds">6.1.7.4.1. ADDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ad.html#id1">6.1.7.4.2. 名称空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ad.html#id2">6.1.7.4.3. 对象与属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adcs.html">6.1.7.5. ADCS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adcs.html#id1">6.1.7.5.1. 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adcs.html#id2">6.1.7.5.2. 证书</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gp.html">6.1.7.6. 组策略</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gp.html#id2">6.1.7.6.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gp.html#id3">6.1.7.6.2. 常用概念</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="winkerberos.html">6.1.7.7. Kerberos的Windows实现</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="winkerberos.html#id1">6.1.7.7.1. 相关定义</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="atkmap.html">6.1.7.8. 域内攻击思路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attack.html">6.1.7.9. 攻击类型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#id2">6.1.7.9.1. 黄金票据利用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#id3">6.1.7.9.2. 白银票据利用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#dcsync">6.1.7.9.3. DCSync 攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#dcshadow">6.1.7.9.4. DCShadow 攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#id4">6.1.7.9.5. 哈希传递攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#id5">6.1.7.9.6. 票据传递攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#kerberoasting-attacks">6.1.7.9.7. Kerberoasting Attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#kerberos-delegation-attacks">6.1.7.9.8. Kerberos Delegation Attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attack.html#id7">6.1.7.9.9. 其他漏洞利用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="defense.html">6.1.7.10. 防护</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../msrpc.html" class="btn btn-neutral float-left" title="6.1.6. MSPRC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="user.html" class="btn btn-neutral float-right" title="6.1.7.1. 用户" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

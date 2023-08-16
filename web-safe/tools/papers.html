@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.2. 相关论文 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.3. 信息收集" href="info.html" />
+    <link rel="prev" title="10.1. 推荐资源" href="resource.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. 工具与资源</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="resource.html">10.1. 推荐资源</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.2. 相关论文</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.2.1. 论文列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">10.2.2. 流量分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">10.2.3. 漏洞自动化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">10.2.4. 攻击技巧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">10.2.5. 攻击检测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">10.2.6. 隐私</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">10.2.7. 指纹</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">10.2.8. 侧信道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">10.2.9. 认证</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">10.2.10. 防护</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="info.html">10.3. 信息收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="socialengineering.html">10.4. 社会工程学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fuzz.html">10.5. 模糊测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exploit.html">10.6. 漏洞利用/检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">10.7. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webpersistence.html">10.8. Web持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intranet.html">10.9. 横向移动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud.html">10.10. 云安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ospersistence.html">10.11. 操作系统持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audit.html">10.12. 审计工具</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defense.html">10.13. 防御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">10.14. 安全开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation.html">10.15. 运维</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensics.html">10.16. 取证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">10.17. 其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">10. </span>工具与资源</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10.2. </span>相关论文</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tools/papers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">10.2. </span>相关论文<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">10.2.1. </span>论文列表<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/techge/PRE-list">PRE-list</a> List of (automatic) protocol reverse engineering tools for network protocols</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">10.2.2. </span>流量分析<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Plohmann D, Yakdan K, Klatt M, et al. A comprehensive measurement study of domain generating malware[C]//25th {USENIX} Security Symposium ({USENIX} Security 16). 2016: 263-278.</p></li>
+<li><p>Nasr M, Houmansadr A, Mazumdar A. Compressive traffic analysis: A new paradigm for scalable traffic analysis[C]//Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security. ACM, 2017: 2053-2069.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">10.2.3. </span>漏洞自动化<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Staicu C A, Pradel M, Livshits B. SYNODE: Understanding and Automatically Preventing Injection Attacks on NODE. JS[C]//NDSS. 2018.</p></li>
+<li><p>Atlidakis V , Godefroid P , Polishchuk M . REST-ler: Automatic Intelligent REST API Fuzzing[J]. 2018.</p></li>
+<li><p>Alhuzali A, Gjomemo R, Eshete B, et al. {NAVEX}: Precise and Scalable Exploit Generation for Dynamic Web Applications[C]//27th {USENIX} Security Symposium ({USENIX} Security 18). 2018: 377-392.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">10.2.4. </span>攻击技巧<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Lekies S, Kotowicz K, Groß S, et al. Code-reuse attacks for the web: Breaking cross-site scripting mitigations via script gadgets[C]//Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security. ACM, 2017: 1709-1723.</p></li>
+<li><p>Papadopoulos P, Ilia P, Polychronakis M, et al. Master of Web Puppets: Abusing Web Browsers for Persistent and Stealthy Computation[J]. arXiv preprint arXiv:1810.00464, 2018.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2><span class="section-number">10.2.5. </span>攻击检测<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Liu T, Qi Y, Shi L, et al. Locate-then-detect: real-time web attack detection via attention-based deep neural networks[C]//Proceedings of the 28th International Joint Conference on Artificial Intelligence. AAAI Press, 2019: 4725-4731.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2><span class="section-number">10.2.6. </span>隐私<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Klein A, Pinkas B. DNS Cache-Based User Tracking[C]//NDSS. 2019.</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2><span class="section-number">10.2.7. </span>指纹<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Hayes J, Danezis G. k-fingerprinting: A robust scalable website fingerprinting technique[C]//25th {USENIX} Security Symposium ({USENIX} Security 16). 2016: 1187-1203.</p></li>
+<li><p>Overdorf R, Juarez M, Acar G, et al. How unique is your. onion?: An analysis of the fingerprintability of tor onion services[C]//Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security. ACM, 2017: 2021-2036.</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><span class="section-number">10.2.8. </span>侧信道<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Rosner N, Kadron I B, Bang L, et al. Profit: Detecting and Quantifying Side Channels in Networked Applications[C]//NDSS. 2019.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2><span class="section-number">10.2.9. </span>认证<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Ghasemisharif M, Ramesh A, Checkoway S, et al. O single sign-off, where art thou? an empirical analysis of single sign-on account hijacking and session management on the web[C]//27th {USENIX} Security Symposium ({USENIX} Security 18). 2018: 1475-1492.</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><span class="section-number">10.2.10. </span>防护<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Pellegrino G, Johns M, Koch S, et al. Deemon: Detecting CSRF with dynamic analysis and property graphs[C]//Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security. ACM, 2017: 1757-1771.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="resource.html" class="btn btn-neutral float-left" title="10.1. 推荐资源" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="info.html" class="btn btn-neutral float-right" title="10.3. 信息收集" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

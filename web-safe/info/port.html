@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.3. 端口信息 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.4. 站点信息" href="site.html" />
+    <link rel="prev" title="3.2. 域名信息" href="domain.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. 信息收集</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="network.html">3.1. 网络入口/信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">3.2. 域名信息</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.3. 端口信息</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.3.1. 常见端口及其脆弱点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.3.2. 常见端口扫描技术</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.3.2.1. 全扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.3.2.2. 半扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fin">3.3.2.3. FIN扫描</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#web">3.3.3. Web服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.3.4. 批量搜索</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="site.html">3.4. 站点信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searchEngine.html">3.5. 搜索引擎利用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="social.html">3.6. 社会工程学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref.html">3.7. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3. </span>信息收集</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.3. </span>端口信息</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/info/port.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.3. </span>端口信息<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">3.3.1. </span>常见端口及其脆弱点<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>FTP (21/TCP)</dt><dd><ul>
+<li><p>默认用户名密码 <code class="docutils literal notranslate"><span class="pre">anonymous:anonymous</span></code></p></li>
+<li><p>暴力破解密码</p></li>
+<li><p>VSFTP某版本后门</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>SSH (22/TCP)</dt><dd><ul>
+<li><p>部分版本SSH存在漏洞可枚举用户名</p></li>
+<li><p>暴力破解密码</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Telent (23/TCP)</dt><dd><ul>
+<li><p>暴力破解密码</p></li>
+<li><p>嗅探抓取明文密码</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>SMTP (25/TCP)</dt><dd><ul>
+<li><p>无认证时可伪造发件人</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>DNS (53/UDP &amp; 53/TCP)</dt><dd><ul>
+<li><p>域传送漏洞</p></li>
+<li><p>DNS劫持</p></li>
+<li><p>DNS缓存投毒</p></li>
+<li><p>DNS欺骗</p></li>
+<li><p>SPF / DMARC Check</p></li>
+<li><dl class="simple">
+<dt>DDoS</dt><dd><ul>
+<li><p>DNS Query Flood</p></li>
+<li><p>DNS 反弹</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>DNS 隧道</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>DHCP 67/68</dt><dd><ul>
+<li><p>劫持/欺骗</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>TFTP (69/TCP)</p></li>
+<li><p>HTTP (80/TCP)</p></li>
+<li><dl class="simple">
+<dt>Kerberos (88/TCP)</dt><dd><ul>
+<li><p>主要用于监听KDC的票据请求</p></li>
+<li><p>用于进行黄金票据和白银票据的伪造</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>POP3 (110/TCP &amp; 995/TCP)</dt><dd><ul>
+<li><p>爆破</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>RPC (135/TCP)</dt><dd><ul>
+<li><p>wmic 服务利用</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>NetBIOS (137/UDP &amp; 138/UDP)</dt><dd><ul>
+<li><p>未授权访问</p></li>
+<li><p>弱口令</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>NetBIOS / Samba (139/TCP)</dt><dd><ul>
+<li><p>未授权访问</p></li>
+<li><p>弱口令</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>IMAP (143/TCP &amp; 993/TCP)</p></li>
+<li><dl class="simple">
+<dt>SNMP (161/TCP &amp; 161/UDP)</dt><dd><ul>
+<li><p>Public 弱口令</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>LDAP (389/TCP)</dt><dd><ul>
+<li><p>用于域上的权限验证服务</p></li>
+<li><p>匿名访问</p></li>
+<li><p>注入</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>HTTPS (443/TCP)</p></li>
+<li><dl class="simple">
+<dt>SMB (445/TCP)</dt><dd><ul>
+<li><p>Windows 协议簇，主要功能为文件共享服务</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">use</span> <span class="pre">\\192.168.1.1</span> <span class="pre">/user:xxx\username</span> <span class="pre">password</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Linux Rexec (512/TCP &amp; 513/TCP &amp; 514/TCP)</dt><dd><ul>
+<li><p>弱口令</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Rsync (873/TCP)</dt><dd><ul>
+<li><p>未授权访问</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>RPC (1025/TCP)</dt><dd><ul>
+<li><p>NFS匿名访问</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Java RMI (1090/TCP &amp; 1099/TCP)</dt><dd><ul>
+<li><p>反序列化远程命令执行漏洞</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>MSSQL (1433/TCP)</dt><dd><ul>
+<li><p>弱密码</p></li>
+<li><p>差异备份 GetShell</p></li>
+<li><p>SA 提权</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Oracle (1521/TCP)</dt><dd><ul>
+<li><p>弱密码</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>NFS (2049/TCP)</dt><dd><ul>
+<li><p>权限设置不当</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">showmount</span> <span class="pre">&lt;host&gt;</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ZooKeeper (2171/TCP &amp; 2375/TCP)</dt><dd><ul>
+<li><p>无身份认证</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Docker Remote API (2375/TCP)</dt><dd><ul>
+<li><p>未限制IP / 未启用TLS身份认证</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http://docker.addr:2375/version</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>MySQL (3306/TCP)</dt><dd><ul>
+<li><p>弱密码</p></li>
+<li><p>日志写WebShell</p></li>
+<li><p>UDF提权</p></li>
+<li><p>MOF提权</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>RDP / Terminal Services (3389/TCP)</dt><dd><ul>
+<li><p>弱密码</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Postgres (5432/TCP)</dt><dd><ul>
+<li><p>弱密码</p></li>
+<li><p>执行系统命令</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>VNC (5900/TCP)</dt><dd><ul>
+<li><p>弱密码</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>CouchDB (5984/TCP)</dt><dd><ul>
+<li><p>未授权访问</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>WinRM (5985/TCP)</dt><dd><ul>
+<li><p>Windows对WS-Management的实现</p></li>
+<li><p>在Vista上需要手动启动，在Windows Server 2008中服务是默认开启的</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Redis (6379/TCP)</dt><dd><ul>
+<li><p>无密码或弱密码</p></li>
+<li><p>绝对路径写 WebShell</p></li>
+<li><p>计划任务反弹 Shell</p></li>
+<li><p>写 SSH 公钥</p></li>
+<li><p>主从复制 RCE</p></li>
+<li><p>Windows 写启动项</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Kubernetes API Server (6443/TCP &amp;&amp; 10250/TCP)</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://Kubernetes:10250/pods</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>JDWP (8000/TCP)</dt><dd><ul>
+<li><p>远程命令执行</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>ActiveMQ (8061/TCP)</p></li>
+<li><dl class="simple">
+<dt>Jenkin (8080/TCP)</dt><dd><ul>
+<li><p>未授权访问</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Elasticsearch (9200/TCP)</dt><dd><ul>
+<li><p>代码执行</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http://es.addr:9200/_plugin/head/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http://es.addr:9200/_nodes</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Memcached (11211/TCP &amp; 11211/UDP)</dt><dd><ul>
+<li><p>未授权访问</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>RabbitMQ (15672/TCP &amp; 15692/TCP &amp; 25672/TCP)</p></li>
+<li><dl class="simple">
+<dt>MongoDB (27017/TCP)</dt><dd><ul>
+<li><p>无密码或弱密码</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Hadoop (50070/TCP &amp; 50075/TCP)</dt><dd><ul>
+<li><p>未授权访问</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>除了以上列出的可能出现的问题，暴露在公网上的服务若不是最新版，都可能存在已经公开的漏洞</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.3.2. </span>常见端口扫描技术<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<section id="id4">
+<h3><span class="section-number">3.3.2.1. </span>全扫描<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>扫描主机尝试使用三次握手与目标主机的某个端口建立正规的连接，若成功建立连接，则端口处于开放状态，反之处于关闭状态。</p>
+<p>全扫描实现简单，且以较低的权限就可以进行该操作。但是在流量日志中会有大量明显的记录。</p>
+</section>
+<section id="id5">
+<h3><span class="section-number">3.3.2.2. </span>半扫描<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>半扫描也称SYN扫描，在半扫描中，仅发送SYN数据段，如果应答为RST，则端口处于关闭状态，若应答为SYN/ACK，则端口处于监听状态。不过这种方式需要较高的权限，而且现在的大部分防火墙已经开始对这种扫描方式做处理。</p>
+</section>
+<section id="fin">
+<h3><span class="section-number">3.3.2.3. </span>FIN扫描<a class="headerlink" href="#fin" title="Permalink to this heading">¶</a></h3>
+<p>FIN扫描是向目标发送一个FIN数据包，如果是开放的端口，会返回RST数据包，关闭的端口则不会返回数据包，可以通过这种方式来判断端口是否打开。</p>
+<p>这种方式并不在TCP三次握手的状态中，所以不会被记录，相对SYN扫描要更隐蔽一些。</p>
+</section>
+</section>
+<section id="web">
+<h2><span class="section-number">3.3.3. </span>Web服务<a class="headerlink" href="#web" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Jenkins</dt><dd><ul>
+<li><p>未授权访问</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Gitlab</dt><dd><ul>
+<li><p>对应版本CVE</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Zabbix</dt><dd><ul>
+<li><p>权限设置不当</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.3.4. </span>批量搜索<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Censys</p></li>
+<li><p>Shodan</p></li>
+<li><p>ZoomEye</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="domain.html" class="btn btn-neutral float-left" title="3.2. 域名信息" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="site.html" class="btn btn-neutral float-right" title="3.4. 站点信息" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

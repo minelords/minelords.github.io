@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.1. 信息收集 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.1.2. 持久化" href="persistence.html" />
+    <link rel="prev" title="6.1. Windows内网渗透" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">6. 内网渗透</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">6.1. Windows内网渗透</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">6.1.1. 信息收集</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">6.1.1.1. 基本命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">6.1.1.2. 域信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">6.1.1.3. 用户信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">6.1.1.4. 网络信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">6.1.1.5. 防火墙</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">6.1.1.6. 密码信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">6.1.1.7. 票据信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">6.1.1.8. 特殊文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">6.1.1.9. 局域网存活主机</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">6.1.1.10. 其他</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="persistence.html">6.1.2. 持久化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="privilege.html">6.1.3. 权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trace.html">6.1.4. 痕迹清理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lateral.html">6.1.5. 横向移动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="msrpc.html">6.1.6. MSPRC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="domain/index.html">6.1.7. 域渗透</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/index.html">6.2. Linux内网渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trojan.html">6.3. 后门技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../misc.html">6.4. 综合技巧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ref.html">6.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">6. </span>内网渗透</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6.1. </span>Windows内网渗透</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.1. </span>信息收集</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/intranet/windows/info.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">6.1.1. </span>信息收集<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">6.1.1.1. </span>基本命令<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>主机名 <code class="docutils literal notranslate"><span class="pre">hostname</span></code></p></li>
+<li><p>查询所有计算机名称 <code class="docutils literal notranslate"><span class="pre">dsquery</span> <span class="pre">computer</span></code></p></li>
+<li><dl class="simple">
+<dt>查看配置及补丁信息</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">systeminfo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">qfe</span> <span class="pre">get</span> <span class="pre">description,installedOn</span> <span class="pre">/format:csv</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>查看版本 <code class="docutils literal notranslate"><span class="pre">ver</span></code></p></li>
+<li><dl class="simple">
+<dt>进程信息</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tasklist</span> <span class="pre">/svc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">process</span> <span class="pre">get</span> <span class="pre">caption,executablepath,commandline</span> <span class="pre">/format:csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get-process</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>查看所有环境变量 <code class="docutils literal notranslate"><span class="pre">set</span></code></p></li>
+<li><p>查看计划任务 <code class="docutils literal notranslate"><span class="pre">schtasks</span> <span class="pre">/QUERY</span> <span class="pre">/fo</span> <span class="pre">LIST</span> <span class="pre">/v</span></code></p></li>
+<li><p>查看安装驱动 <code class="docutils literal notranslate"><span class="pre">DRIVERQUERY</span></code></p></li>
+<li><dl class="simple">
+<dt>查看操作系统信息</dt><dd><ul>
+<li><p>架构 <code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">os</span> <span class="pre">get</span> <span class="pre">osarchitecture</span></code></p></li>
+<li><p>系统名 <code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">os</span> <span class="pre">get</span> <span class="pre">caption</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>查看逻辑盘 <code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">logicaldisk</span> <span class="pre">get</span> <span class="pre">caption</span></code></p></li>
+<li><p>查看安装的软件信息 <code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">product</span> <span class="pre">get</span> <span class="pre">name,version</span></code></p></li>
+<li><dl class="simple">
+<dt>查看服务信息</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">service</span> <span class="pre">list</span> <span class="pre">brief</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sc</span> <span class="pre">query</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Get-WmiObject</span> <span class="pre">win32_service</span> <span class="pre">|</span> <span class="pre">select</span> <span class="pre">PathName</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">6.1.1.2. </span>域信息<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>获取当前组的计算机名 <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">view</span></code></p></li>
+<li><p>网络发现  <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">view</span> <span class="pre">/all</span></code></p></li>
+<li><p>查看所有域 <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">view</span> <span class="pre">/domain</span></code></p></li>
+<li><p>域森林、域树信息</p></li>
+<li><p>域信任信息 <code class="docutils literal notranslate"><span class="pre">nltest</span> <span class="pre">/domain_trusts</span></code></p></li>
+<li><p>定位域控 <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">time</span> <span class="pre">/domain</span></code></p></li>
+<li><p>查看域中的用户名 <code class="docutils literal notranslate"><span class="pre">dsquery</span> <span class="pre">user</span></code></p></li>
+<li><p>查询域组名称 <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">group</span> <span class="pre">/domain</span></code></p></li>
+<li><p>查询域管理员 <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">group</span> <span class="pre">&quot;Domain</span> <span class="pre">Admins&quot;</span> <span class="pre">/domain</span></code></p></li>
+<li><dl class="simple">
+<dt>域控信息</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nltest</span> <span class="pre">/dclist:xx</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Get-NetDomain</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Get-NetDomainController</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">group</span> <span class="pre">&quot;Domain</span> <span class="pre">controllers&quot;</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>组策略</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">6.1.1.3. </span>用户信息<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>查看用户</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">user</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">whoami</span></code> / <code class="docutils literal notranslate"><span class="pre">whoami</span> <span class="pre">/priv</span></code> / <code class="docutils literal notranslate"><span class="pre">whoami</span> <span class="pre">/all</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">useraccount</span> <span class="pre">get</span> <span class="pre">/ALL</span> <span class="pre">/format:csv</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>用户特权信息 <code class="docutils literal notranslate"><span class="pre">whoami</span> <span class="pre">/priv</span></code></p></li>
+<li><p>查看当前权限 <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">localgroup</span> <span class="pre">administrators</span></code></p></li>
+<li><p>查看在线用户 <code class="docutils literal notranslate"><span class="pre">quser</span></code> / <code class="docutils literal notranslate"><span class="pre">qwinsta</span></code> / <code class="docutils literal notranslate"><span class="pre">query</span> <span class="pre">user</span></code></p></li>
+<li><p>查看当前计算机名，全名，用户名，系统版本，工作 站域，登陆域 <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">config</span> <span class="pre">Workstation</span></code></p></li>
+<li><p>ACL 信息 <code class="docutils literal notranslate"><span class="pre">get-acl</span></code></p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">6.1.1.4. </span>网络信息<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>内网网段信息</p></li>
+<li><p>网卡信息 <code class="docutils literal notranslate"><span class="pre">ipconfig</span></code></p></li>
+<li><p>外网出口</p></li>
+<li><p>ARP表 <code class="docutils literal notranslate"><span class="pre">arp</span> <span class="pre">-a</span></code></p></li>
+<li><p>路由表 <code class="docutils literal notranslate"><span class="pre">route</span> <span class="pre">print</span></code></p></li>
+<li><p>监听的端口 <code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-ano</span></code></p></li>
+<li><p>连接的端口</p></li>
+<li><dl class="simple">
+<dt>端口信息</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Get-NetTCPConnection</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>hosts文件</p></li>
+<li><p>主备 DNS</p></li>
+<li><dl class="simple">
+<dt>DNS缓存</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipconfig</span> <span class="pre">/displaydns</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Get-CimInstance</span> <span class="pre">-Namespace</span> <span class="pre">root/StandardCimv2</span> <span class="pre">-ClassName</span> <span class="pre">MSFT_DNSClientCache</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>探测出网情况</dt><dd><ul>
+<li><p><cite>powershell -c “1..65535 | % {echo ((new-object Net.Sockets.TcpClient).Connect(‘allports.exposed’,$_)) $_ } 2&gt;$null”</cite></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h2><span class="section-number">6.1.1.5. </span>防火墙<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>查看防火墙状态 <code class="docutils literal notranslate"><span class="pre">netsh</span> <span class="pre">advfirewall</span> <span class="pre">show</span> <span class="pre">allprofiles</span></code></p></li>
+<li><p>防火墙日志目录 <code class="docutils literal notranslate"><span class="pre">netsh</span> <span class="pre">firewall</span> <span class="pre">show</span> <span class="pre">logging</span></code></p></li>
+<li><p>防火墙规则 <code class="docutils literal notranslate"><span class="pre">netsh</span> <span class="pre">advfirewall</span> <span class="pre">firewall</span> <span class="pre">show</span> <span class="pre">rule</span> <span class="pre">name=all</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">netsh</span> <span class="pre">firewall</span> <span class="pre">show</span> <span class="pre">config</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">netsh</span> <span class="pre">firewall</span> <span class="pre">show</span> <span class="pre">state</span></code></p></li>
+</ul>
+</section>
+<section id="id7">
+<h2><span class="section-number">6.1.1.6. </span>密码信息<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Windows RDP连接记录</p></li>
+<li><p>浏览器中保存的账号密码</p></li>
+<li><p>系统密码管理器中的各种密码</p></li>
+<li><dl class="simple">
+<dt>无人值守安装文件中的密码信息</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\sysprep.inf</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\sysprep\sysprep.xml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\Windows\Panther\Unattend\Unattended.xml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\Windows\Panther\Unattended.xml</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id8">
+<h2><span class="section-number">6.1.1.7. </span>票据信息<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmdkey</span> <span class="pre">/l</span></code></p></li>
+<li><p>klist</p></li>
+<li><p>msf meterpreter</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><span class="section-number">6.1.1.8. </span>特殊文件<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>文档</dt><dd><ul>
+<li><p>xlsx / xls</p></li>
+<li><p>docx / doc</p></li>
+<li><p>pptx / ppt</p></li>
+<li><p>vsdx / vsd</p></li>
+<li><p>md / txt</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>压缩文件</dt><dd><ul>
+<li><p>zip / rar / 7z</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>VPN配置</dt><dd><ul>
+<li><p>ovpn</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>代码</dt><dd><ul>
+<li><p>py / php / jsp / aspx / asp / sql</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>配置文件</dt><dd><ul>
+<li><p>conf / ini / xml</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>特定关键字</dt><dd><ul>
+<li><p>账号 / 账户 / 登录 / login / user</p></li>
+<li><p>密码 / pass</p></li>
+<li><p>代码 / 文档 / 交接 / 备份 / git / svn</p></li>
+<li><p>邮箱 / 通讯录 / 集群 / 办公</p></li>
+<li><p>代理 / 内网 / VPN</p></li>
+<li><p>设备 / 资产</p></li>
+<li><p>系统 / 运维 / 拓扑 / 网络 / IT</p></li>
+<li><p>后台 / 管理员 / 数据库</p></li>
+<li><p>监控 / 隔离 / 防火墙 / 网闸 / 巡检</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id10">
+<h2><span class="section-number">6.1.1.9. </span>局域网存活主机<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>NetBIOS扫描</p></li>
+<li><p>OXID扫描</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><span class="section-number">6.1.1.10. </span>其他<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>启用的共享文件夹</p></li>
+<li><p>回收站</p></li>
+<li><p>最近运行的命令</p></li>
+<li><p>访问文件历史记录</p></li>
+<li><dl class="simple">
+<dt>查看补丁安装情况</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">qfe</span> <span class="pre">get</span> <span class="pre">Caption,Description,HotFixID,InstalledOn</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>日志与事件信息</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">wevtutil</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eventvwr</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>注册表信息</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>安装的各类 agent 监控软件</p></li>
+<li><p>安装的杀毒软件</p></li>
+<li><dl class="simple">
+<dt>查看/设置后缀关联</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">assoc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assoc</span> <span class="pre">.ext=example</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>PowerShell 版本</p></li>
+<li><p>.Net 版本</p></li>
+<li><p>Wi-Fi 密码</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="6.1. Windows内网渗透" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="persistence.html" class="btn btn-neutral float-right" title="6.1.2. 持久化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.10. 云安全 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.11. 操作系统持久化" href="ospersistence.html" />
+    <link rel="prev" title="10.9. 横向移动" href="intranet.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. 工具与资源</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="resource.html">10.1. 推荐资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="papers.html">10.2. 相关论文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html">10.3. 信息收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="socialengineering.html">10.4. 社会工程学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fuzz.html">10.5. 模糊测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exploit.html">10.6. 漏洞利用/检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">10.7. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webpersistence.html">10.8. Web持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intranet.html">10.9. 横向移动</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.10. 云安全</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.10.1. 云环境自动测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#k8s">10.10.1.1. k8s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">10.10.1.2. 容器</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">10.10.2. 安全加固</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">10.10.3. 云上扫描</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">10.10.4. 靶场环境</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ospersistence.html">10.11. 操作系统持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audit.html">10.12. 审计工具</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defense.html">10.13. 防御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">10.14. 安全开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation.html">10.15. 运维</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensics.html">10.16. 取证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">10.17. 其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">10. </span>工具与资源</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10.10. </span>云安全</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tools/cloud.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">10.10. </span>云安全<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">10.10.1. </span>云环境自动测试<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="k8s">
+<h3><span class="section-number">10.10.1.1. </span>k8s<a class="headerlink" href="#k8s" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/bridgecrewio/checkov">checkov</a> Prevent cloud misconfigurations during build-time for Terraform, Cloudformation, Kubernetes, Serverless framework and other infrastructure-as-code-languages with Checkov by Bridgecrew</p></li>
+<li><p><a class="reference external" href="https://github.com/cdk-team/CDK">CDK</a> Zero Dependency Container Penetration Toolkit</p></li>
+<li><p><a class="reference external" href="https://github.com/aquasecurity/kube-bench">kube bench</a></p></li>
+<li><p><a class="reference external" href="https://github.com/aquasecurity/kube-hunter">kube hunter</a> Hunt for security weaknesses in Kubernetes clusters</p></li>
+<li><p><a class="reference external" href="https://github.com/cyberark/KubiScan">KubiScan</a> A tool to scan Kubernetes cluster for risky permissions</p></li>
+<li><p><a class="reference external" href="https://github.com/armosec/kubescape">kubescape</a> kubescape is the first tool for testing if Kubernetes is deployed securely as defined in Kubernetes Hardening Guidance by to NSA and CISA</p></li>
+<li><p><a class="reference external" href="https://github.com/Shopify/kubeaudit">kubeaudit</a> kubeaudit helps you audit your Kubernetes clusters against common security controls</p></li>
+<li><p><a class="reference external" href="https://github.com/inguardians/peirates">peirates</a> Kubernetes Penetration Testing tool</p></li>
+<li><p><a class="reference external" href="https://github.com/datreeio/datree">datree</a> Prevent Kubernetes misconfigurations from reaching production</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3><span class="section-number">10.10.1.2. </span>容器<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/brompwnie/botb">botb</a> A container analysis and exploitation tool for pentesters and engineers</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">10.10.2. </span>安全加固<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/falcosecurity/falco">falco</a> Cloud Native Runtime Security</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">10.10.3. </span>云上扫描<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/cloud-custodian/cloud-custodian">Cloud Custodian</a> Rules engine for cloud security, cost optimization, and governance, DSL in yaml for policies to query, filter, and take actions on resources</p></li>
+<li><p><a class="reference external" href="https://github.com/cloudquery/cloudquery">cloudquery</a> cloudquery transforms your cloud infrastructure into SQL database for easy monitoring, governance and security</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2><span class="section-number">10.10.4. </span>靶场环境<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Metarget/metarget">metarget</a> a framework providing automatic constructions of vulnerable infrastructures.</p></li>
+<li><p><a class="reference external" href="https://github.com/RhinoSecurityLabs/cloudgoat">CloudGoat</a> Rhino Security Labs’ “Vulnerable by Design” AWS deployment tool</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intranet.html" class="btn btn-neutral float-left" title="10.9. 横向移动" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ospersistence.html" class="btn btn-neutral float-right" title="10.11. 操作系统持久化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

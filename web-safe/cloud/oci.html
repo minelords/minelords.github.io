@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.2. 容器标准 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.3. Docker" href="docker/index.html" />
+    <link rel="prev" title="7.1. 云发展史" href="history.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">7. 云安全</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="history.html">7.1. 云发展史</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.2. 容器标准</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#oci">7.2.1. OCI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cri">7.2.2. CRI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">7.2.3. 参考链接</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">7.2.3.1. 文档</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">7.2.3.2. 实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker/index.html">7.3. Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="k8s/index.html">7.4. Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref.html">7.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">7. </span>云安全</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7.2. </span>容器标准</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cloud/oci.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">7.2. </span>容器标准<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="oci">
+<h2><span class="section-number">7.2.1. </span>OCI<a class="headerlink" href="#oci" title="Permalink to this heading">¶</a></h2>
+<p>开放容器标准 (Open Container Initiative, OCI) 是用于规范容器格式和运行时行业标准。目前OCI提出的规范有：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/opencontainers/runtime-spec">OCI Runtime Specification</a></p></li>
+<li><p><a class="reference external" href="https://github.com/opencontainers/image-spec">OCI Image Format</a></p></li>
+<li><p><a class="reference external" href="https://github.com/opencontainers/distribution-spec">OCI Distribution Specification</a></p></li>
+</ul>
+</section>
+<section id="cri">
+<h2><span class="section-number">7.2.2. </span>CRI<a class="headerlink" href="#cri" title="Permalink to this heading">¶</a></h2>
+<p>容器运行时 (Container Runtime Interface, CRI) 定义了容器和镜像的接口，目前官方支持的容器运行时包括Docker、Containerd、CRI-O和frakti。</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">7.2.3. </span>参考链接<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3><span class="section-number">7.2.3.1. </span>文档<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://kubernetes.io/blog/2016/12/container-runtime-interface-cri-in-kubernetes/">Introducing Container Runtime Interface (CRI) in Kubernetes</a></p></li>
+<li><p><a class="reference external" href="https://cri-o.io/">cri-o</a></p></li>
+</ul>
+</section>
+<section id="id4">
+<h3><span class="section-number">7.2.3.2. </span>实现<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/opencontainers/runc">runc</a> OCI Runtime 的参考实现</p></li>
+<li><p><a class="reference external" href="https://github.com/kata-containers/kata-containers">Kata Containers</a> 提供高性能的硬件虚拟化容器运行时</p></li>
+<li><p><a class="reference external" href="https://github.com/google/gvisor">gvisor</a> Go 实现的基于用户态内核的容器运行时</p></li>
+<li><p><a class="reference external" href="https://github.com/moby/buildkit">buildkit</a> docker build 拆分出来的build项目</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="history.html" class="btn btn-neutral float-left" title="7.1. 云发展史" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="docker/index.html" class="btn btn-neutral float-right" title="7.3. Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

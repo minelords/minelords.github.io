@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12.5. Unicode &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.6. JSON" href="json.html" />
+    <link rel="prev" title="12.4. 指纹" href="finger.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">12. 其他</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="audit.html">12.1. 代码审计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="waf.html">12.2. WAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netdev.html">12.3. 常见网络设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finger.html">12.4. 指纹</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">12.5. Unicode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">12.5.1. 基本概念</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bmp">12.5.1.1. BMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">12.5.1.2. 码平面</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-point">12.5.1.3. Code Point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-unit">12.5.1.4. Code Unit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#surrogate-pair">12.5.1.5. Surrogate Pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combining-character">12.5.1.6. Combining Character</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bom">12.5.1.7. BOM</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">12.5.2. 编码方式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ucs-2">12.5.2.1. UCS-2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utf-8">12.5.2.2. UTF-8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utf-16">12.5.2.3. UTF-16</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">12.5.3. 等价性问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">12.5.3.1. 简介</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">12.5.3.2. 标准等价</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">12.5.3.3. 兼容等价</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">12.5.3.4. 正规化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">12.5.3.5. 正规形式</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tricks">12.5.4. Tricks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">12.5.5. 安全问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#visual-spoofing">12.5.5.1. Visual Spoofing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-fit">12.5.5.2. Best Fit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#syntax-spoofing">12.5.5.3. Syntax Spoofing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#punycode-spoofs">12.5.5.4. Punycode Spoofs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#buffer-overflows">12.5.5.5. Buffer Overflows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">12.5.6. 常见载荷</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#url">12.5.6.1. URL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sql">12.5.6.2. SQL注入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xss">12.5.6.3. XSS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">12.5.6.4. 命令注入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">12.5.6.5. 模板注入</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">12.5.7. 参考链接</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">12.5.7.1. 官方文档</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rfc">12.5.7.2. RFC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tricks-blogs">12.5.7.3. Tricks / Blogs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">12.6. JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hash.html">12.7. 哈希</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos.html">12.8. 拒绝服务攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">12.9. 邮件安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt.html">12.10. APT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supplychain.html">12.11. 供应链安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">12.12. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spider.html">12.13. 爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terminology.html">12.14. 常见术语</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">12. </span>其他</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12.5. </span>Unicode</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/misc/unicode.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unicode">
+<h1><span class="section-number">12.5. </span>Unicode<a class="headerlink" href="#unicode" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><span class="section-number">12.5.1. </span>基本概念<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<section id="bmp">
+<h3><span class="section-number">12.5.1.1. </span>BMP<a class="headerlink" href="#bmp" title="Permalink to this heading">¶</a></h3>
+<p>BMP (Basic Multilingual Plane)，译作基本多文种平面，是Unicode中的一个编码区块。</p>
+</section>
+<section id="id2">
+<h3><span class="section-number">12.5.1.2. </span>码平面<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>Unicode编码点分为17个平面（plane），每个平面包含2^16（即65536）个码位。17个平面的码位可表示为从U+xx0000到U+xxFFFF，其中xx表示十六进制值从0016到1016，共计17个平面。</p>
+</section>
+<section id="code-point">
+<h3><span class="section-number">12.5.1.3. </span>Code Point<a class="headerlink" href="#code-point" title="Permalink to this heading">¶</a></h3>
+<p>Code Point也被称作Code Position，译作码位或编码位置，是指组成代码空间的数值。</p>
+</section>
+<section id="code-unit">
+<h3><span class="section-number">12.5.1.4. </span>Code Unit<a class="headerlink" href="#code-unit" title="Permalink to this heading">¶</a></h3>
+<p>指某种 Unicode 编码方式里编码一个 Code Point 需要的最少字节数，比如 UTF-8 需要最少一个字节，UTF-16 最少两个字节，UCS-2 两个字节，UCS-4 和 UTF-32 四个字节。</p>
+</section>
+<section id="surrogate-pair">
+<h3><span class="section-number">12.5.1.5. </span>Surrogate Pair<a class="headerlink" href="#surrogate-pair" title="Permalink to this heading">¶</a></h3>
+<p>Surrogate Pair 是用于 UTF-16 的以向后兼容 UCS-2 的，做法是取 UCS-2 范围里的 0xD800~0xDBFF (称为 high surrogates) 和 0xDC00~0xDFFF (称为 low surrogates) 的码位，一个 high surrogate 接一个 low surrogate 拼成四个字节表示超出 BMP 的字符，两个 surrogate range 都是 1024 个码位，所以 surrogate pair 可以表达 1024 x 1024 = 1048576 = 0x100000 个字符。</p>
+</section>
+<section id="combining-character">
+<h3><span class="section-number">12.5.1.6. </span>Combining Character<a class="headerlink" href="#combining-character" title="Permalink to this heading">¶</a></h3>
+<p>例如 <code class="docutils literal notranslate"><span class="pre">He̊llö</span></code> 含有重音符号之类的字符，进行组合会使用大量的码位。所以这种字符多用组合的方式来实现。</p>
+</section>
+<section id="bom">
+<h3><span class="section-number">12.5.1.7. </span>BOM<a class="headerlink" href="#bom" title="Permalink to this heading">¶</a></h3>
+<p>字节顺序标记（byte-order mark，BOM）是一个有特殊含义的统一码字符，码点为 <code class="docutils literal notranslate"><span class="pre">U+FEFF</span></code> 。当以UTF-16或UTF-32来将UCS字符所组成的字符串编码时，这个字符被用来标示其字节序。常被用于区分是否为UTF编码。</p>
+</section>
+</section>
+<section id="id3">
+<h2><span class="section-number">12.5.2. </span>编码方式<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<section id="ucs-2">
+<h3><span class="section-number">12.5.2.1. </span>UCS-2<a class="headerlink" href="#ucs-2" title="Permalink to this heading">¶</a></h3>
+<p>UCS-2 (2-byte Universal Character Set)是一种定长的编码方式，UCS-2仅仅简单的使用一个16位码元来表示码位，也就是说编码范围在0到0xFFFF的码位范围内。</p>
+</section>
+<section id="utf-8">
+<h3><span class="section-number">12.5.2.2. </span>UTF-8<a class="headerlink" href="#utf-8" title="Permalink to this heading">¶</a></h3>
+<p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，也是一种前缀码。它可以用一至四个字节对Unicode字符集中的所有有效编码点进行编码，属于Unicode标准的一部分。编码方式如下</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>码点的位数</p></th>
+<th class="head"><p>码点起值</p></th>
+<th class="head"><p>码点终值</p></th>
+<th class="head"><p>字节序列</p></th>
+<th class="head"><p>Byte 1</p></th>
+<th class="head"><p>Byte 2</p></th>
+<th class="head"><p>Byte 3</p></th>
+<th class="head"><p>Byte 4</p></th>
+<th class="head"><p>Byte 5</p></th>
+<th class="head"><p>Byte 6</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>U+0000</p></td>
+<td><p>U+007F</p></td>
+<td><p>1</p></td>
+<td><p>0xxxxxxx</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>U+0080</p></td>
+<td><p>U+07FF</p></td>
+<td><p>2</p></td>
+<td><p>110xxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>U+0800</p></td>
+<td><p>U+FFFF</p></td>
+<td><p>3</p></td>
+<td><p>1110xxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>U+10000</p></td>
+<td><p>U+1FFFFF</p></td>
+<td><p>4</p></td>
+<td><p>11110xxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>26</p></td>
+<td><p>U+200000</p></td>
+<td><p>U+3FFFFFF</p></td>
+<td><p>5</p></td>
+<td><p>111110xx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>31</p></td>
+<td><p>U+4000000</p></td>
+<td><p>U+7FFFFFFF</p></td>
+<td><p>6</p></td>
+<td><p>1111110x</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+<td><p>10xxxxxx</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="utf-16">
+<h3><span class="section-number">12.5.2.3. </span>UTF-16<a class="headerlink" href="#utf-16" title="Permalink to this heading">¶</a></h3>
+<p>UTF-16 (16-bit Unicode Transformation Format)是UCS-2的拓展，用一个或者两个16位的码元来表示码位，可以对0到0x10FFFF的码位进行编码。</p>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">12.5.3. </span>等价性问题<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<section id="id5">
+<h3><span class="section-number">12.5.3.1. </span>简介<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>Unicode（统一码）包含了许多特殊字符，为了使得许多现存的标准能够兼容，提出了Unicode等价性（Unicode equivalence）。在字符中，有些在功能上会和其它字符或字符序列等价。因此，Unicode将一些码位序列定义成相等的。</p>
+<p>Unicode提供了两种等价概念：标准等价和兼容等价。前者是后者的一个子集。例如，字符n后接着组合字符 <cite>~</cite> 会（标准和兼容）等价于Unicode字符ñ。而合字ﬀ则只有兼容等价于两个f字符。</p>
+<p>Unicode正规化是文字正规化的一种形式，是指将彼此等价的序列转成同一列序。此序列在Unicode标准中称作正规形式。</p>
+<p>对于每种等价概念，Unicode又定义两种形式，一种是完全合成的，一种是完全分解的。因此，最后会有四种形式，其缩写分别为：NFC、NFD、NFKC、NFKD。对于Unicode的文字处理程序而言，正规化是很重要的。因为它影响了比较、搜索和排序的意义。</p>
+</section>
+<section id="id6">
+<h3><span class="section-number">12.5.3.2. </span>标准等价<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>统一码中标准等价的基础概念为字符的组成和分解的交互使用。合成指的是将简单的字符合并成较少的预组字符的过程，如字符n和组合字符 <cite>~</cite> 可以组成统一码ñ。分解则是反向过程，即将预组字符变回部件。</p>
+<p>标准等价是指保持视觉上和功能上的等价。例如，含附加符号字母被视为和分解后的字母及其附加符号是标准等价。换句话说，预组字符‘ü’和由‘u’及 ‘¨’所组成的序列是标准等价。相似地，统一码统合了一些希腊附加符号和外观与附加符号类似的标点符号。</p>
+</section>
+<section id="id7">
+<h3><span class="section-number">12.5.3.3. </span>兼容等价<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<p>兼容等价的范围较标准等价来得广。如果序列是标准等价的话就会是兼容等价，反之则未必对。兼容等价更关注在于纯文字的等价，并把一些语义上的不同形式归结在一起。</p>
+<p>例如，上标数字和其所使用的数字是兼容等价，但非标准等价。其理由为下标和上标形式虽然在某些时侯属于不同意义，但若应用程序将他们视为一样也是合理的（虽然视觉上可区分）。如此，在统一码富文件中，上标和下标就可以以比较不累赘地方式出现（见下一节）。</p>
+<p>全角和半角的片假名也是一种兼容等价但不是标准等价。如同合字和其部件序列。其只有视觉上但没有语义上的区别。换句话说，作者通常没有特别宣称使用合字是一种意思，而不使用是另一种意思。相对地，这尽限于印刷上的选择。</p>
+<p>文字处理软件在实现统一码字符串的搜索和排序时，须考虑到等价性的存在。如果没有此特性的话，用户在搜索时将无法找到在视觉上无法区分的字形。</p>
+<p>统一码提供了一个标准的正规化算法，可将所有相同的序列产生一个唯一的序列。 其等价准绳可以为标准的（NF）或兼容的（NFK）。 既然可以任意选择等价类中的元素，对每一个等价标准有多个标准形式也是有可能的。 统一码为每一种等价准绳分别提供两种正规形式：合成用的NFC和NFKC以及分解用的NFD和NFKD。 而不论是组合的或分解的形式，都会使用标准顺序，以此限制正规形式只有唯一形式。</p>
+</section>
+<section id="id8">
+<h3><span class="section-number">12.5.3.4. </span>正规化<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>为了比较或搜索统一码字符串，软件可以使用合成或分解形式其中之一。 只要被比较或搜索的字符串使用的形式是相同的，哪种选择都没关系。 另一方面，等价概念的选择则会影响到搜索结果。 譬如，有些合字如ﬃ（U+FB03）、罗马数字如Ⅸ（U+2168），甚至是上标数字如⁵（U+2075）有其个别统一码码位。 标准正规形式并不会影响这些结果。 但兼容正规形式会分解ﬃ成f、f、i。所以搜索U+0066（f）时，在NFKC中会成功，但在NFC则会失败。 同样地有在预组罗马数字Ⅸ 中搜索拉丁字母I（U+0049）。类似地，“⁵”会转成“5”。</p>
+<p>对于浏览器，将上标转换成到基下划线未必是好的，因为上标的信息会因而消失。为了允许这种不同，统一码字符数据库句含了兼容格式标签，其提供了兼容转换的细节。在合字的情况下，这个标签只是 <code class="docutils literal notranslate"><span class="pre">&lt;compat&gt;</span></code> ，而在上标的情况下则为 <code class="docutils literal notranslate"><span class="pre">&lt;super&gt;</span></code> 。丰富文件格式如超文本置标语言则会使用兼容标签。例如，HTML使用自定义标签来将“5”放到上标位置。</p>
+</section>
+<section id="id9">
+<h3><span class="section-number">12.5.3.5. </span>正规形式<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>NFD Normalization Form Canonical Decomposition 以标准等价方式来分解</p></li>
+<li><p>NFC Normalization Form Canonical Composition 以标准等价方式来分解，然后以标准等价重组之。若是singleton的话，重组结果有可能和分解前不同。</p></li>
+<li><p>NFKD Normalization Form Compatibility Decomposition  以兼容等价方式来分解NFKC</p></li>
+<li><p>Normalization Form Compatibility Composition 以兼容等价方式来分解，然后以标准等价重组之</p></li>
+</ul>
+</section>
+</section>
+<section id="tricks">
+<h2><span class="section-number">12.5.4. </span>Tricks<a class="headerlink" href="#tricks" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>部分语言的长度并不是字符的长度，一个UTF-16可能是两位。</p></li>
+<li><p>部分语言在翻转UTF-16等多字节编码时，会处理错误。</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2><span class="section-number">12.5.5. </span>安全问题<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<section id="visual-spoofing">
+<h3><span class="section-number">12.5.5.1. </span>Visual Spoofing<a class="headerlink" href="#visual-spoofing" title="Permalink to this heading">¶</a></h3>
+<p>例如bаidu.com(此处的a为u0430)和baidu.com(此处的a为x61)视觉上相同，但是实际上指向两个不同的域名。</p>
+<p>bａidu.com(此处的a为uff41)和baidu.com(此处的a为x61)有一定的不同，但是指向两个相同的域名。</p>
+<p>这种现象可以引起一些Spoofing或者WAF Bypass的问题。</p>
+</section>
+<section id="best-fit">
+<h3><span class="section-number">12.5.5.2. </span>Best Fit<a class="headerlink" href="#best-fit" title="Permalink to this heading">¶</a></h3>
+<p>如果两个字符前后编码不同，之前的编码在之后的编码没有对应，程序会尝试找最佳字符进行自动转换。</p>
+<p>当宽字符变成了单字节字符，字符编码会有一定的变化。</p>
+<p>这种现象可能引起一些WAF Bypass。</p>
+</section>
+<section id="syntax-spoofing">
+<h3><span class="section-number">12.5.5.3. </span>Syntax Spoofing<a class="headerlink" href="#syntax-spoofing" title="Permalink to this heading">¶</a></h3>
+<p>以下四个Url在语法上看来是没问题的域名，但是用来做分割的字符并不是真正的分割字符，而是U+2044( ⁄ )，可以导致一些UI欺骗的问题。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://macchiato.com/x.bad.com">http://macchiato.com/x.bad.com</a>  macchiato.com/x     bad.com</p></li>
+<li><p><a class="reference external" href="http://macchiato.com?x.bad.com">http://macchiato.com?x.bad.com</a>  macchiato.com?x     bad.com</p></li>
+<li><p><a class="reference external" href="http://macchiato.com.x.bad.com">http://macchiato.com.x.bad.com</a>  macchiato.com.x     bad.com</p></li>
+<li><p><a class="reference external" href="http://macchiato.com#x.bad.com">http://macchiato.com#x.bad.com</a>  macchiato.com#x     bad.com</p></li>
+</ul>
+</section>
+<section id="punycode-spoofs">
+<h3><span class="section-number">12.5.5.4. </span>Punycode Spoofs<a class="headerlink" href="#punycode-spoofs" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="http:/">http:/</a>/䕮䕵䕶䕱.com        <a class="reference external" href="http://xn--google.com">http://xn–google.com</a></p></li>
+<li><p><a class="reference external" href="http:/">http:/</a>/䁾.com              <a class="reference external" href="http://xn--cnn.com">http://xn–cnn.com</a></p></li>
+<li><p><a class="reference external" href="http:/">http:/</a>/岍岊岊岅岉岎.com    <a class="reference external" href="http://xn--citibank.com">http://xn–citibank.com</a></p></li>
+</ul>
+<p>有些浏览器会直接显示puncode，但是也可以借助这种机制实现UI Spooof。</p>
+</section>
+<section id="buffer-overflows">
+<h3><span class="section-number">12.5.5.5. </span>Buffer Overflows<a class="headerlink" href="#buffer-overflows" title="Permalink to this heading">¶</a></h3>
+<p>在编码转换的时候，有的字符会变成多个字符，如Fluß → FLUSS → fluss这样可能导致BOF。</p>
+</section>
+</section>
+<section id="id11">
+<h2><span class="section-number">12.5.6. </span>常见载荷<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<section id="url">
+<h3><span class="section-number">12.5.6.1. </span>URL<a class="headerlink" href="#url" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">‥</span></code> (U+2025)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">︰</span></code> (U+FE30)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">。</span></code> (U+3002)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⓪</span></code>  (U+24EA)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">／</span></code> (U+FF0F)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ｐ</span></code> (U+FF50)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ʰ</span></code> (U+02B0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ª</span></code> (U+00AA)</p></li>
+</ul>
+</section>
+<section id="sql">
+<h3><span class="section-number">12.5.6.2. </span>SQL注入<a class="headerlink" href="#sql" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">＇</span></code> (U+FF07)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">＂</span></code> (U+FF02)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">﹣</span></code> (U+FE63)</p></li>
+</ul>
+</section>
+<section id="xss">
+<h3><span class="section-number">12.5.6.3. </span>XSS<a class="headerlink" href="#xss" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">＜</span></code> (U+FF1C)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">＂</span></code> (U+FF02)</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3><span class="section-number">12.5.6.4. </span>命令注入<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">＆</span></code> (U+FF06)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">｜</span></code> (U+FF5C)</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3><span class="section-number">12.5.6.5. </span>模板注入<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">﹛</span></code> (U+FE5B)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">［</span></code> (U+FF3B)</p></li>
+</ul>
+</section>
+</section>
+<section id="id14">
+<h2><span class="section-number">12.5.7. </span>参考链接<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
+<section id="id15">
+<h3><span class="section-number">12.5.7.1. </span>官方文档<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Unicode_equivalence">Unicode equivalence</a></p></li>
+<li><p><a class="reference external" href="http://unicode.org/reports/tr15/">Unicode Normalization Forms</a></p></li>
+<li><p><a class="reference external" href="http://unicode.org/reports/tr36/">Unicode Security Considerations</a></p></li>
+</ul>
+</section>
+<section id="rfc">
+<h3><span class="section-number">12.5.7.2. </span>RFC<a class="headerlink" href="#rfc" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc3629">RFC 3629</a> UTF-8, a transformation format of ISO 10646</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc2044">RFC 2044</a> UTF-8, a transformation format of ISO 10646</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc2279">RFC 2279</a> UTF-8, a transformation format of ISO 10646</p></li>
+</ul>
+</section>
+<section id="tricks-blogs">
+<h3><span class="section-number">12.5.7.3. </span>Tricks / Blogs<a class="headerlink" href="#tricks-blogs" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/IDN_homograph_attack">IDN homograph attack</a></p></li>
+<li><p><a class="reference external" href="https://www.blackhat.com/presentations/bh-usa-09/WEBER/BHUSA09-Weber-UnicodeSecurityPreview-PAPER.pdf">Black Hat Unicode Security</a></p></li>
+<li><p><a class="reference external" href="https://www.nccgroup.trust/uk/about-us/newsroom-and-events/blogs/2017/august/request-encoding-to-bypass-web-application-firewalls/">Request encoding to bypass web application firewalls</a></p></li>
+<li><p><a class="reference external" href="https://shkspr.mobi/blog/2018/11/domain-hacks-with-unusual-unicode-characters/">domain hacks with unusual unicode characters</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/53714077">其实你并不懂 Unicode</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="finger.html" class="btn btn-neutral float-left" title="12.4. 指纹" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="json.html" class="btn btn-neutral float-right" title="12.6. JSON" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

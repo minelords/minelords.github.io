@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.1.11. Sink &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.1.12. 其它" href="misc.html" />
+    <link rel="prev" title="5.1.10. Phar" href="phar.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 语言与框架</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.1. PHP</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backdoor.html">5.1.1. 后门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unserialize.html">5.1.2. 反序列化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="disablefunc.html">5.1.3. Disable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basedir.html">5.1.4. Open Basedir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html">5.1.5. 安全相关配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stream.html">5.1.6. PHP流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="htaccess.html">5.1.7. htaccess injection payload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webshell.html">5.1.8. WebShell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="obfuscate.html">5.1.9. 代码混淆</a></li>
+<li class="toctree-l3"><a class="reference internal" href="phar.html">5.1.10. Phar</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.1.11. Sink</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">5.1.11.1. 任意代码执行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.1.11.2. 执行系统命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#magic">5.1.11.3. Magic函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">5.1.11.4. 文件相关敏感函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ssrf">5.1.11.5. SSRF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#phar">5.1.11.6. phar 触发点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">5.1.11.7. 原生类利用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">5.1.12. 其它</a></li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">5.1.13. 版本安全改动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trick.html">5.1.14. Tricks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">5.1.15. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">5.2. Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/index.html">5.3. Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javascript/index.html">5.4. JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../golang.html">5.5. Golang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ruby.html">5.6. Ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asp.html">5.7. ASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../powershell.html">5.8. PowerShell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shell.html">5.9. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../csharp/index.html">5.10. CSharp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>语言与框架</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.1. </span>PHP</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.1.11. </span>Sink</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/language/php/sink.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sink">
+<h1><span class="section-number">5.1.11. </span>Sink<a class="headerlink" href="#sink" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><span class="section-number">5.1.11.1. </span>任意代码执行<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>eval</p></li>
+<li><p>assert</p></li>
+<li><p>call_user_func</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">5.1.11.2. </span>执行系统命令<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>pcntl_exec</p></li>
+<li><p>exec</p></li>
+<li><p>passthru</p></li>
+<li><p>popen</p></li>
+<li><p>shell_exec</p></li>
+<li><p>system</p></li>
+<li><p>proc_open</p></li>
+</ul>
+</section>
+<section id="magic">
+<h2><span class="section-number">5.1.11.3. </span>Magic函数<a class="headerlink" href="#magic" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__construct()</span></code> 构建对象的时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__destruct()</span></code> 销毁对象或脚本结束时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__call()</span></code> 调用不可访问或不存在的方法时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__callStatic()</span></code> 调用不可访问或不存在的静态方法时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__get()</span></code> 读取不可访问或不存在属性时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__set()</span></code> 给不可访问或不存在属性赋值时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__isset()</span></code> 对不可访问或不存在的属性调用 <code class="docutils literal notranslate"><span class="pre">isset</span></code> 或 <code class="docutils literal notranslate"><span class="pre">empty()</span></code> 时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__unset()</span></code> 对不可访问或不存在的属性进行 <code class="docutils literal notranslate"><span class="pre">unset</span></code> 时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__sleep()</span></code> 对象序列化时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__wakeup()</span></code> 对象反序列化时被调用，其中序列化字符串中表示对象属性个数的值大于真实的属性个数时会跳过wakeup的执行</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__toString()</span></code> 当一个类被转换成字符串时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__invoke()</span></code> 对象被以函数方式调用时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__set_state()</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">var_export()</span></code> 导出类时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__clone()</span></code> 进行对象clone时被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__debugInfo()</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">var_dump()</span></code> 打印对象时被调用</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.1.11.4. </span>文件相关敏感函数<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">move_uploaded_file</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_put_contents</span></code> / <code class="docutils literal notranslate"><span class="pre">file_get_contents</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unlink</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fopen</span></code> / <code class="docutils literal notranslate"><span class="pre">fgets</span></code></p></li>
+</ul>
+</section>
+<section id="ssrf">
+<h2><span class="section-number">5.1.11.5. </span>SSRF<a class="headerlink" href="#ssrf" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file_get_contents()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fsockopen()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curl_exec()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fopen()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">readfile()</span></code></p></li>
+</ul>
+</section>
+<section id="phar">
+<h2><span class="section-number">5.1.11.6. </span>phar 触发点<a class="headerlink" href="#phar" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>fileatime / filectime / filemtime</p></li>
+<li><p>stat / fileinode / fileowner / filegroup / fileperms</p></li>
+<li><p>file / file_get_contents / readfile / fopen`</p></li>
+<li><p>file_exists / is_dir / is_executable / is_file / is_link / is_readable / is_writeable / is_writable</p></li>
+<li><p>parse_ini_file</p></li>
+<li><p>unlink</p></li>
+<li><p>copy</p></li>
+<li><dl class="simple">
+<dt>exif</dt><dd><ul>
+<li><p>exif_thumbnail</p></li>
+<li><p>exif_imagetype</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>gd</dt><dd><ul>
+<li><p>imageloadfont</p></li>
+<li><p>imagecreatefrom***</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>hash</dt><dd><ul>
+<li><p>hash_hmac_file</p></li>
+<li><p>hash_file</p></li>
+<li><p>hash_update_file</p></li>
+<li><p>md5_file</p></li>
+<li><p>sha1_file</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>file / url</dt><dd><ul>
+<li><p>get_meta_tags</p></li>
+<li><p>get_headers</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>standard</dt><dd><ul>
+<li><p>getimagesize</p></li>
+<li><p>getimagesizefromstring</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">5.1.11.7. </span>原生类利用<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>XSS</dt><dd><ul>
+<li><p>Error</p></li>
+<li><p>Exception</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>SSRF</dt><dd><ul>
+<li><p>SoapClient</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>open_basedir 绕过</dt><dd><ul>
+<li><p>DirectoryIterator 结合 <code class="docutils literal notranslate"><span class="pre">glob://</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>XXE</dt><dd><ul>
+<li><p>SimpleXMLElement</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="phar.html" class="btn btn-neutral float-left" title="5.1.10. Phar" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="misc.html" class="btn btn-neutral float-right" title="5.1.12. 其它" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

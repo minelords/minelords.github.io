@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.6.5. 加密方案 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.6.6. DNS利用" href="tech.html" />
+    <link rel="prev" title="2.6.1. 简介" href="basic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. 计算机网络与协议</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../basic.html">2.1. 网络基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../udp.html">2.2. UDP协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tcp.html">2.3. TCP协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dhcp.html">2.4. DHCP协议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../route.html">2.5. 路由算法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.6. 域名系统</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="basic.html">2.6.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id2">2.6.2. 请求响应</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id4">2.6.3. 域名系统工作原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id7">2.6.4. 服务器类型</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.6.5. 加密方案</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dot">2.6.5.1. DoT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dns-over-dtls">2.6.5.2. DNS-over-DTLS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doh">2.6.5.3. DoH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dns-over-quic">2.6.5.4. DNS-over-QUIC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dnscrypt">2.6.5.5. DNSCrypt</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tech.html">2.6.6. DNS利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rdap.html">2.6.7. RDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html">2.6.8. 相关漏洞</a></li>
+<li class="toctree-l3"><a class="reference internal" href="org.html">2.6.9. 相关机构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="terminology.html">2.6.10. 术语</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">2.6.11. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/index.html">2.7. HTTP协议簇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ssh/index.html">2.8. SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mail.html">2.9. 邮件协议族</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ssl.html">2.10. SSL/TLS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ipsec.html">2.11. IPsec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wifi.html">2.12. Wi-Fi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">2. </span>计算机网络与协议</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2.6. </span>域名系统</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.6.5. </span>加密方案</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/network/domain/sec.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">2.6.5. </span>加密方案<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<p>作为主流的防御方案，DNS加密有五种方案，分别是 DNS-over-TLS (DoT)、DNS-over-DTLS、DNS-over-HTTPS (DoH)、DNS-over-QUIC以及DNSCrypt。</p>
+<section id="dot">
+<h2><span class="section-number">2.6.5.1. </span>DoT<a class="headerlink" href="#dot" title="Permalink to this heading">¶</a></h2>
+<p>DoT方案在2016年发表于RFC7858，使用853端口。主要思想是Client和Server通过TCP协议建立TLS会话后再进行DNS传输，Client通过SSL证书验证服务器身份。</p>
+</section>
+<section id="dns-over-dtls">
+<h2><span class="section-number">2.6.5.2. </span>DNS-over-DTLS<a class="headerlink" href="#dns-over-dtls" title="Permalink to this heading">¶</a></h2>
+<p>DNS-over-DTLS和DoT类似，区别在于使用UDP协议而不是TCP协议。</p>
+</section>
+<section id="doh">
+<h2><span class="section-number">2.6.5.3. </span>DoH<a class="headerlink" href="#doh" title="Permalink to this heading">¶</a></h2>
+<p>DoH方案在发表RFC8484，使用 <code class="docutils literal notranslate"><span class="pre">https://dns.example.com/dns-query{?dns}</span></code>  来查询服务器的IP，复用https的443端口，流量特征比较小。DoH会对DNS服务器进行加密认证，不提供fallback选项。目前Cloudflare、Google等服务商对DoH提供了支持。</p>
+</section>
+<section id="dns-over-quic">
+<h2><span class="section-number">2.6.5.4. </span>DNS-over-QUIC<a class="headerlink" href="#dns-over-quic" title="Permalink to this heading">¶</a></h2>
+<p>DNS-over-QUIC安全特性和DoT类似，但是性能更高，目前没有合适的软件实现。</p>
+</section>
+<section id="dnscrypt">
+<h2><span class="section-number">2.6.5.5. </span>DNSCrypt<a class="headerlink" href="#dnscrypt" title="Permalink to this heading">¶</a></h2>
+<p>DNSCrypt使用X25519-XSalsa20Poly1305而非标准的TLS，且DNSCrypt的Client需要额外的软件，Server需要的专门的证书。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="basic.html" class="btn btn-neutral float-left" title="2.6.1. 简介" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tech.html" class="btn btn-neutral float-right" title="2.6.6. DNS利用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.1.12. 其它 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.1.13. 版本安全改动" href="version.html" />
+    <link rel="prev" title="5.1.11. Sink" href="sink.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 语言与框架</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.1. PHP</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backdoor.html">5.1.1. 后门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unserialize.html">5.1.2. 反序列化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="disablefunc.html">5.1.3. Disable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basedir.html">5.1.4. Open Basedir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html">5.1.5. 安全相关配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stream.html">5.1.6. PHP流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="htaccess.html">5.1.7. htaccess injection payload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webshell.html">5.1.8. WebShell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="obfuscate.html">5.1.9. 代码混淆</a></li>
+<li class="toctree-l3"><a class="reference internal" href="phar.html">5.1.10. Phar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sink.html">5.1.11. Sink</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.1.12. 其它</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.1.12.1. 低精度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">5.1.12.2. 弱类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">5.1.12.3. 命令执行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">5.1.12.4. 截断</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">5.1.12.5. 变量覆盖</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#php">5.1.12.6. php特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tmp">5.1.12.7. /tmp临时文件竞争</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="version.html">5.1.13. 版本安全改动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trick.html">5.1.14. Tricks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">5.1.15. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">5.2. Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/index.html">5.3. Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../javascript/index.html">5.4. JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../golang.html">5.5. Golang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ruby.html">5.6. Ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asp.html">5.7. ASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../powershell.html">5.8. PowerShell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shell.html">5.9. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../csharp/index.html">5.10. CSharp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>语言与框架</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.1. </span>PHP</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.1.12. </span>其它</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/language/php/misc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">5.1.12. </span>其它<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">5.1.12.1. </span>低精度<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>php中并不是用高精度来存储浮点数，而是用使用 IEEE 754 双精度格式，造成在涉及到浮点数比较的时候可能会出现预期之外的错误。
+比如 <code class="docutils literal notranslate"><span class="pre">php</span> <span class="pre">-r</span> <span class="pre">&quot;var_dump(0.2+0.7==0.9);&quot;</span></code> 这行代码的输出是 <code class="docutils literal notranslate"><span class="pre">bool(false)</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">bool(true)</span></code>。这在一些情况下可能出现问题。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.1.12.2. </span>弱类型<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>如果使用 <code class="docutils literal notranslate"><span class="pre">==</span></code> 来判断相等，则会因为类型推断出现一些预料之外的行为，比如magic hash，指当两个md5值都是 <code class="docutils literal notranslate"><span class="pre">0e[0-9]{30}</span></code> 的时候，就会认为两个hash值相等。
+另外在判断字符串和数字的时候，PHP会自动做类型转换，那么 <code class="docutils literal notranslate"><span class="pre">1==&quot;1a.php&quot;</span></code> 的结果会是true</p>
+<p>另外在判断一些hash时，如果传入的是数组，返回值会为 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, 因此在判断来自网络请求的数据的哈希值时需要先判断数据类型。</p>
+<p>同样的， <code class="docutils literal notranslate"><span class="pre">strcmp()</span></code> <code class="docutils literal notranslate"><span class="pre">ereg()</span></code> <code class="docutils literal notranslate"><span class="pre">strpos()</span></code> 这些函数在处理数组的时候也会异常，返回NULL。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">5.1.12.3. </span>命令执行<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>preg_replace 第一个参数是//e的时候，第二个参数会被当作命令执行</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">5.1.12.4. </span>截断<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>PHP字符存在截断行为，可以使用 <code class="docutils literal notranslate"><span class="pre">ereg</span></code> / <code class="docutils literal notranslate"><span class="pre">%00</span></code> / <code class="docutils literal notranslate"><span class="pre">iconv</span></code> 等实现php字符截断的操作，从而触发漏洞。</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">5.1.12.5. </span>变量覆盖<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>当使用 <code class="docutils literal notranslate"><span class="pre">extract</span></code> / <code class="docutils literal notranslate"><span class="pre">parse_str</span></code> 等函数时，或者使用php的 <code class="docutils literal notranslate"><span class="pre">$$</span></code> 特性时，如果没有正确的调用，则可能使得用户可以任意修改变量。</p>
+</section>
+<section id="php">
+<h2><span class="section-number">5.1.12.6. </span>php特性<a class="headerlink" href="#php" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>php自身在解析请求的时候，如果参数名字中包含” “、”.”、”[“这几个字符，会将他们转换成下划线</p></li>
+<li><p>由于历史原因， <code class="docutils literal notranslate"><span class="pre">urlencode</span></code> 和RFC3896存在一定的不同，PHP另外提供了 <code class="docutils literal notranslate"><span class="pre">rawurlencode</span></code> 对RFC3896完成标准的实现</p></li>
+</ul>
+</section>
+<section id="tmp">
+<h2><span class="section-number">5.1.12.7. </span>/tmp临时文件竞争<a class="headerlink" href="#tmp" title="Permalink to this heading">¶</a></h2>
+<p>phpinfo可访问时，可以看到上传的临时文件的路径，从而实现LFI。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sink.html" class="btn btn-neutral float-left" title="5.1.11. Sink" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="version.html" class="btn btn-neutral float-right" title="5.1.13. 版本安全改动" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

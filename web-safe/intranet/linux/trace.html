@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.2.3. 痕迹清理 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.3. 后门技术" href="../trojan.html" />
+    <link rel="prev" title="6.2.2. 持久化" href="persistence.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">6. 内网渗透</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../windows/index.html">6.1. Windows内网渗透</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">6.2. Linux内网渗透</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="info.html">6.2.1. 信息收集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="persistence.html">6.2.2. 持久化</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">6.2.3. 痕迹清理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">6.2.3.1. 历史命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">6.2.3.2. 清除/修改日志文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">6.2.3.3. 登录痕迹</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">6.2.3.4. 操作痕迹</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">6.2.3.5. 覆写文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">6.2.3.6. 难点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">6.2.3.7. 注意</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">6.2.3.8. 参考链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../trojan.html">6.3. 后门技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../misc.html">6.4. 综合技巧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ref.html">6.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">6. </span>内网渗透</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6.2. </span>Linux内网渗透</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.2.3. </span>痕迹清理</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/intranet/linux/trace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">6.2.3. </span>痕迹清理<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">6.2.3.1. </span>历史命令<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">unset</span> <span class="pre">HISTORY</span> <span class="pre">HISTFILE</span> <span class="pre">HISTSAVE</span> <span class="pre">HISTZONE</span> <span class="pre">HISTORY</span> <span class="pre">HISTLOG;</span> <span class="pre">export</span> <span class="pre">HISTFILE=/dev/null;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">-9</span> <span class="pre">$$</span></code> kill history</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">-c</span></code></p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">HISTSIZE=0</span></code> 中设置 <code class="docutils literal notranslate"><span class="pre">HISTSIZE=0</span></code></p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">6.2.3.2. </span>清除/修改日志文件<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/btmp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/lastlog</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/wtmp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/utmp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/secure</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/message</span></code></p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">6.2.3.3. </span>登录痕迹<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>删除 <code class="docutils literal notranslate"><span class="pre">~/.ssh/known_hosts</span></code> 中记录</p></li>
+<li><dl class="simple">
+<dt>修改文件时间戳</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">–r</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>删除tmp目录临时文件</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">6.2.3.4. </span>操作痕迹<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>vim 不记录历史命令 <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">history=0</span></code></p></li>
+<li><dl class="simple">
+<dt>ssh 登录痕迹</dt><dd><ul>
+<li><p>无痕登录 <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-T</span> <span class="pre">user&#64;host</span> <span class="pre">/bin/bash</span> <span class="pre">-i</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h2><span class="section-number">6.2.3.5. </span>覆写文件<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>shred</p></li>
+<li><p>dd</p></li>
+<li><p>wipe</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2><span class="section-number">6.2.3.6. </span>难点<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>攻击和入侵很难完全删除痕迹，没有日志记录也是一种特征</p></li>
+<li><p>即使删除本地日志，在网络设备、安全设备、集中化日志系统中仍有记录</p></li>
+<li><p>留存的后门包含攻击者的信息</p></li>
+<li><p>使用的代理或跳板可能会被反向入侵</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2><span class="section-number">6.2.3.7. </span>注意<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>在操作前检查是否有用户在线</p></li>
+<li><p>删除文件使用磁盘覆写的功能删除</p></li>
+<li><p>尽量和攻击前状态保持一致</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><span class="section-number">6.2.3.8. </span>参考链接<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s/i2WvFmF1qQjbx-BaStXb1Q">Linux 入侵痕迹清理技巧</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="persistence.html" class="btn btn-neutral float-left" title="6.2.2. 持久化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../trojan.html" class="btn btn-neutral float-right" title="6.3. 后门技术" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

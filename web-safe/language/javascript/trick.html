@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.4.11. Trick &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.4.12. 其他" href="misc.html" />
+    <link rel="prev" title="5.4.10. jsfuck cheat sheet" href="jsfuck.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 语言与框架</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../php/index.html">5.1. PHP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">5.2. Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/index.html">5.3. Java</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.4. JavaScript</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ECMAScript.html">5.4.1. ECMAScript</a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html">5.4.2. 引擎</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wasm.html">5.4.3. WebAssembly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scope.html">5.4.4. 作用域与闭包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strict.html">5.4.5. 严格模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="async.html">5.4.6. 异步机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prototype.html">5.4.7. 原型链</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm.html">5.4.8. 沙箱逃逸</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deserialization.html">5.4.9. 反序列化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jsfuck.html">5.4.10. jsfuck cheat sheet</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.4.11. Trick</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">5.4.11.1. 通过正则表达式构造特定字符</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">5.4.12. 其他</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">5.4.13. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../golang.html">5.5. Golang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ruby.html">5.6. Ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asp.html">5.7. ASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../powershell.html">5.8. PowerShell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shell.html">5.9. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../csharp/index.html">5.10. CSharp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>语言与框架</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.4. </span>JavaScript</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.4.11. </span>Trick</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/language/javascript/trick.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="trick">
+<h1><span class="section-number">5.4.11. </span>Trick<a class="headerlink" href="#trick" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><span class="section-number">5.4.11.1. </span>通过正则表达式构造特定字符<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">empty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">RegExp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">flags</span>
+<span class="nx">regSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nb">RegExp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">source</span><span class="w"> </span><span class="p">}</span>
+<span class="nx">regSource</span><span class="p">.</span><span class="nx">toString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">shift</span>
+<span class="nx">regSource</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span>
+<span class="nx">left</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nx">regSource</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">empty</span><span class="w"> </span><span class="c1">// 生成 (</span>
+<span class="nx">quest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">regSource</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">empty</span><span class="w"> </span><span class="c1">// 生成 ?</span>
+<span class="nx">colon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">regSource</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">empty</span><span class="w"> </span><span class="c1">// 生成 :</span>
+<span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">regSource</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">empty</span><span class="w"> </span><span class="c1">// 生成 )</span>
+
+<span class="nx">xss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<span class="nx">xss</span><span class="p">.</span><span class="nx">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;xss&#39;</span>
+<span class="nx">xss</span><span class="p">.</span><span class="nx">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;a&#39;</span>
+<span class="nx">xss</span><span class="p">.</span><span class="nx">toString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">RegExp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span>
+<span class="nx">xss</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="c1">// =&gt; /xss/a</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="jsfuck.html" class="btn btn-neutral float-left" title="5.4.10. jsfuck cheat sheet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="misc.html" class="btn btn-neutral float-right" title="5.4.12. 其他" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

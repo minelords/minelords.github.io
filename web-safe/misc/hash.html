@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12.7. 哈希 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.8. 拒绝服务攻击" href="dos.html" />
+    <link rel="prev" title="12.6. JSON" href="json.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">12. 其他</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="audit.html">12.1. 代码审计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="waf.html">12.2. WAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netdev.html">12.3. 常见网络设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finger.html">12.4. 指纹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicode.html">12.5. Unicode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">12.6. JSON</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">12.7. 哈希</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">12.7.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">12.7.2. 特点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">12.7.3. 完美哈希</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">12.7.4. 安全风险</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hash-flooding-attack">12.7.4.1. Hash-Flooding Attack</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">12.7.5. 参考链接</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">12.7.5.1. 完美哈希函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dos.html">12.8. 拒绝服务攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">12.9. 邮件安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt.html">12.10. APT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supplychain.html">12.11. 供应链安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">12.12. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spider.html">12.13. 爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terminology.html">12.14. 常见术语</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">12. </span>其他</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12.7. </span>哈希</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/misc/hash.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">12.7. </span>哈希<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">12.7.1. </span>简介<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>Hash 一般译作散列，又称杂凑，或音译为哈希，是一种把数据映射为特定长度输出值的方法。</p>
+<p>常见的哈希函数有：</p>
+<ul class="simple">
+<li><p>CRC32</p></li>
+<li><p>MD4 / MD5</p></li>
+<li><p>SHA0 / SHA1 / SHA256 / SHA512</p></li>
+<li><p>SipHash</p></li>
+<li><p>MurMurHash</p></li>
+<li><p>CityHash</p></li>
+<li><p>xxHash</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">12.7.2. </span>特点<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>一致性，同一个数据通过同种哈希算法计算出的值是一样的</p></li>
+<li><p>雪崩效应，原始数据小的修改也会导致哈希结果的巨大变化</p></li>
+<li><p>单向，只能从原始数据计算哈希，而不可以反向计算</p></li>
+<li><p>避免冲突，很难找到两个不同的数据可以计算出相同的哈希</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">12.7.3. </span>完美哈希<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>完美哈希 (Perfect Hashing) 是指在哈希计算过程中，不会出现冲突，也就是说哈希函数是一个完全单射函数。</p>
+<p>完美哈希实际是静态的，要求实现知道需要哈希哪些数据，并使用较长时间来建立索引，也无法实时更新。</p>
+<p>目前已有的完美哈希函数有 FCH、CHD、PTHash 等。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">12.7.4. </span>安全风险<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<section id="hash-flooding-attack">
+<h3><span class="section-number">12.7.4.1. </span>Hash-Flooding Attack<a class="headerlink" href="#hash-flooding-attack" title="Permalink to this heading">¶</a></h3>
+<p>Hash-Flooding Attack 是面向Web后端处理语言的一种攻击方式，通过构造特定的表单值频繁触发哈希碰撞，使得原本的Hash Map 获得指数级的性能下降。
+这是因为哈希表在不产生碰撞时的查询/插入的时间复杂度近似为 O(1) ，但是大量碰撞时，时间复杂度则为 O(n) ，而插入n个哈希相同的元素，时间复杂度则对应为 O(n^2) 。</p>
+<p>早在2003年usenix的一篇名为 Denial of Service via Algorithmic Complexity Attacks 的论文中提出了这种攻击的方式，但是仍有大量的编程语言并没有对这种攻击方式进行防护，或较晚的版本才加入了对应的防护机制。</p>
+<p>围绕着这种攻击方式，研究员设计了SipHash、MurmurHash、CityHash等新的哈希函数，核心思路是为哈希算法加入了一个密钥，使得攻击者无法构造哈希冲突的函数。
+Python、Rust、Ruby等等语言在后期实现中也将SipHash做为默认的哈希算法。</p>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">12.7.5. </span>参考链接<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.usenix.org/conference/12th-usenix-security-symposium/denial-service-algorithmic-complexity-attacks">Denial of Service via Algorithmic Complexity Attacks</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/8669946/application-vulnerability-due-to-non-random-hash-functions">Application vulnerability due to Non Random Hash Functions</a></p></li>
+<li><p><a class="reference external" href="https://github.com/veorq/SipHash">SipHash</a> High-speed secure pseudorandom function for short messages</p></li>
+</ul>
+<section id="id7">
+<h3><span class="section-number">12.7.5.1. </span>完美哈希函数<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>FCH <a class="reference external" href="http://cmph.sourceforge.net/papers/fch92.pdf">A Faster Algorithm for Constructing Minimal Perfect Hash Functions</a></p></li>
+<li><p>CHD <a class="reference external" href="http://cmph.sourceforge.net/papers/esa09.pdf">Hash, displace, and compress</a></p></li>
+<li><p><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3404835.3462849">PTHash: Revisiting FCH Minimal Perfect Hashing</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="json.html" class="btn btn-neutral float-left" title="12.6. JSON" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dos.html" class="btn btn-neutral float-right" title="12.8. 拒绝服务攻击" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

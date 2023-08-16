@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.12. 蜜罐技术 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.13. RASP" href="rasp.html" />
+    <link rel="prev" title="8.11. 零信任安全" href="zt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. 防御技术</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="team.html">8.1. 团队建设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html">8.2. 红蓝对抗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">8.3. 安全开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secops.html">8.4. 安全建设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threat.html">8.5. 威胁情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="att8ck.html">8.6. ATT&amp;CK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riskcontrol.html">8.7. 风险控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework.html">8.8. 防御框架</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html">8.9. 加固检查</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intrusiondetection.html">8.10. 入侵检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zt.html">8.11. 零信任安全</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.12. 蜜罐技术</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.12.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">8.12.2. 分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">8.12.3. 隐藏技术</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">8.12.4. 牵引技术</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">8.12.5. 诱饵技术</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">8.12.6. 反制技术</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">8.12.7. 识别技术</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">8.12.7.1. 协议实现识别</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">8.12.7.2. 环境特征</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">8.12.8. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rasp.html">8.13. RASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html">8.14. 应急响应</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html">8.15. 溯源分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">8. </span>防御技术</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8.12. </span>蜜罐技术</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/defense/honeypot.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">8.12. </span>蜜罐技术<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">8.12.1. </span>简介<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>蜜罐是对攻击者的欺骗技术，用以监视、检测、分析和溯源攻击行为，其没有业务上的用途，所有流入/流出蜜罐的流量都预示着扫描或者攻击行为，因此可以比较好的聚焦于攻击流量。</p>
+<p>蜜罐可以实现对攻击者的主动诱捕，能够详细地记录攻击者攻击过程中的许多痕迹，可以收集到大量有价值的数据，如病毒或蠕虫的源码、黑客的操作等，从而便于提供丰富的溯源数据。另外蜜罐也可以消耗攻击者的时间，基于JSONP等方式来获取攻击者的画像。</p>
+<p>但是蜜罐存在安全隐患，如果没有做好隔离，可能成为新的攻击源。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">8.12.2. </span>分类<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>按用途分类，蜜罐可以分为研究型蜜罐和产品型蜜罐。研究型蜜罐一般是用于研究各类网络威胁，寻找应对的方式，不增加特定组织的安全性。产品型蜜罐主要是用于防护的商业产品。</p>
+<p>按交互方式分类，蜜罐可以分为低交互蜜罐和高交互蜜罐。低交互蜜罐模拟网络服务响应和攻击者交互，容易部署和控制攻击，但是模拟能力会相对较弱，对攻击的捕获能力不强。高交互蜜罐不是简单模拟协议或服务，而是提供真实的系统，使得被发现的概率大幅度降低。但是高交互蜜罐部署不当时存在被攻击者利用的可能性。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">8.12.3. </span>隐藏技术<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>蜜罐主要涉及到的是伪装技术，主要涉及到进程隐藏、服务伪装等技术。</p>
+<p>蜜罐之间的隐藏，要求蜜罐之间相互隐蔽。进程隐藏，蜜罐需要隐藏监控、信息收集等进程。伪服务和命令技术，需要对部分服务进行伪装，防止攻击者获取敏感信息或者入侵控制内核。数据文件伪装，需要生成合理的虚假数据的文件。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">8.12.4. </span>牵引技术<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>蜜罐牵引技术是在识别到攻击者流量后，通过在正式环境中改变路由、返回特定响应的方式将攻击者牵引到特定的蜜罐地址。
+常见的牵引技术有下面几种：</p>
+<ul class="simple">
+<li><p>防火墙牵引</p></li>
+<li><p>SDN牵引</p></li>
+<li><p>ARP牵引</p></li>
+<li><p>WAF牵引</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2><span class="section-number">8.12.5. </span>诱饵技术<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>可以在互联网中部署一定的诱饵来吸引攻击者进入特定的蜜罐中。
+常见的诱饵有域名诱饵、Github 诱饵、网盘诱饵、邮件诱饵、主机诱饵、文件诱饵、漏洞诱饵等。</p>
+<p>域名诱饵指使用特定的在字典中且有意义的主域名做为诱饵，比如 <code class="docutils literal notranslate"><span class="pre">vpn.example.com</span></code> / <code class="docutils literal notranslate"><span class="pre">oa.example.com</span></code> 等。</p>
+<p>Github 诱饵指在 Github 中放置代码文件、失陷凭证的方式。</p>
+<p>文件诱饵是在容易失陷的主机中放置虚假的拓扑图，关键系统IP的文件，从而诱导攻击者的方式。</p>
+<p>漏洞诱饵通过部署存在特定漏洞特征的蜜罐站，吸引攻击者攻击。</p>
+</section>
+<section id="id7">
+<h2><span class="section-number">8.12.6. </span>反制技术<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>蜜罐可以使用一些方式对攻击者进行反制，常见的方式有Jsonp、安全工具漏洞、Client漏洞反制、文件反制等方式。</p>
+<p>Jsonp主要是使用各大网站的Jsonp获取攻击者已经登录的社交账号，用以溯源。
+另外如果攻击者使用流量的方式访问蜜罐网站，可以使用运营商接口获取攻击者的手机号。</p>
+<p>安全工具漏洞是指使用安全工具的漏洞进行反制，例如Git泄露工具存在的文件泄露漏洞，基于Electron的工具存在的XSS to RCE等。</p>
+<p>Client反制，指使用虚假的Server对存在漏洞的客户端进行反制，例如通过MySQL Client读取文件，基于RDP/SMB的漏洞进行RCE。</p>
+<p>反制文件，指在蜜罐环境中设置特定的文件，例如伪装的VPN客户端、特定插件来诱导攻击者点击。</p>
+<p>DoS反制，在获取到攻击者的C2样本后，可以通过批量上线的方式影响C2攻击者的控制服务器。</p>
+</section>
+<section id="id8">
+<h2><span class="section-number">8.12.7. </span>识别技术<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<p>攻击者也会尝试对蜜罐进行识别。比较容易的识别的是低交互的蜜罐，尝试一些比较复杂且少见的操作能比较容易的识别低交互的蜜罐。相对困难的是高交互蜜罐的识别，因为高交互蜜罐通常以真实系统为基础来构建，和真实系统比较近似。对这种情况，通常会基于虚拟文件系统和注册表的信息、内存分配特征、硬件特征、特殊指令等来识别。</p>
+<section id="id9">
+<h3><span class="section-number">8.12.7.1. </span>协议实现识别<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<p>部分蜜罐在实现的过程中，协议的部分参数固定或随机的范围有限，可以通过特定参数的范围来识别蜜罐。</p>
+<p>部分蜜罐协议支持的版本范围为某一特定版本范围，可以通过对应的版本范围来推测是否为蜜罐。</p>
+<p>部分蜜罐在交互过程中有探测客户端特征的交互，可以通过这些交互过程来识别蜜罐。</p>
+<p>部分蜜罐对不正确的请求也返回正常的相应，可以通过这种特征来判定蜜罐。</p>
+</section>
+<section id="id10">
+<h3><span class="section-number">8.12.7.2. </span>环境特征<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<p>部分蜜罐的用户名、密码固定，或内存使用、进程占用等动态特征变化较为规律，可以通过这种方式来判断是否为蜜罐。</p>
+</section>
+</section>
+<section id="id11">
+<h2><span class="section-number">8.12.8. </span>参考链接<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Honeypot%5f%28computing%29">honeypot wiki</a></p></li>
+<li><p><a class="reference external" href="http://threatstream.github.io/mhn/">Modern Honey Network</a></p></li>
+<li><p><a class="reference external" href="https://www.moresec.cn/magic-shield.html">默安科技：幻阵</a></p></li>
+<li><p><a class="reference external" href="https://xz.aliyun.com/t/998">蜜罐与内网安全从0到1</a></p></li>
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=Mzk0NzE4MDE2NA==&amp;mid=2247483908&amp;idx=1&amp;sn=e6a319e22c3cd54650bdbba511e58a43">浅析开源蜜罐识别与全网测绘</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="zt.html" class="btn btn-neutral float-left" title="8.11. 零信任安全" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rasp.html" class="btn btn-neutral float-right" title="8.13. RASP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.3.1. 基本概念 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.3.2. 类" href="class.html" />
+    <link rel="prev" title="5.3. Java" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 语言与框架</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../php/index.html">5.1. PHP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">5.2. Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.3. Java</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.3.1. 基本概念</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#jvm">5.3.1.1. JVM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jdk">5.3.1.2. JDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jmx">5.3.1.3. JMX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jni">5.3.1.4. JNI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jna">5.3.1.5. JNA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ognl">5.3.1.6. OGNL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#io">5.3.1.7. IO模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.3.1.8. 反射</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="class.html">5.3.2. 类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt.html">5.3.3. 部分运行选项与说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framework.html">5.3.4. 框架</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container.html">5.3.5. 容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sandbox.html">5.3.6. 沙箱</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unserialize.html">5.3.7. 反序列化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rmi.html">5.3.8. RMI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jndi.html">5.3.9. JNDI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jdk.html">5.3.10. JDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sink.html">5.3.11. 常见Sink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webshell.html">5.3.12. WebShell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">5.3.13. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../javascript/index.html">5.4. JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../golang.html">5.5. Golang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ruby.html">5.6. Ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asp.html">5.7. ASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../powershell.html">5.8. PowerShell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shell.html">5.9. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../csharp/index.html">5.10. CSharp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>语言与框架</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.3. </span>Java</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.3.1. </span>基本概念</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/language/java/basic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">5.3.1. </span>基本概念<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="jvm">
+<h2><span class="section-number">5.3.1.1. </span>JVM<a class="headerlink" href="#jvm" title="Permalink to this heading">¶</a></h2>
+<p>JVM是Java平台的核心，以机器代码来实现，为程序执行提供了所需的所有基本功能，例如字节码解析器、JIT编译器、垃圾收集器等。由于它是机器代码实现的，其同样受到二进制文件受到的攻击。</p>
+<p>JCL是JVM自带的一个标准库，含有数百个系统类。默认情况下，所有系统类都是可信任的，且拥有所有的特权。</p>
+</section>
+<section id="jdk">
+<h2><span class="section-number">5.3.1.2. </span>JDK<a class="headerlink" href="#jdk" title="Permalink to this heading">¶</a></h2>
+<p>Java开发工具包(Java Development Kit，JDK)是Oracle公司发布的Java平台，有标准版(Standard Edition，Java SE)、企业版(Enterprise Edition，Java EE)等版本。</p>
+<p>在最开始，JDK以二进制形式发布，而后在2006年11月17日，Sun以GPL许可证发布了Java的源代码，于是之后出现了OpenJDK。</p>
+</section>
+<section id="jmx">
+<h2><span class="section-number">5.3.1.3. </span>JMX<a class="headerlink" href="#jmx" title="Permalink to this heading">¶</a></h2>
+<p>JMX(Java Management Extensions，Java管理扩展)是一个为应用程序植入管理功能的框架，主要为管理和监视应用程序、系统对象、设备和面向服务的网络提供相应的工具。JMX可以远程读取系统中的值、调用系统中的方法。在JMX未配置身份验证或JDK版本过低存在反序列化漏洞时，可能会导致远程代码执行。</p>
+</section>
+<section id="jni">
+<h2><span class="section-number">5.3.1.4. </span>JNI<a class="headerlink" href="#jni" title="Permalink to this heading">¶</a></h2>
+<p>JNI (Java Native Interface) 是Java提供的和其他语言交互的接口。</p>
+</section>
+<section id="jna">
+<h2><span class="section-number">5.3.1.5. </span>JNA<a class="headerlink" href="#jna" title="Permalink to this heading">¶</a></h2>
+<p>JNA (Java Native Access) 是在JNI上的框架，用于自动实现Java接口到native function的映射，而不需要另外编写JNI代码。</p>
+</section>
+<section id="ognl">
+<h2><span class="section-number">5.3.1.6. </span>OGNL<a class="headerlink" href="#ognl" title="Permalink to this heading">¶</a></h2>
+<p>OGNL(Object-Graph Navigation Language，对象导航语言)是一种功能强大的表达式语言，通过简单一致的表达式语法，提供了存取对象的任意属性、调用对象的方法、遍历整个对象的结构图、实现字段类型转化等功能。</p>
+<p>Struts2中使用了OGNL，提供了一个ValueStack类。ValueStack分为root和context两部分。root中是当前的action对象，context中是ActionContext里面所有的内容。</p>
+</section>
+<section id="io">
+<h2><span class="section-number">5.3.1.7. </span>IO模型<a class="headerlink" href="#io" title="Permalink to this heading">¶</a></h2>
+<p>Java 对操作系统的各种 IO 模型进行了封装，形成了不同的API。</p>
+<section id="bio">
+<h3><span class="section-number">5.3.1.7.1. </span>BIO<a class="headerlink" href="#bio" title="Permalink to this heading">¶</a></h3>
+<p>BIO (Blocking I/O) 是同步阻塞I/O模式，数据的读取写入必须阻塞在一个线程内等待其完成。</p>
+</section>
+<section id="nio">
+<h3><span class="section-number">5.3.1.7.2. </span>NIO<a class="headerlink" href="#nio" title="Permalink to this heading">¶</a></h3>
+<p>NIO (New I/O) 是一种同步非阻塞的I/O模型，在Java 1.4中引入，对应 java.nio 包，提供了 Channel , Selector，Buffer等抽象。</p>
+</section>
+<section id="aio">
+<h3><span class="section-number">5.3.1.7.3. </span>AIO<a class="headerlink" href="#aio" title="Permalink to this heading">¶</a></h3>
+<p>AIO (Asynchronous I/O) 在 Java 7 中引入，是NIO的改进版，是异步非阻塞的IO模型，基于事件和回调机制实现。</p>
+</section>
+</section>
+<section id="id2">
+<h2><span class="section-number">5.3.1.8. </span>反射<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3><span class="section-number">5.3.1.8.1. </span>简介<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>Java反射机制是指在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能被称为语言的反射机制。</p>
+</section>
+<section id="id4">
+<h3><span class="section-number">5.3.1.8.2. </span>相关类<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>类名</p></th>
+<th class="head"><p>用途</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Class</p></td>
+<td><p>类的实体</p></td>
+</tr>
+<tr class="row-odd"><td><p>Field</p></td>
+<td><p>类的成员变量</p></td>
+</tr>
+<tr class="row-even"><td><p>Method</p></td>
+<td><p>类的方法</p></td>
+</tr>
+<tr class="row-odd"><td><p>Constructor</p></td>
+<td><p>类的构造方法</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="class">
+<h3><span class="section-number">5.3.1.8.3. </span>Class相关<a class="headerlink" href="#class" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>asSubclass(Class&lt;U&gt; clazz)</dt><dd><ul>
+<li><p>把传递的类的对象转换成代表其子类的对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Cast</dt><dd><ul>
+<li><p>把对象转换成代表类或是接口的对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getClassLoader()</dt><dd><ul>
+<li><p>获得类的加载器</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getClasses()</dt><dd><ul>
+<li><p>返回一个数组，数组中包含该类中所有公共类和接口类的对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredClasses()</dt><dd><ul>
+<li><p>返回一个数组，数组中包含该类中所有类和接口类的对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>forName(String className)</dt><dd><ul>
+<li><p>根据类名返回类的对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getName()</dt><dd><ul>
+<li><p>获得类的完整路径名字</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>newInstance()</dt><dd><ul>
+<li><p>创建类的实例</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getPackage()</dt><dd><ul>
+<li><p>获得类的包</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getSimpleName()</dt><dd><ul>
+<li><p>获得类的名字</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getSuperclass()</dt><dd><ul>
+<li><p>获得当前类继承的父类的名字</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getInterfaces()</dt><dd><ul>
+<li><p>获得当前类实现的类或是接口</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getField(String name)</dt><dd><ul>
+<li><p>获得某个公有的属性对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getFields()</dt><dd><ul>
+<li><p>获得所有公有的属性对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredField(String name)</dt><dd><ul>
+<li><p>获得某个属性对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredFields()</dt><dd><ul>
+<li><p>获得所有属性对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getAnnotation(Class&lt;A&gt; annotationClass)</dt><dd><ul>
+<li><p>返回该类中与参数类型匹配的公有注解对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getAnnotations()</dt><dd><ul>
+<li><p>返回该类所有的公有注解对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredAnnotation(Class&lt;A&gt; annotationClass)</dt><dd><ul>
+<li><p>返回该类中与参数类型匹配的所有注解对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredAnnotations()</dt><dd><ul>
+<li><p>返回该类所有的注解对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getConstructor(Class…&lt;?&gt; parameterTypes)</dt><dd><ul>
+<li><p>获得该类中与参数类型匹配的公有构造方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getConstructors()</dt><dd><ul>
+<li><p>获得该类的所有公有构造方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredConstructor(Class…&lt;?&gt; parameterTypes)</dt><dd><ul>
+<li><p>获得该类中与参数类型匹配的构造方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredConstructors()</dt><dd><ul>
+<li><p>获得该类所有构造方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getMethod(String name, Class…&lt;?&gt; parameterTypes)</dt><dd><ul>
+<li><p>获得该类某个公有的方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getMethods()</dt><dd><ul>
+<li><p>获得该类所有公有的方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredMethod(String name, Class…&lt;?&gt; parameterTypes)</dt><dd><ul>
+<li><p>获得该类某个方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>getDeclaredMethods()</dt><dd><ul>
+<li><p>获得该类所有方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isAnnotation()</dt><dd><ul>
+<li><p>如果是注解类型则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isAnnotationPresent(Class&lt;? extends Annotation&gt; annotationClass)</dt><dd><ul>
+<li><p>如果是指定类型注解类型则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isAnonymousClass()</dt><dd><ul>
+<li><p>如果是匿名类则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isArray()</dt><dd><ul>
+<li><p>如果是一个数组类则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isEnum()</dt><dd><ul>
+<li><p>如果是枚举类则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isInstance(Object obj)</dt><dd><ul>
+<li><p>如果obj是该类的实例则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isInterface()</dt><dd><ul>
+<li><p>如果是接口类则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isLocalClass()</dt><dd><ul>
+<li><p>如果是局部类则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>isMemberClass()</dt><dd><ul>
+<li><p>如果是内部类则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="field">
+<h3><span class="section-number">5.3.1.8.4. </span>Field相关<a class="headerlink" href="#field" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>equals(Object obj)</dt><dd><ul>
+<li><p>属性与obj相等则返回true</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>get(Object obj)</dt><dd><ul>
+<li><p>获得obj中对应的属性值</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>set(Object obj, Object value)</dt><dd><ul>
+<li><p>设置obj中对应属性值</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="method">
+<h3><span class="section-number">5.3.1.8.5. </span>Method相关<a class="headerlink" href="#method" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>invoke(Object obj, Object… args)</dt><dd><ul>
+<li><p>传递object对象及参数调用该对象对应的方法</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="constructor">
+<h3><span class="section-number">5.3.1.8.6. </span>Constructor<a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>newInstance(Object… initargs)</dt><dd><ul>
+<li><p>根据传递的参数创建类的对象</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="5.3. Java" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="class.html" class="btn btn-neutral float-right" title="5.3.2. 类" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

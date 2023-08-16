@@ -82,8 +82,8 @@ navs:
     mobile-hidden: true
 
   -
-    href: /open-source/
-    label: 开源
+    href: /web-safe/index.html
+    label: web安全
     mobile-hidden: true
 
   -

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8. 防御技术 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.1. 团队建设" href="team.html" />
+    <link rel="prev" title="7.5. 参考链接" href="../cloud/ref.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. 防御技术</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="team.html">8.1. 团队建设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html">8.2. 红蓝对抗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">8.3. 安全开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secops.html">8.4. 安全建设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threat.html">8.5. 威胁情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="att8ck.html">8.6. ATT&amp;CK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riskcontrol.html">8.7. 风险控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework.html">8.8. 防御框架</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html">8.9. 加固检查</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intrusiondetection.html">8.10. 入侵检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zt.html">8.11. 零信任安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html">8.12. 蜜罐技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rasp.html">8.13. RASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html">8.14. 应急响应</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html">8.15. 溯源分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8. </span>防御技术</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/defense/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">8. </span>防御技术<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="team.html">8.1. 团队建设</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="team.html#id2">8.1.1. 人员分工</a></li>
+<li class="toctree-l2"><a class="reference internal" href="team.html#id3">8.1.2. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="redteam.html">8.2. 红蓝对抗</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html#id2">8.2.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html#id3">8.2.2. 网络攻防演习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html#id4">8.2.3. 侧重</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html#id5">8.2.4. 目标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html#id6">8.2.5. 前期准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html#id7">8.2.6. 行动流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html#id8">8.2.7. 注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html#id9">8.2.8. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sdl.html">8.3. 安全开发</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html#id2">8.3.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html#id3">8.3.2. 步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html#id10">8.3.3. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="secops.html">8.4. 安全建设</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="secops.html#id2">8.4.1. 参考链接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secops.html#id3">8.4.2. 安全运营</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="threat.html">8.5. 威胁情报</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="threat.html#id2">8.5.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threat.html#id5">8.5.2. 相关概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threat.html#id6">8.5.3. 情报来源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threat.html#id7">8.5.4. 威胁框架</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threat.html#id8">8.5.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="att8ck.html">8.6. ATT&amp;CK</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="att8ck.html#id1">8.6.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="att8ck.html#ttp">8.6.2. TTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="att8ck.html#id2">8.6.3. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="riskcontrol.html">8.7. 风险控制</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="riskcontrol.html#id2">8.7.1. 常见风险</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riskcontrol.html#id3">8.7.2. 防御策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riskcontrol.html#id4">8.7.3. 异常特征</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riskcontrol.html#id5">8.7.4. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">8.8. 防御框架</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="framework.html#id2">8.8.1. 防御纵深</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework.html#id9">8.8.2. 访问控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework.html#id13">8.8.3. 输入处理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reinforce.html">8.9. 加固检查</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html#id2">8.9.1. 网络设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html#id3">8.9.2. 操作系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html#id4">8.9.3. 应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html#web">8.9.4. Web中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html#id5">8.9.5. 密码管理策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html#id6">8.9.6. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intrusiondetection.html">8.10. 入侵检测</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intrusiondetection.html#idsips">8.10.1. IDS与IPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intrusiondetection.html#id2">8.10.2. 常见入侵点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intrusiondetection.html#id3">8.10.3. 监控实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intrusiondetection.html#id7">8.10.4. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="zt.html">8.11. 零信任安全</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="zt.html#id2">8.11.1. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="honeypot.html">8.12. 蜜罐技术</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html#id2">8.12.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html#id3">8.12.2. 分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html#id4">8.12.3. 隐藏技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html#id5">8.12.4. 牵引技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html#id6">8.12.5. 诱饵技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html#id7">8.12.6. 反制技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html#id8">8.12.7. 识别技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html#id11">8.12.8. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rasp.html">8.13. RASP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rasp.html#id1">8.13.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rasp.html#id2">8.13.2. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="emergency.html">8.14. 应急响应</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html#id2">8.14.1. 响应流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html#id7">8.14.2. 事件分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html#id8">8.14.3. 分析方向</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html#linux">8.14.4. Linux应急响应</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html#windows">8.14.5. Windows应急响应</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html#id23">8.14.6. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="forensic.html">8.15. 溯源分析</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html#id2">8.15.1. 攻击机溯源技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html#id7">8.15.2. 基于蜜罐溯源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html#id8">8.15.3. 分析模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html#id9">8.15.4. 关联分析方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html#id13">8.15.5. 清除日志方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html#id14">8.15.6. 参考链接</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../cloud/ref.html" class="btn btn-neutral float-left" title="7.5. 参考链接" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="team.html" class="btn btn-neutral float-right" title="8.1. 团队建设" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

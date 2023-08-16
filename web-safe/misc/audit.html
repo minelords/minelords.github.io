@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12.1. 代码审计 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.2. WAF" href="waf.html" />
+    <link rel="prev" title="12. 其他" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">12. 其他</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">12.1. 代码审计</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">12.1.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">12.1.2. 常用概念</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">12.1.2.1. 输入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">12.1.2.2. 处理函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">12.1.2.3. 危险函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">12.1.3. 自动化审计</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">12.1.3.1. 危险函数匹配</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">12.1.3.2. 控制流分析</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">12.1.3.3. 基于图的分析</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">12.1.3.4. 代码相似性比对</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">12.1.3.5. 灰盒分析</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">12.1.4. 手工审计流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">12.1.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="waf.html">12.2. WAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netdev.html">12.3. 常见网络设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finger.html">12.4. 指纹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicode.html">12.5. Unicode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">12.6. JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hash.html">12.7. 哈希</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos.html">12.8. 拒绝服务攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">12.9. 邮件安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt.html">12.10. APT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supplychain.html">12.11. 供应链安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">12.12. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spider.html">12.13. 爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terminology.html">12.14. 常见术语</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">12. </span>其他</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12.1. </span>代码审计</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/misc/audit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">12.1. </span>代码审计<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">12.1.1. </span>简介<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>代码审计是找到应用缺陷的过程。其通常有白盒审计、黑盒审计、灰盒审计等方式。白盒审计指通过对源代码的分析找到应用缺陷，黑盒审计通常不涉及到源代码，多使用模糊测试的方式，而灰盒审计则是黑白结合的方式。三种不同的测试方法有不同的优缺点。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">12.1.2. </span>常用概念<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<section id="id4">
+<h3><span class="section-number">12.1.2.1. </span>输入<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>输入通常也称Source，Web应用的输入可以是请求的参数（GET、POST等）、上传的文件、Cookie、数据库数据等用户可控或者间接可控的地方。</p>
+<p>例如PHP中的 <code class="docutils literal notranslate"><span class="pre">$_GET</span></code> / <code class="docutils literal notranslate"><span class="pre">$_POST</span></code> / <code class="docutils literal notranslate"><span class="pre">$_REQUEST</span></code> / <code class="docutils literal notranslate"><span class="pre">$_COOKIE</span></code> / <code class="docutils literal notranslate"><span class="pre">$_FILES</span></code>  / <code class="docutils literal notranslate"><span class="pre">$_SERVER</span></code> 等，都可以作为应用的输入。</p>
+</section>
+<section id="id5">
+<h3><span class="section-number">12.1.2.2. </span>处理函数<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>处理函数是对数据进行过滤或者编解码的函数，通常被称为Clean/Filter/Sanitizer。这些函数会对输入进行安全操作或过滤，为漏洞利用带来不确定性。</p>
+<p>同样以PHP为例，这样的函数可能是 <code class="docutils literal notranslate"><span class="pre">mysqli_real_escape_string</span></code> / <code class="docutils literal notranslate"><span class="pre">htmlspecialchars</span></code> / <code class="docutils literal notranslate"><span class="pre">base64_encode</span></code> / <code class="docutils literal notranslate"><span class="pre">str_rot13</span></code> 等，也可能是应用自定义的过滤函数。</p>
+</section>
+<section id="id6">
+<h3><span class="section-number">12.1.2.3. </span>危险函数<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>危险函数又常叫做Sink Call、漏洞点，是可能触发危险行为如文件操作、命令执行、数据库操作等行为的函数。</p>
+<p>在PHP中，可能是 <code class="docutils literal notranslate"><span class="pre">include</span></code> / <code class="docutils literal notranslate"><span class="pre">system</span></code> / <code class="docutils literal notranslate"><span class="pre">echo</span></code> 等。</p>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">12.1.3. </span>自动化审计<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>一般认为一个漏洞的触发过程是从输入经过过滤到危险函数的过程(Source To Sink)，而审计就是寻找这个链条的过程。常见的自动化审计方案有危险函数匹配、控制流分析等。</p>
+<section id="id8">
+<h3><span class="section-number">12.1.3.1. </span>危险函数匹配<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>白盒审计最常见的方式是通过搜寻危险函数与危险参数定位漏洞，比较有代表性的工具是Seay开发的审计工具。这种方法误报率相当高，这是因为这种方法没有对程序的流程进行深入分析，另一方面，这种方式通常是孤立地分析每一个文件，忽略了文件之间复杂的调用关系。</p>
+<p>具体的说，这种方式在一些环境下能做到几乎无漏报，只要审计者有耐心，可以发现大部分的漏洞，但是在高度框架化的代码中，能找到的漏洞相对有限。</p>
+</section>
+<section id="id9">
+<h3><span class="section-number">12.1.3.2. </span>控制流分析<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<p>在后来的系统中，考虑到一定程度引入AST作为分析的依据，在一定程度上减少了误报，但是仍存在很多缺陷。</p>
+<p>而后，Dahse  J等人设计了RIPS，该工具进行数据流与控制流分析，结合过程内与过程间的分析得到审计结果，相对危险函数匹配的方式来说误报率少了很多，但是同样的也增加了开销。</p>
+</section>
+<section id="id10">
+<h3><span class="section-number">12.1.3.3. </span>基于图的分析<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<p>基于图的分析是对控制流分析的一个改进，其利用CFG的特性和图计算的算法，一定程度上简化了计算，比较有代表性的是微软的Semmle QL和NDSS 2017年发表的文章Efficient and Flexible Discovery of PHP Application Vulnerabilities。</p>
+</section>
+<section id="id11">
+<h3><span class="section-number">12.1.3.4. </span>代码相似性比对<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<p>一些开发者会复制其他框架的代码，或者使用各种框架。如果事先有建立对应的漏洞图谱，则可使用相似性方法来找到漏洞。</p>
+</section>
+<section id="id12">
+<h3><span class="section-number">12.1.3.5. </span>灰盒分析<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<p>基于控制流的分析开销较大，于是有人提出了基于运行时的分析方式，对代码进行Hook，当执行到危险函数时自动回溯输入，找到输入并判断是否可用。</p>
+<p>这种方式解决了控制流分析实现复杂、计算路径开销大的问题，在判断过滤函数上也有一定的突破，但是灰盒的方式并不一定会触发所有的漏洞。fate0开发的prvd就是基于这种设计思路。</p>
+</section>
+</section>
+<section id="id13">
+<h2><span class="section-number">12.1.4. </span>手工审计流程<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>获取代码，确定版本，尝试初步分析</dt><dd><ul>
+<li><p>找历史漏洞信息</p></li>
+<li><p>找应用该系统的实例</p></li>
+<li><p>确定依赖库是否存在漏洞</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>基于审计工具进行初步分析</p></li>
+<li><dl class="simple">
+<dt>了解程序运行流程</dt><dd><ul>
+<li><dl class="simple">
+<dt>文件加载方式</dt><dd><ul>
+<li><p>类库依赖</p></li>
+<li><p>是否加载waf</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>数据库连接方式</dt><dd><ul>
+<li><p>mysql/mysqli/pdo</p></li>
+<li><p>是否开启预编译</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>视图渲染</dt><dd><ul>
+<li><p>XSS</p></li>
+<li><p>模版注入</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>SESSION处理机制</dt><dd><ul>
+<li><p>文件</p></li>
+<li><p>数据库</p></li>
+<li><p>内存</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Cache处理机制</dt><dd><ul>
+<li><p>文件cache可能写shell</p></li>
+<li><p>数据库cache可能注入</p></li>
+<li><p>memcache</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>账户体系</dt><dd><ul>
+<li><p>Auth方式</p></li>
+<li><p>Pre-Auth的情况下可以访问的页面</p></li>
+<li><dl class="simple">
+<dt>普通用户的帐号</dt><dd><ul>
+<li><p>能否可获取普通用户权限</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>管理员账户默认密码</p></li>
+<li><dl class="simple">
+<dt>账号体系</dt><dd><ul>
+<li><p>加密方式</p></li>
+<li><p>爆破密码</p></li>
+<li><p>重置漏洞</p></li>
+<li><dl class="simple">
+<dt>修改密码漏洞</dt><dd><ul>
+<li><p>修改其他账号密码</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>根据漏洞类型查找Sink</dt><dd><ul>
+<li><dl class="simple">
+<dt>SQLi</dt><dd><ul>
+<li><p>全局过滤能否bypass</p></li>
+<li><p>是否有直接执行SQL的地方</p></li>
+<li><dl class="simple">
+<dt>SQL使用驱动，mysql/mysqli/pdo</dt><dd><ul>
+<li><p>如果使用PDO，搜索是否存在直接执行的部分</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>XSS</dt><dd><ul>
+<li><p>全局bypass</p></li>
+<li><p>视图渲染</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>FILE</dt><dd><ul>
+<li><p>查找上传功能点</p></li>
+<li><p>上传下载覆盖删除</p></li>
+<li><dl class="simple">
+<dt>包含</dt><dd><ul>
+<li><p>LFI</p></li>
+<li><p>RFI</p></li>
+<li><p>全局找include, require</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>RCE</p></li>
+<li><p>XXE</p></li>
+<li><p>CSRF</p></li>
+<li><p>SSRF</p></li>
+<li><p>反序列化</p></li>
+<li><p>变量覆盖</p></li>
+<li><p>LDAP</p></li>
+<li><p>XPath</p></li>
+<li><p>Cookie伪造</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>过滤</dt><dd><ul>
+<li><p>找WAF过滤方式，判断是否可以绕过</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id14">
+<h2><span class="section-number">12.1.5. </span>参考链接<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ripsscanner/rips">rips</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fate0/prvd">prvd</a></p></li>
+<li><p><a class="reference external" href="http://blog.fatezero.org/2018/11/11/prvd/">PHP运行时漏洞检测</a></p></li>
+<li><p>Backes M , Rieck K , Skoruppa M , et al. Efficient and Flexible Discovery of PHP Application Vulnerabilities[C]// IEEE European Symposium on Security &amp; Privacy. IEEE, 2017.</p></li>
+<li><p>Dahse J. RIPS-A static source code analyser for vulnerabilities in PHP scripts[J]. Retrieved: February, 2010, 28: 2012.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="12. 其他" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="waf.html" class="btn btn-neutral float-right" title="12.2. WAF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

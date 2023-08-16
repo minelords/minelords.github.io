@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.4. 社会工程学 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.5. 模糊测试" href="fuzz.html" />
+    <link rel="prev" title="10.3. 信息收集" href="info.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. 工具与资源</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="resource.html">10.1. 推荐资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="papers.html">10.2. 相关论文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html">10.3. 信息收集</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.4. 社会工程学</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#osint">10.4.1. OSINT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">10.4.2. 社交工具</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">10.4.3. 个人搜索</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hacking-database">10.4.4. Hacking database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">10.4.5. 钓鱼</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#squatting">10.4.6. squatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">10.4.7. 网盘搜索</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">10.4.8. 密码猜测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">10.4.9. 伪造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">10.4.10. 综合框架</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fuzz.html">10.5. 模糊测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exploit.html">10.6. 漏洞利用/检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">10.7. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webpersistence.html">10.8. Web持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intranet.html">10.9. 横向移动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud.html">10.10. 云安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ospersistence.html">10.11. 操作系统持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audit.html">10.12. 审计工具</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defense.html">10.13. 防御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">10.14. 安全开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation.html">10.15. 运维</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensics.html">10.16. 取证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">10.17. 其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">10. </span>工具与资源</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10.4. </span>社会工程学</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tools/socialengineering.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">10.4. </span>社会工程学<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="osint">
+<h2><span class="section-number">10.4.1. </span>OSINT<a class="headerlink" href="#osint" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://osintframework.com/">osint</a></p></li>
+<li><p><a class="reference external" href="https://github.com/lockfale/OSINT-Framework">osint git</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Ph055a/OSINTCollection">OSINT-Collection</a></p></li>
+<li><p><a class="reference external" href="https://github.com/jofpin/trape">trape</a></p></li>
+<li><p><a class="reference external" href="https://github.com/s0md3v/Photon">Photon</a></p></li>
+<li><p><a class="reference external" href="https://github.com/netevert/pockint">pockint</a></p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">10.4.2. </span>社交工具<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/emtunc/SlackPirate">SlackPirate</a> Slack Enumeration and Extraction Tool - extract sensitive information from a Slack Workspace</p></li>
+<li><p><a class="reference external" href="https://github.com/twintproject/twint">twint</a> An advanced Twitter scraping &amp; OSINT tool</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">10.4.3. </span>个人搜索<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pipl.com/">pipl</a></p></li>
+<li><p><a class="reference external" href="https://hunter.io">hunter</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ThoughtfulDev/EagleEye">EagleEye</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mdsecactivebreach/LinkedInt">LinkedInt</a></p></li>
+<li><p><a class="reference external" href="https://github.com/sherlock-project/sherlock">sherlock</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Frint0/email-enum">email enum</a></p></li>
+<li><p><a class="reference external" href="https://github.com/n0tr00t/Sreg">Sreg</a></p></li>
+<li><p><a class="reference external" href="https://usersearch.org/">usersearch</a></p></li>
+<li><p><a class="reference external" href="https://www.user-searcher.com/">User Searcher</a> User-Searcher is a powerful and free tool to help you search username in 2000+ websites.</p></li>
+</ul>
+</section>
+<section id="hacking-database">
+<h2><span class="section-number">10.4.4. </span>Hacking database<a class="headerlink" href="#hacking-database" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.exploit-db.com/google-hacking-database/">GHDB</a></p></li>
+<li><p><a class="reference external" href="https://github.com/kernelmachine/haveibeenpwned">have i been pwned</a></p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">10.4.5. </span>钓鱼<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BishopFox/spoofcheck">spoofcheck</a></p></li>
+<li><p><a class="reference external" href="https://github.com/gophish/gophish">gophish</a></p></li>
+<li><p><a class="reference external" href="https://github.com/UndeadSec/SocialFish">SocialFish</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hacklcx/HFish">HFish</a> A Most Convenient Honeypot Platform</p></li>
+<li><p><a class="reference external" href="https://github.com/thelinuxchoice/blackeye">blackeye</a> complete Phishing Tool, with 32 templates +1 customizable</p></li>
+<li><p><a class="reference external" href="https://github.com/rsmusllp/king-phisher/">king phisher</a> Phishing Campaign Toolkit</p></li>
+<li><p><a class="reference external" href="https://github.com/chenjj/espoofer">espoofer</a> An email spoofing testing tool that aims to bypass SPF/DKIM/DMARC and forge DKIM signatures</p></li>
+<li><p><a class="reference external" href="https://github.com/evilsocket/ditto">ditto</a> A tool for IDN homograph attacks and detection</p></li>
+<li><p><a class="reference external" href="https://github.com/Threezh1/SiteCopy">SiteCopy</a> sitecopy is a tool that facilitates personal website backup and network data collection</p></li>
+<li><p><a class="reference external" href="https://github.com/xiecat/goblin">goblin</a> 一款适用于红蓝对抗中的仿真钓鱼系统</p></li>
+</ul>
+</section>
+<section id="squatting">
+<h2><span class="section-number">10.4.6. </span>squatting<a class="headerlink" href="#squatting" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/elceef/dnstwist">dnstwist</a> Domain name permutation engine for detecting homograph phishing attacks, typo squatting, and brand impersonation</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2><span class="section-number">10.4.7. </span>网盘搜索<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://magnet.chongbuluo.com/">虫部落</a></p></li>
+<li><p><a class="reference external" href="http://www.panduoduo.net/">盘多多</a></p></li>
+<li><p><a class="reference external" href="https://www.panc.cc">Infinite Panc</a></p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><span class="section-number">10.4.8. </span>密码猜测<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/RUB-SysSec/OMEN">OMEN</a> Ordered Markov ENumerator - Password Guesser</p></li>
+<li><p><a class="reference external" href="https://github.com/RicterZ/genpAss">genpAss</a></p></li>
+</ul>
+</section>
+<section id="id10">
+<h2><span class="section-number">10.4.9. </span>伪造<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Macr0phag3/email_hack">email_hack</a> 基于 Python 伪造电子邮件发件人</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><span class="section-number">10.4.10. </span>综合框架<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/laramies/theHarvester">theHarvester</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Moham3dRiahi/Th3inspector">Th3inspector</a></p></li>
+<li><p><a class="reference external" href="https://github.com/s0md3v/ReconDog">ReconDog</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="info.html" class="btn btn-neutral float-left" title="10.3. 信息收集" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fuzz.html" class="btn btn-neutral float-right" title="10.5. 模糊测试" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

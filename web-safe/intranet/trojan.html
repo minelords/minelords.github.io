@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.3. 后门技术 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.4. 综合技巧" href="misc.html" />
+    <link rel="prev" title="6.2.3. 痕迹清理" href="linux/trace.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. 内网渗透</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="windows/index.html">6.1. Windows内网渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux/index.html">6.2. Linux内网渗透</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.3. 后门技术</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">6.3.1. 开发技术</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">6.3.2. 后门免杀</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">6.3.3. 检测技术</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">6.3.4. 后门分析</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">6.4. 综合技巧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref.html">6.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>内网渗透</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.3. </span>后门技术</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/intranet/trojan.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">6.3. </span>后门技术<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">6.3.1. </span>开发技术<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>管控功能实现技术</dt><dd><ul>
+<li><p>系统管理：查看系统基本信息，进程管理，服务管理</p></li>
+<li><p>文件管理：复制/粘贴文件，删除文件/目录，下载/上传文件等</p></li>
+<li><p>Shell管理</p></li>
+<li><p>击键记录监控</p></li>
+<li><p>屏幕截取</p></li>
+<li><p>音频监控</p></li>
+<li><p>视频监控</p></li>
+<li><p>隐秘信息查看</p></li>
+<li><p>移动磁盘的动态监控</p></li>
+<li><p>远程卸载</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>自启动技术</dt><dd><ul>
+<li><dl class="simple">
+<dt>Windows自启动</dt><dd><ul>
+<li><p>基于Windows启动目录的自启动</p></li>
+<li><p>基于注册表的自启动</p></li>
+<li><p>基于服务程序的自启动</p></li>
+<li><p>基于ActiveX控件的自启动</p></li>
+<li><p>基于计划任务（Scheduled Tasks）的自启动</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Linux自启动</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>用户态进程隐藏技术</dt><dd><ul>
+<li><dl class="simple">
+<dt>基于DLL插入的进程隐藏</dt><dd><ul>
+<li><p>远程线程创建技术</p></li>
+<li><p>设置窗口挂钩（HOOK）技术</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>基于SvcHost共享服务的进程隐藏</p></li>
+<li><p>进程内存替换</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>数据穿透和躲避技术</dt><dd><ul>
+<li><p>反弹端口</p></li>
+<li><dl class="simple">
+<dt>协议隧道</dt><dd><ul>
+<li><p>HTTP</p></li>
+<li><p>MSN</p></li>
+<li><p>Google Talk</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>内核级隐藏技术（Rootkit）</p></li>
+<li><dl class="simple">
+<dt>磁盘启动级隐藏技术（Bootkit）</dt><dd><ul>
+<li><p>MBR</p></li>
+<li><p>BIOS</p></li>
+<li><p>NTLDR</p></li>
+<li><p>boot.ini</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>还原软件对抗技术</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">6.3.2. </span>后门免杀<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>传统静态代码检测</dt><dd><ul>
+<li><p>加壳</p></li>
+<li><p>添加花指令</p></li>
+<li><p>输入表免杀</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>启发式代码检测</dt><dd><ul>
+<li><p>动态函数调用</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>云查杀</dt><dd><ul>
+<li><p>动态增大自身体积</p></li>
+<li><p>更改云查杀服务器域名解析地址</p></li>
+<li><p>断网</p></li>
+<li><p>利用散列碰撞绕过云端“白名单”</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>攻击主防杀毒软件</dt><dd><ul>
+<li><p>更改系统时间</p></li>
+<li><p>窗口消息攻击</p></li>
+<li><p>主动发送IRP操纵主防驱动</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>利用证书信任</dt><dd><ul>
+<li><p>盗取利用合法证书</p></li>
+<li><p>利用散列碰撞伪造证书</p></li>
+<li><p>利用合法程序 DLL劫持问题的“白加黑”</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">6.3.3. </span>检测技术<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>基于自启动信息的检测</p></li>
+<li><p>基于进程信息的检测</p></li>
+<li><p>基于数据传输的检测</p></li>
+<li><p>Rootkit/Bootkit的检测</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">6.3.4. </span>后门分析<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>动态分析</p></li>
+<li><dl class="simple">
+<dt>静态分析</dt><dd><ul>
+<li><p>反病毒引擎扫描</p></li>
+<li><p>文件格式识别</p></li>
+<li><p>文件加壳识别及脱壳</p></li>
+<li><p>明文字符串查找</p></li>
+<li><p>链接库及导入/导出函数分析</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="linux/trace.html" class="btn btn-neutral float-left" title="6.2.3. 痕迹清理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="misc.html" class="btn btn-neutral float-right" title="6.4. 综合技巧" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

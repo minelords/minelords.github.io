@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.9. 横向移动 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.10. 云安全" href="cloud.html" />
+    <link rel="prev" title="10.8. Web持久化" href="webpersistence.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. 工具与资源</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="resource.html">10.1. 推荐资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="papers.html">10.2. 相关论文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html">10.3. 信息收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="socialengineering.html">10.4. 社会工程学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fuzz.html">10.5. 模糊测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exploit.html">10.6. 漏洞利用/检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">10.7. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webpersistence.html">10.8. Web持久化</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.9. 横向移动</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.9.1. 域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ldap">10.9.2. LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">10.9.3. 微软系产品利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#azure-ad">10.9.4. Azure AD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exchange">10.9.5. Exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#powershell">10.9.6. PowerShell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">10.9.7. 内网信息收集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kerberos">10.9.8. Kerberos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">10.9.9. 自动化审计</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">10.9.10. 绕过</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">10.9.11. 内网扫描</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cloud.html">10.10. 云安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ospersistence.html">10.11. 操作系统持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audit.html">10.12. 审计工具</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defense.html">10.13. 防御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">10.14. 安全开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation.html">10.15. 运维</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensics.html">10.16. 取证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">10.17. 其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">10. </span>工具与资源</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10.9. </span>横向移动</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tools/intranet.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">10.9. </span>横向移动<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">10.9.1. </span>域<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/SecureAuthCorp/impacket">impacket</a> is a collection of Python classes for working with network protocols</p></li>
+<li><p><a class="reference external" href="https://github.com/dirkjanm/adidnsdump">adidnsdump</a> Active Directory Integrated DNS dump tool</p></li>
+<li><p><a class="reference external" href="https://github.com/BloodHoundAD/BloodHound">BloodHound</a> Six Degrees of Domain Admin</p></li>
+<li><p><a class="reference external" href="https://github.com/PlumHound/PlumHound">PlumHound</a> Bloodhound for Blue and Purple Teams</p></li>
+<li><p><a class="reference external" href="https://github.com/ropnop/windapsearch">windapsearch</a> Python script to enumerate users, groups and computers from a Windows domain through LDAP queries</p></li>
+<li><p><a class="reference external" href="https://github.com/dirkjanm/ldapdomaindump">ldapdomaindump</a> Active Directory information dumper via LDAP</p></li>
+<li><p><a class="reference external" href="https://github.com/nidem/kerberoast">Kerberoast</a> a series of tools for attacking MS Kerberos implementations</p></li>
+<li><p><a class="reference external" href="https://github.com/sense-of-security/ADRecon">ADRecon</a> Active Directory Recon</p></li>
+<li><p><a class="reference external" href="https://github.com/S3cur3Th1sSh1t/Creds">Creds</a> Some usefull Scripts and Executables for Pentest &amp; Forensics</p></li>
+<li><p><a class="reference external" href="https://github.com/lithnet/ad-password-protection">Lithnet Password Protection for Active Directory</a> Active Directory password filter featuring breached password checking and custom complexity rules</p></li>
+<li><p><a class="reference external" href="https://github.com/HarmJ0y/ASREPRoast">ASREPRoast</a> Project that retrieves crackable hashes from KRB5 AS-REP responses for users without kerberoast preauthentication enabled.</p></li>
+</ul>
+</section>
+<section id="ldap">
+<h2><span class="section-number">10.9.2. </span>LDAP<a class="headerlink" href="#ldap" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BloodHoundAD/SharpHound3">SharpHound3</a> Data Collector for the BloodHound Project</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">10.9.3. </span>微软系产品利用<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mdsecresearch/LyncSniper">LyncSniper</a> A tool for penetration testing Skype for Business and Lync deployments</p></li>
+<li><p><a class="reference external" href="https://github.com/dafthack/MSOLSpray">MSOLSpray</a> A password spraying tool for Microsoft Online accounts (Azure/O365)</p></li>
+<li><p><a class="reference external" href="https://github.com/dafthack/MailSniper">MailSniper</a> MailSniper is a penetration testing tool for searching through email in a Microsoft Exchange environment for specific terms</p></li>
+</ul>
+</section>
+<section id="azure-ad">
+<h2><span class="section-number">10.9.4. </span>Azure AD<a class="headerlink" href="#azure-ad" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/dirkjanm/ROADtools">ROADtools</a> Azure AD exploration framework</p></li>
+<li><p><a class="reference external" href="https://github.com/Azure/Stormspotter">Stormspotter</a> Azure Red Team tool for graphing Azure and Azure Active Directory objects</p></li>
+</ul>
+</section>
+<section id="exchange">
+<h2><span class="section-number">10.9.5. </span>Exchange<a class="headerlink" href="#exchange" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/sensepost/ruler">ruler</a> A tool to abuse Exchange services</p></li>
+<li><p><a class="reference external" href="https://github.com/dafthack/MailSniper">MailSniper</a></p></li>
+<li><p><a class="reference external" href="https://github.com/dirkjanm/PrivExchange">PrivExchange</a>  Exchange your privileges for Domain Admin privs by abusing Exchange</p></li>
+</ul>
+</section>
+<section id="powershell">
+<h2><span class="section-number">10.9.6. </span>PowerShell<a class="headerlink" href="#powershell" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/PowerShellMafia">PowerShellMafia</a></p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">10.9.7. </span>内网信息收集<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/scallywag/nbtscan">nbtscan</a> NetBIOS scanning tool</p></li>
+<li><p><a class="reference external" href="https://github.com/djhohnstein/SharpShares">SharpShares</a> Quick and dirty binary to list network share information from all machines in the current domain and if they’re readable</p></li>
+<li><p><a class="reference external" href="https://github.com/nccgroup/WinShareEnum">WinShareEnum</a> Windows Share Enumerator</p></li>
+<li><p><a class="reference external" href="https://github.com/moonD4rk/HackBrowserData">HackBrowserData</a> 全平台的浏览器数据导出工具</p></li>
+</ul>
+</section>
+<section id="kerberos">
+<h2><span class="section-number">10.9.8. </span>Kerberos<a class="headerlink" href="#kerberos" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/GhostPack/Rubeus">Rubeus</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ropnop/kerbrute">kerbrute</a> A tool to perform Kerberos pre-auth bruteforcing</p></li>
+<li><p><a class="reference external" href="https://github.com/nidem/kerberoast">kerberoast</a> A series of tools for attacking MS Kerberos implementations</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2><span class="section-number">10.9.9. </span>自动化审计<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/guardicore/monkey">Infection Monkey</a> Data center Security Testing Tool</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2><span class="section-number">10.9.10. </span>绕过<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jthuraisamy/SysWhispers">SysWhispers</a> AV/EDR evasion via direct system calls</p></li>
+<li><p><a class="reference external" href="https://github.com/jthuraisamy/SysWhispers2">SysWhispers2</a> AV/EDR evasion via direct system calls</p></li>
+<li><p><a class="reference external" href="https://github.com/outflanknl/Dumpert">Dumpert</a> LSASS memory dumper using direct system calls and API unhooking</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><span class="section-number">10.9.11. </span>内网扫描<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/inbug-team/InScan">InScan</a> 边界打点后的自动化渗透工具</p></li>
+<li><p><a class="reference external" href="https://github.com/shadow1ng/fscan">fscan</a> 一款内网综合扫描工具，方便一键自动化、全方位漏扫扫描。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="webpersistence.html" class="btn btn-neutral float-left" title="10.8. Web持久化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cloud.html" class="btn btn-neutral float-right" title="10.10. 云安全" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

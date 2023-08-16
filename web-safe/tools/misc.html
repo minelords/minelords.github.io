@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.17. 其他 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. 手册速查" href="../manual/index.html" />
+    <link rel="prev" title="10.16. 取证" href="forensics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. 工具与资源</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="resource.html">10.1. 推荐资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="papers.html">10.2. 相关论文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html">10.3. 信息收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="socialengineering.html">10.4. 社会工程学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fuzz.html">10.5. 模糊测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exploit.html">10.6. 漏洞利用/检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">10.7. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webpersistence.html">10.8. Web持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intranet.html">10.9. 横向移动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud.html">10.10. 云安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ospersistence.html">10.11. 操作系统持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audit.html">10.12. 审计工具</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defense.html">10.13. 防御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">10.14. 安全开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation.html">10.15. 运维</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensics.html">10.16. 取证</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.17. 其他</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.17.1. 综合框架</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">10.17.2. 验证码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#webassembly">10.17.3. WebAssembly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">10.17.4. 混淆</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proxy-pool">10.17.5. Proxy Pool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#android">10.17.6. Android</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">10.17.7. 其他</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">10. </span>工具与资源</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10.17. </span>其他</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tools/misc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">10.17. </span>其他<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">10.17.1. </span>综合框架<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.metasploit.com/">metasploit</a></p></li>
+<li><p><a class="reference external" href="http://w3af.org/">w3af</a></p></li>
+<li><p><a class="reference external" href="https://github.com/NullArray/AutoSploit/">AutoSploit</a></p></li>
+<li><p><a class="reference external" href="https://cirt.net/nikto2">Nikto</a></p></li>
+<li><p><a class="reference external" href="https://my.oschina.net/u/995648/blog/114321">skipfish</a></p></li>
+<li><p><a class="reference external" href="http://www.arachni-scanner.com/">Arachni</a></p></li>
+<li><p><a class="reference external" href="http://www.freebuf.com/sectool/5427.html">ZAP</a></p></li>
+<li><p><a class="reference external" href="https://portswigger.net/burp/">BrupSuite</a></p></li>
+<li><p><a class="reference external" href="https://github.com/smicallef/spiderfoot">Spiderfoot</a></p></li>
+<li><p><a class="reference external" href="https://github.com/az0ne/AZScanner">AZScanner</a></p></li>
+<li><p><a class="reference external" href="https://github.com/jeffzh3ng/Fuxi-Scanner">Fuxi</a></p></li>
+<li><p><a class="reference external" href="https://www.vegabird.com/vooki/">vooki</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MrSqar-Ye/BadMod">BadMod</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Manisso/fsociety">fsociety</a> Hacking Tools Pack</p></li>
+<li><p><a class="reference external" href="https://github.com/pry0cc/axiom">axiom</a> A dynamic infrastructure toolkit for red teamers and bug bounty hunters</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">10.17.2. </span>验证码<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/FSecureLABS/captcha22">CAPTCHA22</a> is a toolset for building, and training, CAPTCHA cracking models using neural networks.</p></li>
+</ul>
+</section>
+<section id="webassembly">
+<h2><span class="section-number">10.17.3. </span>WebAssembly<a class="headerlink" href="#webassembly" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/WebAssembly/wabt">wabt</a></p></li>
+<li><p><a class="reference external" href="https://github.com/WebAssembly/binaryen">binaryen</a></p></li>
+<li><p><a class="reference external" href="https://github.com/wwwg/wasmdec">wasmdec</a></p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">10.17.4. </span>混淆<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mindedsecurity/JStillery">JStillery</a></p></li>
+<li><p><a class="reference external" href="https://github.com/javascript-obfuscator/javascript-obfuscator">javascript obfuscator</a></p></li>
+<li><p><a class="reference external" href="https://github.com/CaledoniaProject/php-decoder">基于hook的php混淆解密</a></p></li>
+<li><p><a class="reference external" href="https://github.com/danielbohannon/Invoke-Obfuscation">Invoke Obfuscation</a></p></li>
+</ul>
+</section>
+<section id="proxy-pool">
+<h2><span class="section-number">10.17.5. </span>Proxy Pool<a class="headerlink" href="#proxy-pool" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jhao104/proxy_pool">proxy pool by jhao104</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Python3WebSpider/ProxyPool">Proxy Pool by Germey</a></p></li>
+<li><p><a class="reference external" href="https://github.com/imWildCat/scylla">scylla</a></p></li>
+</ul>
+</section>
+<section id="android">
+<h2><span class="section-number">10.17.6. </span>Android<a class="headerlink" href="#android" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/WooyunDota/DroidSSLUnpinning">DroidSSLUnpinning</a> Android certificate pinning disable tools</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">10.17.7. </span>其他<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ropnop/serverless_toolkit">Serverless Toolkit</a></p></li>
+<li><p><a class="reference external" href="https://github.com/PortSwigger/hackability">Rendering Engine Probe</a></p></li>
+<li><p><a class="reference external" href="http://www.httrack.com/">httrack</a></p></li>
+<li><p><a class="reference external" href="https://curl.haxx.se/">curl</a></p></li>
+<li><p><a class="reference external" href="https://github.com/trimstray/htrace.sh">htrace</a></p></li>
+<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/sysinternals/downloads/">Microsoft Sysinternals Utilities</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="forensics.html" class="btn btn-neutral float-left" title="10.16. 取证" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../manual/index.html" class="btn btn-neutral float-right" title="11. 手册速查" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

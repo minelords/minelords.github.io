@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12.14. 常见术语 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="12.13. 爬虫" href="spider.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">12. 其他</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="audit.html">12.1. 代码审计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="waf.html">12.2. WAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netdev.html">12.3. 常见网络设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finger.html">12.4. 指纹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicode.html">12.5. Unicode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">12.6. JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hash.html">12.7. 哈希</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos.html">12.8. 拒绝服务攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">12.9. 邮件安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt.html">12.10. APT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supplychain.html">12.11. 供应链安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nearsource.html">12.12. 近源渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spider.html">12.13. 爬虫</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">12.14. 常见术语</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windows">12.14.1. Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">12.14.2. 网络相关</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">12.14.2.1. 网络协议</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">12.14.2.2. 路由系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">12.14.2.3. 网络应用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kerberos">12.14.2.4. Kerberos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">12.14.3. 开发相关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">12.14.4. 安全相关</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">12.14.4.1. 安全开发</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">12.14.4.2. 安全策略</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">12.14.4.3. 安全模型</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">12.14.5. 攻击相关</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">12.14.5.1. 漏洞类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">12.14.5.2. 攻击方式</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">12.14.6. 防御相关</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">12.14.6.1. 防御技术</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">12.14.6.2. 防护设施</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">12.14.7. 运维</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">12.14.8. 认证</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#kerbose">12.14.8.1. Kerbose</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">12.14.9. 可信计算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">12.14.10. 云</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id21">12.14.10.1. 容器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">12.14.10.2. 计算</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">12.14.10.3. 存储</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xaas">12.14.10.4. XaaS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">12.14.10.5. 特定平台</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">12.14.10.6. 其他服务</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">12. </span>其他</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12.14. </span>常见术语</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/misc/terminology.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">12.14. </span>常见术语<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="windows">
+<h2><span class="section-number">12.14.1. </span>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>WMI (Windows Management Instrumentation)</p></li>
+<li><p>ETW (Event Tracing for Windows)</p></li>
+<li><p>WFP (Windows Filtering Platform)</p></li>
+<li><p>MS-RPC (Microsoft Remote Procedure Call)</p></li>
+<li><p>MS-SAMR (Security Account Manager Remote Protocol)</p></li>
+<li><p>MS-SCMR (Service Control Manager Remote Protocol)</p></li>
+<li><p>MS-DRSR (Directory Replication Service Remote Protocol)</p></li>
+<li><p>MS-TSCH (Task Scheduler Service Remoting Protocol)</p></li>
+<li><p>DCOM (Distributed Component Object Model)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">12.14.2. </span>网络相关<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3><span class="section-number">12.14.2.1. </span>网络协议<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>轻型目录访问协议 (Lightweight Directory Access Protocol, LDAP)</p></li>
+<li><p>标识名 (Distinguished Name, DN)</p></li>
+<li><p>相对标识名 (Relative Distinguished Name, RDN)</p></li>
+<li><p>服务器消息块 (Server Message Block, SMB)</p></li>
+<li><p>网络文件共享系统 (Common Internet File System, CIFS)</p></li>
+<li><p>SMTP (Simple Mail Transfer Protocol)</p></li>
+<li><p>简单网络管理协议 (Simple Network Management Protocol, SNMP)</p></li>
+<li><p>POP3 (Post Office Protocol 3)</p></li>
+<li><p>IMAP (Internet Mail Access Protocol)</p></li>
+<li><p>HTTP (HyperText Transfer Protocol)</p></li>
+<li><p>HTTPS (HyperText Transfer Protocol over Secure Socket Layer)</p></li>
+<li><p>动态主机配置协议 (Dynamic Host Configuration Protocol, DHCP)</p></li>
+<li><p>远程过程调用 (Remote Procedure Call, RPC)</p></li>
+<li><p>Java调试线协议 (Java Debug Wire Protocol, JDWP)</p></li>
+<li><p>网络文件系统 (Network File System, NFS)</p></li>
+<li><p>服务主体名称 (Service Principal Names, SPN)</p></li>
+<li><p>简单身份验证 (Simple Authentication and Security Layer, SASL)</p></li>
+<li><p>链路本地多播名称解析 (Link-Local Multicast Name Resolution, LLMNR)</p></li>
+<li><p>分布式运行环境 / RPC (Distributed Computing Environment / Remote Procedure Calls, DCE/RPC)</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3><span class="section-number">12.14.2.2. </span>路由系统<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>自治系统 (Autonomous System, AS)</p></li>
+<li><p>内部网关协议 (Interior Gateway Protocol, IGP)</p></li>
+<li><p>外部网关协议 (External Gateway Protocol, EGP)</p></li>
+<li><p>域内路由选择 (interdomain routing)</p></li>
+<li><p>域间路由选择 (intradomain routing)</p></li>
+<li><p>路由信息协议 (Routing Information Protocol, RIP)</p></li>
+<li><p>开放最短路径优先 (Open Shortest Path First, OSPF)</p></li>
+<li><p>动态路由协议 (Dynamic Routing Protocols, DRP)</p></li>
+<li><p>首跳冗余性协议 (First Hop Redundancy Protocols, FHRP)</p></li>
+<li><p>热备份路由器协议 (Hot Standby Router Protocol, HSRP)</p></li>
+<li><p>虚拟路由冗余协议 (Virtual Router Redundancy Protocol, VRRP)</p></li>
+<li><p>网关负载均衡协议 (Gateway Load Balancing Protocol, GLBP)</p></li>
+<li><p>网络地址转换 (Network Address Translation, NAT)</p></li>
+<li><p>点对点协议 (Point-to-Point Protocol, PPP)</p></li>
+<li><p>生成树协议 (Spanning Tree Protocol, STP)</p></li>
+<li><p>QUIC (Quick UDP Internet Connections)</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3><span class="section-number">12.14.2.3. </span>网络应用<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>证书透明度 (Certificate Transparency, CT)</p></li>
+<li><p>DNS证书颁发机构授权 (DNS Certification Authority Authorization, CAA)</p></li>
+<li><p>应用级网关 (Application Level Gateway, ALG)</p></li>
+</ul>
+</section>
+<section id="kerberos">
+<h3><span class="section-number">12.14.2.4. </span>Kerberos<a class="headerlink" href="#kerberos" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>密钥分发中心 (Key Distribution Center, KDC)</p></li>
+<li><p>认证服务器 (Authentication Server, AS)</p></li>
+<li><p>票据授权服务器 (Ticket Granting Server, TGS)</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">12.14.3. </span>开发相关<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>REST (Representation State Transformation)</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2><span class="section-number">12.14.4. </span>安全相关<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>缺点 (defect / mistake)</dt><dd><ul>
+<li><p>软件在实现上和设计上的弱点</p></li>
+<li><p>缺点是缺陷和瑕疵的统称</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>缺陷 (bug)</dt><dd><ul>
+<li><p>实现层面的软件缺点</p></li>
+<li><p>容易被发现和修复</p></li>
+<li><p>例如：缓冲区溢出</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>瑕疵 (flaw)</dt><dd><ul>
+<li><p>一种设计上的缺点，难以察觉</p></li>
+<li><p>瑕疵往往需要人工分析才能发现</p></li>
+<li><p>软件系统中错误处理或恢复模块，导致程序不安全或失效</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>漏洞 (vulnerability)</dt><dd><ul>
+<li><p>可以用于违反安全策略的缺陷或瑕疵</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>交互式应用程序安全测试 (Interactive Application Security Testing, IAST)</p></li>
+<li><p>动态应用程序安全测试 (Dynamic Application Security Testing, DAST)</p></li>
+<li><p>静态应用程序安全测试 (Static Application Security Testing, SAST)</p></li>
+<li><p>ATT&amp;CK™ (Adversarial Tactics, Techniques, and Common Knowledge, ATT&amp;CK)</p></li>
+<li><p>横向移动 (Lateral Movement)</p></li>
+<li><p>入侵和攻击模拟 (Breach and Attack Simulation, BAS)</p></li>
+</ul>
+<section id="id8">
+<h3><span class="section-number">12.14.4.1. </span>安全开发<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>安全信息和事件管理 (Security Information Event Management, SIEM)</p></li>
+<li><p>自动化响应SOAR模型 (Security Orchestration, Automation and Response, SOAR)</p></li>
+<li><p>SDL (Security Development Lifecycle)</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3><span class="section-number">12.14.4.2. </span>安全策略<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>跨域资源共享策略 (Cross-Origin Resource Sharing, CORS)</p></li>
+<li><p>发件人策略框架 (Sender Policy Framework, SPF)</p></li>
+<li><p>域名密钥识别邮件 (DomainKeys Identified Mail, DKIM)</p></li>
+<li><p>基于域名的消息认证报告与一致性协议 (Domain-based Message Authentication, Reporting and Conformance, DMARC)</p></li>
+<li><p>DNSSEC (The Domain Name System Security Extensions)</p></li>
+<li><p>基于DNS的命名实体身份验证 (DNS-based Authentication of Named Entities, DANE)</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3><span class="section-number">12.14.4.3. </span>安全模型<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>构建安全成熟度模型 (Building Security In Maturity Model, BSIMM)</p></li>
+</ul>
+</section>
+</section>
+<section id="id11">
+<h2><span class="section-number">12.14.5. </span>攻击相关<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<section id="id12">
+<h3><span class="section-number">12.14.5.1. </span>漏洞类型<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>跨站脚本攻击 (Cross Site Scripting, XSS)</p></li>
+<li><p>跨站请求伪造 (Cross-Site Request Forgery, CSRF)</p></li>
+<li><p>中间人攻击 (Man-in-the-middle, MITM)</p></li>
+<li><p>服务端请求伪造 (Server Side Request Forgery, SSRF)</p></li>
+<li><p>高级持续威胁 (Advanced Persistent Threat, APT)</p></li>
+<li><p>远程命令执行 (Remote Command Execute, RCE)</p></li>
+<li><p>远程代码执行 (Remote Code Execute, RCE)</p></li>
+<li><p>带外数据 (Out-Of-Band, OOB)</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3><span class="section-number">12.14.5.2. </span>攻击方式<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>鱼叉攻击 (Spear Phishing)</p></li>
+<li><p>水坑攻击 (Water Holing)</p></li>
+<li><p>分布式拒绝服务 (Distributed Denial of Service, DDoS)</p></li>
+</ul>
+</section>
+</section>
+<section id="id14">
+<h2><span class="section-number">12.14.6. </span>防御相关<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>IoC (Indicators of Compromise)</p></li>
+<li><p>IoA (Indicators of Activity)</p></li>
+</ul>
+<section id="id15">
+<h3><span class="section-number">12.14.6.1. </span>防御技术<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>网络检测响应 (Network-based Detection and Response, NDR)</p></li>
+<li><p>终端检测响应 (Endpoint Detection and Response, EDR)</p></li>
+<li><p>托管检测响应 (Managed Detection and Response, MDR)</p></li>
+<li><p>扩展检测响应 (Extended Detection and Response, XDR)</p></li>
+<li><p>自适应安全架构 (Adaptive Security Architecture, ASA)</p></li>
+<li><p>零信任网络访问 (Zero Trust Network Access, ZTNA)</p></li>
+<li><p>云安全配置管理 (Cloud Security Posture Management, CSPM)</p></li>
+</ul>
+</section>
+<section id="id16">
+<h3><span class="section-number">12.14.6.2. </span>防护设施<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>入侵检测系统 (Intrusion Detection System, IDS)</p></li>
+<li><p>主机型入侵检测系统 (Host-based Intrusion Detection System, HIDS)</p></li>
+<li><p>主机入侵防御系统 (Host Intrusion Prevent System, HIPS)</p></li>
+<li><p>RASP (Runtime Application Self-protection)</p></li>
+<li><p>统一端点管理 (Unified Endpoint Management, UEM)</p></li>
+</ul>
+</section>
+</section>
+<section id="id17">
+<h2><span class="section-number">12.14.7. </span>运维<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>智能运维 (Artificial Intelligence for IT Operations, AIOps)</p></li>
+<li><p>风险和脆弱性评估 (Risk and Vulnerability Assessments, RVA)</p></li>
+<li><p>计算机安全应急响应组 (Computer Emergency Response Team, CERT)</p></li>
+</ul>
+</section>
+<section id="id18">
+<h2><span class="section-number">12.14.8. </span>认证<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>单点登录 (Single Sign-On, SSO)</p></li>
+<li><p>双因素认证 (Two-Factor Authentication, 2FA)</p></li>
+<li><p>多因素认证 (Multi-Factor Authentication, MFA)</p></li>
+<li><p>一次性密码 (One-Time Password, OTP)</p></li>
+</ul>
+<section id="kerbose">
+<h3><span class="section-number">12.14.8.1. </span>Kerbose<a class="headerlink" href="#kerbose" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>认证服务器 (Authentication Server, AS)</p></li>
+<li><p>密钥分发中心 (Key Distribution Center, KDC)</p></li>
+<li><p>票据授权票据，票据的票据 (Ticket Granting Ticket, TGT)</p></li>
+<li><p>票据授权服务器 (Ticket Granting Server, TGS)</p></li>
+<li><p>特定服务提供端 (Service Server, SS)</p></li>
+</ul>
+</section>
+</section>
+<section id="id19">
+<h2><span class="section-number">12.14.9. </span>可信计算<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>可信平台模块 (Trusted Platform Module, TPM)</p></li>
+</ul>
+</section>
+<section id="id20">
+<h2><span class="section-number">12.14.10. </span>云<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h2>
+<section id="id21">
+<h3><span class="section-number">12.14.10.1. </span>容器<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>容器运行时 (Container Runtime Interface, CRI)</p></li>
+<li><p>开放容器标准 (Open Container Initiative, OCI)</p></li>
+<li><p>开放容器格式标准 (Open Container Format, OCF)</p></li>
+</ul>
+</section>
+<section id="id22">
+<h3><span class="section-number">12.14.10.2. </span>计算<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>弹性云计算 (Elastic Compute Cloud, EC2)</p></li>
+<li><p>阿里云弹性云计算 (Elastic Compute Service, ECS)</p></li>
+<li><p>云服务器 (Cloud Virtual Machine, CVM)</p></li>
+</ul>
+</section>
+<section id="id23">
+<h3><span class="section-number">12.14.10.3. </span>存储<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>简单存储服务 (Simple Storage Service, S3)</p></li>
+<li><p>对象存储 (Cloud Object Storage, COS)</p></li>
+</ul>
+</section>
+<section id="xaas">
+<h3><span class="section-number">12.14.10.4. </span>XaaS<a class="headerlink" href="#xaas" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>函数即服务 (Function as a Service, FaaS)</p></li>
+<li><p>容器即服务 (Container as a Service, CaaS)</p></li>
+<li><p>软件即服务 (Software as a Service, SaaS)</p></li>
+<li><p>平台即服务 (Platform as a Service, PaaS)</p></li>
+<li><p>基础设施即服务 (Insfrastructure as a Service, IaaS)</p></li>
+</ul>
+</section>
+<section id="id24">
+<h3><span class="section-number">12.14.10.5. </span>特定平台<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>OCI (Oracle Cloud Infrastructure)</p></li>
+</ul>
+</section>
+<section id="id25">
+<h3><span class="section-number">12.14.10.6. </span>其他服务<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>元数据服务 (Instance Metadata Service, IMDS)</p></li>
+<li><p>持续集成 (Continuous Integration, CI)</p></li>
+<li><p>持续交付 (Continuous Deployment, CD)</p></li>
+<li><p>边缘计算机器 (Edge Computing Machine, ECM)</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spider.html" class="btn btn-neutral float-left" title="12.13. 爬虫" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.9. Shell &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.10. CSharp" href="csharp/index.html" />
+    <link rel="prev" title="5.8. PowerShell" href="powershell.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. 语言与框架</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="php/index.html">5.1. PHP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python/index.html">5.2. Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="java/index.html">5.3. Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript/index.html">5.4. JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang.html">5.5. Golang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html">5.6. Ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asp.html">5.7. ASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="powershell.html">5.8. PowerShell</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.9. Shell</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">5.9.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.9.2. 元字符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.9.3. 通配符</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="csharp/index.html">5.10. CSharp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5. </span>语言与框架</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.9. </span>Shell</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/language/shell.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="shell">
+<h1><span class="section-number">5.9. </span>Shell<a class="headerlink" href="#shell" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><span class="section-number">5.9.1. </span>简介<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Shell 是一个特殊的程序，是用户使用 Linux 的桥梁。Shell 既是一种命令，又是一种程序设计语言。</p>
+<p>Linux 包含多种 Shell ，常见的有：</p>
+<ul class="simple">
+<li><p>Bourne Shell（ATT的Bourne开发，名为sh）</p></li>
+<li><p>Bourne Again Shell（/bin/bash）</p></li>
+<li><p>C Shell（Bill Joy开发，名为csh）</p></li>
+<li><p>K Shell（ATT的David G.koun开发，名为ksh）</p></li>
+<li><p>Z Shell（Paul Falstad开发，名为zsh）</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">5.9.2. </span>元字符<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>shell一般会有一系列特殊字符，用来实现的一定的效果，这种字符被称为元字符（Meta），不同的Shell支持的元字符可能会不相同。</p>
+<p>常见的元字符如下：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IFS</span></code> 由 &lt;space&gt; 或 &lt;tab&gt; 或 &lt;enter&gt; 三者之一组成</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CR</span></code> 由 &lt;enter&gt; 产生。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span></code> 设定变量</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$</span></code> 作变量或运算替换</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 重定向 stdout</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> 追加到文件</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> 重定向 stdin</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|</span></code> 命令管道</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 后台执行命令</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">;</span></code> 在前一个命令结束后，执行下一个命令</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> 在前一个命令未报错执行后，执行下一个命令</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">||</span></code> 在前一个命令执行报错后，执行下一个命令</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span></code> 在单引号内的命令会保留原来的值</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;</span></code> 在双引号内的命令会允许变量替换</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">`</span></code> 在反引号内的内容会当成命令执行并替换</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">()</span></code> 在子Shell中执行命令</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{}</span></code> 在当前Shell中执行命令</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~</span></code> 当前用户的主目录</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!number</span></code> 执行历史命令，如 <code class="docutils literal notranslate"><span class="pre">!1</span></code></p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.9.3. </span>通配符<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>除元字符外，通配符（wildcard）也是shell中的一种特殊字符。当shell在参数中遇到了通配符时，shell会将其当作路径或文件名去在磁盘上搜寻可能的匹配：若符合要求的匹配存在，则进行替换，否则就将该通配符作为一个普通字符直接传递。</p>
+<p>常见的通配符如下：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> 匹配 0 或多个字符</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> 匹配任意一个字符</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[list]</span></code> 匹配 list 中的任意一个字符</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[!list]</span></code> 匹配除 list 外的任意一个字符</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[a-c]</span></code> 匹配 a-c 中的任意一个字符</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{string1,string2,...}</span></code> 分别匹配其中字符串</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="powershell.html" class="btn btn-neutral float-left" title="5.8. PowerShell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="csharp/index.html" class="btn btn-neutral float-right" title="5.10. CSharp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

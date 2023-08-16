@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12.12. 近源渗透 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.13. 爬虫" href="spider.html" />
+    <link rel="prev" title="12.11. 供应链安全" href="supplychain.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">12. 其他</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="audit.html">12.1. 代码审计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="waf.html">12.2. WAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netdev.html">12.3. 常见网络设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finger.html">12.4. 指纹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicode.html">12.5. Unicode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">12.6. JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hash.html">12.7. 哈希</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos.html">12.8. 拒绝服务攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">12.9. 邮件安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt.html">12.10. APT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supplychain.html">12.11. 供应链安全</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">12.12. 近源渗透</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usb">12.12.1. USB攻击</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#badusb">12.12.1.1. BadUSB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autorun">12.12.1.2. AutoRUN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usb-killer">12.12.1.3. USB Killer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">12.12.1.4. 侧信道</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hid">12.12.1.5. HID攻击</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#wi-fi">12.12.2. Wi-Fi</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">12.12.2.1. 密码爆破</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">12.12.2.2. 信号压制</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">12.12.3. 门禁</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">12.12.3.1. 电磁脉冲</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ic">12.12.3.2. IC卡</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">12.12.4. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spider.html">12.13. 爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terminology.html">12.14. 常见术语</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">12. </span>其他</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12.12. </span>近源渗透</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/misc/nearsource.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">12.12. </span>近源渗透<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="usb">
+<h2><span class="section-number">12.12.1. </span>USB攻击<a class="headerlink" href="#usb" title="Permalink to this heading">¶</a></h2>
+<section id="badusb">
+<h3><span class="section-number">12.12.1.1. </span>BadUSB<a class="headerlink" href="#badusb" title="Permalink to this heading">¶</a></h3>
+<p>通过重新编程USB设备的内部微控制器，来执行恶意操作，例如注册为键盘设备，发送特定按键进行恶意操作。</p>
+</section>
+<section id="autorun">
+<h3><span class="section-number">12.12.1.2. </span>AutoRUN<a class="headerlink" href="#autorun" title="Permalink to this heading">¶</a></h3>
+<p>根据主机配置的方式，一些操作系统会自动执行位于USB设备存储器上的预定文件。可以通过这种方式执行恶意软件。</p>
+</section>
+<section id="usb-killer">
+<h3><span class="section-number">12.12.1.3. </span>USB Killer<a class="headerlink" href="#usb-killer" title="Permalink to this heading">¶</a></h3>
+<p>通过特殊的USB设备基于电气等方式来永久销毁设备。</p>
+</section>
+<section id="id2">
+<h3><span class="section-number">12.12.1.4. </span>侧信道<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>通过改装USB增加一些监听/测信道传输设备。</p>
+</section>
+<section id="hid">
+<h3><span class="section-number">12.12.1.5. </span>HID攻击<a class="headerlink" href="#hid" title="Permalink to this heading">¶</a></h3>
+<p>HID(human interface device)指键盘、鼠标等用于为计算机提供数据输入的人机交互设备。HID攻击指攻击者将特殊的USB设备模拟成为键盘，一旦连接上计算机就执行预定的恶意操作。HID攻击可以基于Android设备、数据线设备等实施。</p>
+</section>
+</section>
+<section id="wi-fi">
+<h2><span class="section-number">12.12.2. </span>Wi-Fi<a class="headerlink" href="#wi-fi" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3><span class="section-number">12.12.2.1. </span>密码爆破<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>基于WPA2的验证方式，Wi-Fi可以通过抓握手包的方式进行线下的密码爆破。</p>
+</section>
+<section id="id4">
+<h3><span class="section-number">12.12.2.2. </span>信号压制<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>可以使用大功率的设备捕获握手包并模仿目标AP，从而实现中间人攻击。</p>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">12.12.3. </span>门禁<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<section id="id6">
+<h3><span class="section-number">12.12.3.1. </span>电磁脉冲<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>部分电子门禁和电子密码锁的电子系统中集成电路对电磁脉冲比较敏感，可以通过外加电磁脉冲(Electromagnetic Pulse，EMP)的方式破坏设备，来实现打开的效果。</p>
+</section>
+<section id="ic">
+<h3><span class="section-number">12.12.3.2. </span>IC卡<a class="headerlink" href="#ic" title="Permalink to this heading">¶</a></h3>
+<p>基于变色龙等设备可以使用模拟、破解、复制IC卡破解门禁。</p>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">12.12.4. </span>参考链接<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.secpulse.com/archives/123723.html">近源渗透硬件指北</a></p></li>
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s/dmh3dDt0BaZYIcWdSTsQcg">红蓝对抗之近源渗透</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="supplychain.html" class="btn btn-neutral float-left" title="12.11. 供应链安全" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spider.html" class="btn btn-neutral float-right" title="12.13. 爬虫" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

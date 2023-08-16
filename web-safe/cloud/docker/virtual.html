@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.3.1. 虚拟化技术与容器技术 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="7.3.2. Docker" href="basic.html" />
+    <link rel="prev" title="7.3. Docker" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">7. 云安全</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../history.html">7.1. 云发展史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oci.html">7.2. 容器标准</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">7.3. Docker</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">7.3.1. 虚拟化技术与容器技术</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">7.3.1.1. 传统虚拟化技术</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">7.3.1.2. 容器技术</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html">7.3.2. Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id5">7.3.3. 安全风险与安全机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html">7.3.4. 攻击面分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#id2">7.3.5. 供应链安全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#id3">7.3.6. 容器逃逸</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#id10">7.3.7. 拒绝服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#docker">7.3.8. 攻击 Docker 守护进程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#cve">7.3.9. 其他CVE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reinforce.html">7.3.10. 安全加固</a></li>
+<li class="toctree-l3"><a class="reference internal" href="identify.html">7.3.11. Docker 环境识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="identify.html#id3">7.3.12. 容器内信息收集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="image.html">7.3.13. 镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">7.3.14. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../k8s/index.html">7.4. Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ref.html">7.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">7. </span>云安全</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">7.3. </span>Docker</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7.3.1. </span>虚拟化技术与容器技术</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cloud/docker/virtual.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">7.3.1. </span>虚拟化技术与容器技术<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">7.3.1.1. </span>传统虚拟化技术<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>传统虚拟化技术通过添加hypervisor层，虚拟出网卡，内存，CPU等虚拟硬件，再在其上建立客户机，每个客户机都有自己的系统内核。传统虚拟化技术以虚拟机为管理单元，各虚拟机拥有独立的操作系统内核，不共用宿主机的软件系统资源，因此具有良好的隔离性，适用于云计算环境中的多租户场景。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">7.3.1.2. </span>容器技术<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>容器技术可以看作一种轻量级的虚拟化方式，容器技术在操作系统层进行虚拟化，可在宿主机内核上运行多个虚拟化环境。相比于传统的应用测试与部署，容器的部署无需预先考虑应用的运行环境兼容性问题；相比于传统虚拟机，容器无需独立的操作系统内核就可在宿主机中运行，实现了更高的运行效率与资源利用率。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="7.3. Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="basic.html" class="btn btn-neutral float-right" title="7.3.2. Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

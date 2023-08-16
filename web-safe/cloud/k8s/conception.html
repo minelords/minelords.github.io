@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.4.1. k8s概念 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="7.4.2. 安全" href="security.html" />
+    <link rel="prev" title="7.4. Kubernetes" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">7. 云安全</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../history.html">7.1. 云发展史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oci.html">7.2. 容器标准</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html">7.3. Docker</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">7.4. Kubernetes</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">7.4.1. k8s概念</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">7.4.1.1. 组成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">7.4.1.2. 核心设计</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="security.html">7.4.2. 安全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">7.4.3. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ref.html">7.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">7. </span>云安全</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">7.4. </span>Kubernetes</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7.4.1. </span>k8s概念</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cloud/k8s/conception.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="k8s">
+<h1><span class="section-number">7.4.1. </span>k8s概念<a class="headerlink" href="#k8s" title="Permalink to this heading">¶</a></h1>
+<p>Kubernetes 在希腊语意为“舵手”或“驾驶员”，和 Docker 对应，常简称为K8s。Kubernetes 由 Google 的 Borg 演化而来，是用于自动部署、扩展和管理容器的开源系统。</p>
+<section id="id1">
+<h2><span class="section-number">7.4.1.1. </span>组成<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Kubernetes 由控制面 (Master) 与数据面 (Worker Node) 组成。
+Master 的核心组件：</p>
+<ul class="simple">
+<li><p>API Server</p></li>
+<li><p>Controller-Mananger</p></li>
+<li><p>Scheduler</p></li>
+<li><p>etcd</p></li>
+</ul>
+<p>Worker Node 则由以下节点组成：</p>
+<ul class="simple">
+<li><p>Kubelet</p></li>
+<li><p>Kube-Proxy</p></li>
+<li><p>容器运行时</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">7.4.1.2. </span>核心设计<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="pod">
+<h3><span class="section-number">7.4.1.2.1. </span>Pod<a class="headerlink" href="#pod" title="Permalink to this heading">¶</a></h3>
+<p>Pod 是 Kubernetes 的基本调度单元，一个 Pod 一般包含一个或多个容器。
+Kubernetes 中的每个 Pod 都被分配一个集群内唯一的IP地址，使得应用程序可以使用同一端口。
+Pod 可以定义一个卷，例如本地磁盘目录或网络磁盘，并将其暴露在pod中的一个容器之中。
+Pod 可以通过 Kubernetes API 手动管理，也可以委托给控制器来实现自动管理。</p>
+</section>
+<section id="service">
+<h3><span class="section-number">7.4.1.2.2. </span>Service<a class="headerlink" href="#service" title="Permalink to this heading">¶</a></h3>
+<p>Service是为一组具有相同功能的容器应用提供一个统一的入口地址，本质是一组协同工作的Pod。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="7.4. Kubernetes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="security.html" class="btn btn-neutral float-right" title="7.4.2. 安全" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

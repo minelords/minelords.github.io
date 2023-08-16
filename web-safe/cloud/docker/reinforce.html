@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.3.10. 安全加固 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="7.3.11. Docker 环境识别" href="identify.html" />
+    <link rel="prev" title="7.3.4. 攻击面分析" href="attack.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">7. 云安全</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../history.html">7.1. 云发展史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oci.html">7.2. 容器标准</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">7.3. Docker</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="virtual.html">7.3.1. 虚拟化技术与容器技术</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html">7.3.2. Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id5">7.3.3. 安全风险与安全机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html">7.3.4. 攻击面分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#id2">7.3.5. 供应链安全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#id3">7.3.6. 容器逃逸</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#id10">7.3.7. 拒绝服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#docker">7.3.8. 攻击 Docker 守护进程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attack.html#cve">7.3.9. 其他CVE</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">7.3.10. 安全加固</a></li>
+<li class="toctree-l3"><a class="reference internal" href="identify.html">7.3.11. Docker 环境识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="identify.html#id3">7.3.12. 容器内信息收集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="image.html">7.3.13. 镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref.html">7.3.14. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../k8s/index.html">7.4. Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ref.html">7.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">7. </span>云安全</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">7.3. </span>Docker</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7.3.10. </span>安全加固</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cloud/docker/reinforce.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">7.3.10. </span>安全加固<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><dl class="simple">
+<dt>最小安装</dt><dd><ul>
+<li><p>删除所有开发工具（编译器等）</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>更新系统源</p></li>
+<li><p>启用 AppArmor</p></li>
+<li><p>启用 SELinux</p></li>
+<li><p>限制运行容器的内核功能</p></li>
+<li><p>移除依赖构建</p></li>
+<li><p>配置严格的网络访问控制策略</p></li>
+<li><p>不使用root用户启动docker</p></li>
+<li><p>不以privileged特权模式运行容器</p></li>
+<li><dl class="simple">
+<dt>控制资源</dt><dd><ul>
+<li><p>CPU Share</p></li>
+<li><p>CPU 核数</p></li>
+<li><p>内存资源</p></li>
+<li><p>IO 资源</p></li>
+<li><p>磁盘资源</p></li>
+<li><p>硬件资源</p></li>
+<li><p>单位时间内进程数量上限</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>使用安全的基础镜像</p></li>
+<li><p>定期安全扫描和更新补丁</p></li>
+<li><dl class="simple">
+<dt>删除镜像中的 setuid 和 setgid 权限</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">find</span> <span class="pre">/</span> <span class="pre">-perm</span> <span class="pre">+6000-type</span> <span class="pre">f-exec</span> <span class="pre">chmod</span> <span class="pre">a-s</span> <span class="pre">{}</span> <span class="pre">\;||</span> <span class="pre">true</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>配置Docker守护程序的TLS身份验证</p></li>
+<li><p>如非必要 禁止容器间通信</p></li>
+<li><dl class="simple">
+<dt>rootless Docker</dt><dd><ul>
+<li><p><a class="reference external" href="https://get.docker.com/rootless">https://get.docker.com/rootless</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>使用 Seccomp 限制 syscall</p></li>
+<li><p>构建环境和在线环境分开</p></li>
+<li><p>证书校验</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="attack.html" class="btn btn-neutral float-left" title="7.3.4. 攻击面分析" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="identify.html" class="btn btn-neutral float-right" title="7.3.11. Docker 环境识别" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

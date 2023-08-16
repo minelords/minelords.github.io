@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.4. 安全建设 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.5. 威胁情报" href="threat.html" />
+    <link rel="prev" title="8.3. 安全开发" href="sdl.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. 防御技术</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="team.html">8.1. 团队建设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redteam.html">8.2. 红蓝对抗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdl.html">8.3. 安全开发</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.4. 安全建设</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.4.1. 参考链接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">8.4.2. 安全运营</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">8.4.2.1. 资产管理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="threat.html">8.5. 威胁情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="att8ck.html">8.6. ATT&amp;CK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riskcontrol.html">8.7. 风险控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="framework.html">8.8. 防御框架</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reinforce.html">8.9. 加固检查</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intrusiondetection.html">8.10. 入侵检测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zt.html">8.11. 零信任安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html">8.12. 蜜罐技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rasp.html">8.13. RASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emergency.html">8.14. 应急响应</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forensic.html">8.15. 溯源分析</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">8. </span>防御技术</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8.4. </span>安全建设</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/defense/secops.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">8.4. </span>安全建设<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">8.4.1. </span>参考链接<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="id3">
+<h2><span class="section-number">8.4.2. </span>安全运营<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/39467201">我理解的安全运营 by 职业欠钱</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/84591095">再谈安全运营 by 职业欠钱</a></p></li>
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzIzMTAzNzUxMQ==&amp;mid=2652893616&amp;idx=1&amp;sn=6738a4e33050ed084d1535196aec6061">我们谈安全运营时在谈什么 by 聂君</a></p></li>
+<li><p><a class="reference external" href="https://36kr.com/p/1721236635649">金融行业企业安全运营之路 by 聂君</a></p></li>
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzI2MjQ1NTA4MA==&amp;mid=2247485062&amp;idx=1&amp;sn=94c9fa40edef6de0ea46c453405e3687">秦波：大型互联网应用安全SDL体系建设实践</a></p></li>
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzI2MjQ1NTA4MA==&amp;mid=2247485405&amp;idx=1&amp;sn=bda9283329f6db15d69d4cdf37c609d2">谭晓生：论CISO的个人修养</a></p></li>
+<li><p><a class="reference external" href="https://www.freebuf.com/articles/es/200024.html">赵彦的CISO闪电战 两年甲方安全修炼之路</a></p></li>
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzI2MjQ1NTA4MA==&amp;mid=2247484735&amp;idx=1&amp;sn=02e06dd84ee0322dd2f9fe761b244013">胡珀谈安全运营 by lake2</a></p></li>
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s/rc6X5SlsoRp6s7RCEZ67mA">小步快跑，快速迭代：安全运营的器术法道</a></p></li>
+</ul>
+<section id="id9">
+<h3><span class="section-number">8.4.2.1. </span>资产管理<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzA5MDY3MzMyOQ==&amp;mid=2649439751&amp;idx=1&amp;sn=18ac49aff75ee4b1433e429df56ba44b">资产管理的难点</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sdl.html" class="btn btn-neutral float-left" title="8.3. 安全开发" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="threat.html" class="btn btn-neutral float-right" title="8.5. 威胁情报" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

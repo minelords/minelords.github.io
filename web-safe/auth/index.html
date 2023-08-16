@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9. 认证机制 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.1. 多因子认证" href="mfa.html" />
+    <link rel="prev" title="8.15. 溯源分析" href="../defense/forensic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intranet/index.html">6. 内网渗透</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. 认证机制</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mfa.html">9.1. 多因子认证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sso.html">9.2. SSO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jwt.html">9.3. JWT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html">9.4. OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml.html">9.5. SAML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scram.html">9.6. SCRAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">9.7. Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kerberos.html">9.8. Kerberos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntlm.html">9.9. NTLM 身份验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">9.10. 权限系统设计模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9. </span>认证机制</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/auth/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">9. </span>认证机制<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mfa.html">9.1. 多因子认证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sso.html">9.2. SSO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sso.html#id1">9.2.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sso.html#id3">9.2.2. 可能的攻击/漏洞</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jwt.html">9.3. JWT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jwt.html#id1">9.3.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jwt.html#id2">9.3.2. 构成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jwt.html#id3">9.3.3. 安全问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jwt.html#id5">9.3.4. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oauth.html">9.4. OAuth</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html#id1">9.4.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html#id2">9.4.2. 流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html#id3">9.4.3. 授权码模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html#id4">9.4.4. 简化模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html#id5">9.4.5. 密码模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html#id6">9.4.6. 客户端模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth.html#id7">9.4.7. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="saml.html">9.5. SAML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="saml.html#id1">9.5.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml.html#id2">9.5.2. 认证过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml.html#id3">9.5.3. 安全问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml.html#id4">9.5.4. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scram.html">9.6. SCRAM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scram.html#id1">9.6.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scram.html#id2">9.6.2. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">9.7. Windows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#id1">9.7.1. 本地用户认证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#sam">9.7.2. SAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#id2">9.7.3. 密码破解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#spnego">9.7.4. SPNEGO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kerberos.html">9.8. Kerberos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kerberos.html#id1">9.8.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kerberos.html#id2">9.8.2. 基本概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kerberos.html#id3">9.8.3. 简化的认证过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kerberos.html#id4">9.8.4. 完整的认证过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kerberos.html#id5">9.8.5. 优缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kerberos.html#id8">9.8.6. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ntlm.html">9.9. NTLM 身份验证</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ntlm.html#id1">9.9.1. NTLM认证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntlm.html#hash">9.9.2. Hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntlm.html#id3">9.9.3. 攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntlm.html#id4">9.9.4. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">9.10. 权限系统设计模型</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../defense/forensic.html" class="btn btn-neutral float-left" title="8.15. 溯源分析" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mfa.html" class="btn btn-neutral float-right" title="9.1. 多因子认证" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

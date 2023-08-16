@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.7.9. 攻击类型 &mdash; Web安全学习笔记 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="6.1.7.10. 防护" href="defense.html" />
+    <link rel="prev" title="6.1.7.8. 域内攻击思路" href="atkmap.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Web安全学习笔记
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">内容索引:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../basic/index.html">1. 序章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/index.html">2. 计算机网络与协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../info/index.html">3. 信息收集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vuln/index.html">4. 常见漏洞攻防</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../language/index.html">5. 语言与框架</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">6. 内网渗透</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">6.1. Windows内网渗透</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../info.html">6.1.1. 信息收集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../persistence.html">6.1.2. 持久化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../privilege.html">6.1.3. 权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../trace.html">6.1.4. 痕迹清理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lateral.html">6.1.5. 横向移动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../msrpc.html">6.1.6. MSPRC</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">6.1.7. 域渗透</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="user.html">6.1.7.1. 用户</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proto.html">6.1.7.2. 内网常用协议</a></li>
+<li class="toctree-l4"><a class="reference internal" href="domain.html">6.1.7.3. 域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ad.html">6.1.7.4. Active Directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adcs.html">6.1.7.5. ADCS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gp.html">6.1.7.6. 组策略</a></li>
+<li class="toctree-l4"><a class="reference internal" href="winkerberos.html">6.1.7.7. Kerberos的Windows实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atkmap.html">6.1.7.8. 域内攻击思路</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.7.9. 攻击类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="defense.html">6.1.7.10. 防护</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux/index.html">6.2. Linux内网渗透</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../trojan.html">6.3. 后门技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../misc.html">6.4. 综合技巧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ref.html">6.5. 参考链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cloud/index.html">7. 云安全</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../defense/index.html">8. 防御技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../auth/index.html">9. 认证机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools/index.html">10. 工具与资源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manual/index.html">11. 手册速查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../misc/index.html">12. 其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Web安全学习笔记</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">6. </span>内网渗透</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">6.1. </span>Windows内网渗透</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6.1.7. </span>域渗透</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.7.9. </span>攻击类型</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/intranet/windows/domain/attack.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">6.1.7.9. </span>攻击类型<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2><span class="section-number">6.1.7.9.1. </span>黄金票据利用<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>在认证过程中，经过client与AS的通信会得到TGT，黄金票据（Golden Ticket）就是伪造票据授予票据（TGT），也被称为认证票据。</p>
+<p>黄金票据利用需要与DC通信，且需要获取krbtgt的hash，但是可以获取任何Kerbose服务权限。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">6.1.7.9.2. </span>白银票据利用<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>白银票据（Silver Tickets）伪造利用的是Kerberos认证中的第三个步骤，在第三步的时候，client会带着ticket向server的某个服务进行请求，如果验证通过就可以访问server上的指定服务了，这里的ticket是基于client info、server session key、end time、server hash。这里client info已知，end time可以构造，server session key是TGS生成的，所以只要server的NTLM hash即可。银票伪造的是TGS，只能访问指定的服务。</p>
+</section>
+<section id="dcsync">
+<h2><span class="section-number">6.1.7.9.3. </span>DCSync 攻击<a class="headerlink" href="#dcsync" title="Permalink to this heading">¶</a></h2>
+<p>域内有多台域控服务器时，为了同步域控服务器的修改，微软提供了基于远程目录协议 <a class="reference external" href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47">DRSR</a> 的同步机制。</p>
+<p>在多个域控服务器之间，每隔一段时间会有一次域数据的同步。由需要同步的域控服务器向其它服务器发送 GetNCChanges 请求，请求中包含需要同步的数据。数据量较多时，则重复这个过程。</p>
+<p>DCSync 就是使用这种机制进行域渗透的技术，由Benjamin DELPY gentilkiwi和Vincent LE TOUX共同编写，在2015年添加到 mimikatz 的一个功能，可以导出域内所有用户的hash。</p>
+<p>这种方式需要满足以下任一一种权限：</p>
+<ul class="simple">
+<li><p>Administrators 组内的用户</p></li>
+<li><p>Domain Admins 组内的用户</p></li>
+<li><p>Enterprise Admins 组内的用户</p></li>
+<li><p>域控制器的计算机帐户</p></li>
+</ul>
+<p>或者拥有特定的几条 DACL:</p>
+<ul class="simple">
+<li><p>DS-Replication-Get-Changes</p></li>
+<li><p>DS-Replication-Get-Changes-All</p></li>
+<li><p>DS-Replication-Get-Changes-In-Filtered-Set</p></li>
+</ul>
+<p>当没有管理员用户，但是拥有 WriteDACL 权限时，可以写入上述 DACL 来完成 DCSync 。</p>
+<p>对于这种攻击，可以通过检测 GetNCChanges 发起者的方式，如果由非域控机器发起对应请求，则可以认为是 DCSync 攻击。</p>
+</section>
+<section id="dcshadow">
+<h2><span class="section-number">6.1.7.9.4. </span>DCShadow 攻击<a class="headerlink" href="#dcshadow" title="Permalink to this heading">¶</a></h2>
+<p>DCShadow是由来自法国的安全研究人员Benjamin Delpy和Vincent Le Toux在2018年的微软蓝帽（Blue Hat）大会上提出。</p>
+<p>DCShadow攻击指在Active Directory环境下创建一个恶意的域控制器，并用它来推送恶意对象。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">6.1.7.9.5. </span>哈希传递攻击<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>哈希传递攻击（Pass-the-Hash，PTH）是通过传递NTLM哈希来认证的攻击方法，常用的工具有mimikatz等。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">6.1.7.9.6. </span>票据传递攻击<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>票据传递攻击（Pass-the-Ticket Attacks，PtT）是一种使用Kerberos票据代替明文密码或NTLM哈希的方法。PtT最常见的用途可能是使用黄金票据和白银票据，通过PtT访问主机相当简单。</p>
+</section>
+<section id="kerberoasting-attacks">
+<h2><span class="section-number">6.1.7.9.7. </span>Kerberoasting Attacks<a class="headerlink" href="#kerberoasting-attacks" title="Permalink to this heading">¶</a></h2>
+<p>Kerberoasting攻击由Tim Medin在2014 DerbyCon conference上 <a class="reference external" href="https://www.youtube.com/watch?v=PUyhlN-E5MU">公开</a> 。指域内的任何一台主机，都可以通过查询SPN，Kerberoasting即是向域内的所有服务请求TGS，然后进行暴力破解。</p>
+<section id="roasting-as-rep">
+<h3><span class="section-number">6.1.7.9.7.1. </span>Roasting AS-REP<a class="headerlink" href="#roasting-as-rep" title="Permalink to this heading">¶</a></h3>
+<p>该攻击枚举域中不需要Kerberos预身份认证的帐户，向这些账户请求一条加密信息，并离线尝试获取到的账户哈希。该方式需要账户明确设置了 <code class="docutils literal notranslate"><span class="pre">DONT_REQ_PREAUTH</span></code> 。</p>
+</section>
+</section>
+<section id="kerberos-delegation-attacks">
+<h2><span class="section-number">6.1.7.9.8. </span>Kerberos Delegation Attacks<a class="headerlink" href="#kerberos-delegation-attacks" title="Permalink to this heading">¶</a></h2>
+<p>在一个域中，A使用Kerberos身份验证访问服务B，B再使用A的身份去访问C，这个过程就可以理解为委派。委派主要分为非约束委派（Unconstrained delegation）和约束委派（Constrained delegation）两种，非约束委派可以访问域内任意其它服务，约束委派对认证做了限制不可以访问其他的服务。</p>
+<p>Kerberos Delegation（Kerberos委派）攻击分为非约束委派攻击和约束委派攻击。原理都是基于域内已经配置了委派的账户来获取其它账户的权限。</p>
+</section>
+<section id="id7">
+<h2><span class="section-number">6.1.7.9.9. </span>其他漏洞利用<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>域用户提权 (CVE-2022-26923)</p></li>
+<li><p>KDC bamboozling (CVE-2021-42287)</p></li>
+<li><p>Name impersonation (CVE-2021-42278)</p></li>
+<li><p>ProxyShell (CVE-2021-34473)</p></li>
+<li><p>ProxyLogon (CVE-2021-26855)</p></li>
+<li><p>PrintNightmare (CVE-2021-1675 / CVE-2021-34527)</p></li>
+<li><p>SMBGhost (CVE-2020-0796)</p></li>
+<li><p>Zerologon (CVE-2020-1472)</p></li>
+<li><p>NTLM Relay (CVE-2019-1040)</p></li>
+<li><p>永恒之蓝 (MS17-010)</p></li>
+<li><p>域用户提权 (MS14-068)</p></li>
+<li><p>Gpp漏洞 (MS14-025)</p></li>
+<li><p>SAMR协议漏洞 (MS14-016)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="atkmap.html" class="btn btn-neutral float-left" title="6.1.7.8. 域内攻击思路" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="defense.html" class="btn btn-neutral float-right" title="6.1.7.10. 防护" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, Lyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
