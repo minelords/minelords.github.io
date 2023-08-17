@@ -82,7 +82,7 @@ navs:
     mobile-hidden: true
 
   -
-    href: https://websec.readthedocs.io/zh/latest/
+    href: /web-safe/
     label: web安全
 
   -
