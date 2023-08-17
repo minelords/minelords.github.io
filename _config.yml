@@ -4,7 +4,7 @@
 baseurl:
 url: https://minelords.github.io
 date_format: "ordinal"
-title: 一方通行
+title: 苏沐橙
 subtitle: "苏沐橙的博客"
 description: "苏沐橙的个人博客，热爱CTF的全职高手"
 keywords: 苏沐橙,blog,CTF,game
@@ -82,9 +82,8 @@ navs:
     mobile-hidden: true
 
   -
-    href: /web-safe/index.html
+    href: https://websec.readthedocs.io/zh/latest/
     label: web安全
-    mobile-hidden: true
 
   -
     href: /wiki/

@@ -42,3 +42,6 @@ create_function() 会创造一个匿名函数 (lambda样式)
        echo "xxxxx".$args;
     }
 ```
+
+## 关于php_ini的题
+[点这查看](https://blog.csdn.net/weixin_73562787/article/details/132285273)
