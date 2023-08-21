@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 ---
 ## 一些steam游戏的账号(自取)
 
