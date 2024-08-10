@@ -1,5 +1,5 @@
 # 读取txt文件内容
-with open('sex.txt', 'r', encoding='utf-8') as file:
+with open('111.txt', 'r', encoding='utf-8') as file:
     content = file.readlines()
 
 # 开始构建HTML内容
@@ -16,5 +16,5 @@ for line in content:
 html_content += "</body>\n</html>"
 
 # 将内容写入HTML文件
-with open('url2.html', 'w', encoding='utf-8') as file:
+with open('url4.html', 'w', encoding='utf-8') as file:
     file.write(html_content)
